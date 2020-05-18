@@ -26,4 +26,7 @@ public class UserServiceImpl implements UserService{
         user.setSignUpTime(dateTime);
         return userMapper.signUp(user);
     }
+    public User logIn(String telephone) {
+        return userMapper.logIn(telephone);
+    }
 }

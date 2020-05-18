@@ -9,5 +9,9 @@
         insert into know.user(telephone, password, name, sex, birthday, signUpTime, answerCollected, answerLiked, head)
         values (#{telephone},#{password},#{name},#{sex},#{birthday},#{signUpTime},#{answerCollected},#{answerLiked},#{head});
     </insert>
+    
+    <select id="logIn" resultType="user">
+        select * from know.user where telephone = #{telephone};
+    </select>
 
 </mapper>

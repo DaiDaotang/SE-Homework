@@ -4,4 +4,5 @@ import com.know.pojo.User;
 
 public interface UserService {
     int signUp(User user);
+    User logIn(String telephone);
 }
