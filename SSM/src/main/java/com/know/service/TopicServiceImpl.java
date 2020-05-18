@@ -1,0 +1,42 @@
+/**
+ * Copyright (C), 2015-2020, XXX有限公司
+ * FileName: TopicServiceImpl
+ * Author:   夕汐
+ * Date:     2020/5/18 17:49
+ * Description: Topic Service Impl
+ * History:
+ * <author>          <time>          <version>          <desc>
+ * 作者姓名           修改时间           版本号              描述
+ */
+package com.know.service;
+
+import com.know.pojo.Topic;
+
+import java.util.List;
+
+/**
+ * 〈一句话功能简述〉<br> 
+ * 〈Topic Service Impl〉
+ *
+ * @author 夕汐
+ * @create 2020/5/18
+ * @since 1.0.0
+ */
+public class TopicServiceImpl implements TopicService{
+
+    public int bringUpTopic(int userId, String topicName) {
+        return 0;
+    }
+
+    public int deleteTopic(int topicId) {
+        return 0;
+    }
+
+    public Topic queryTopicById(int topicId) {
+        return null;
+    }
+
+    public List<Topic> queryTopicByName(String name) {
+        return null;
+    }
+}

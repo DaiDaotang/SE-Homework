@@ -1,10 +1,10 @@
-package com.know.dao;
+package com.know.service;
 
 import com.know.pojo.Topic;
 
 import java.util.List;
 
-public interface TopicMapper {
+public interface TopicService {
     // 新建话题
     int bringUpTopic(int userId, String topicName);
     // 删除话题
