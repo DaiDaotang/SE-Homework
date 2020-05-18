@@ -5,4 +5,5 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 public interface UserService {
     int signUp(User user);
+    User logIn(String telephone);
 }

@@ -23,4 +23,15 @@ public class UserController {
         return 1;
     }
 
+    // 登录
+    @RequestMapping("/logIn")
+    public int logIn(User user){
+        System.out.println(user);
+        User u = userService.logIn(user.getTelephone());
+        if(u.getPassword().equals(user.getPassword())){
+            return u.getUserId();
+        }else{
+            return -1;
+        }
+    }
 }
