@@ -17,8 +17,18 @@
     $("#btn").click(function () {
       location.href="${pageContext.request.contextPath}/test/logIn.jsp";
     })
+
+    $("#btn_test_ddt").click(function () {
+      location.href="test/test_ddt.jsp";
+    })
+
+    $("#btn_test_hlx").click(function () {
+      location.href="test/test_hlx.jsp";
+    })
   });
 </script>
 <input type="button" id="btn" value="Sign up">
+<input type="button" id="btn_test_ddt" value="DDT测试页面">
+<input type="button" id="btn_test_hlx" value="CC测试页面">
 </body>
 </html>
