@@ -8,30 +8,17 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-  <title>Sign Up</title>
+  <title>index</title>
 </head>
 <body>
 <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 <script>
   $(function () {
     $("#btn").click(function () {
-      $.post({
-        url:"${pageContext.request.contextPath}/user/signUp",
-        data:{
-          'telephone':$("#telephone").val(),
-          'password':$("#password").val(),
-          'name':$("#name").val()
-        },
-        success:function (data) {
-          console.log(data);
-        }
-      })
+      location.href="${pageContext.request.contextPath}/test/logIn.jsp";
     })
-  })
+  });
 </script>
-<label for="telephone">Telephone:</label><input id="telephone" type="text">
-<label for="password">Password:</label><input type="password" id="password">
-<label for="name">Username:</label><input type="text" id="name">
 <input type="button" id="btn" value="Sign up">
 </body>
 </html>
