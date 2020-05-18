@@ -23,7 +23,7 @@
     })
 
     $("#btn_test_hlx").click(function () {
-      location.href="test/test_hlx.jsp";
+      location.href="../test/test_hlx.jsp";
     })
   });
 </script>

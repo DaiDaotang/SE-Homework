@@ -19,6 +19,7 @@
     <!-- 3. 注册 -->
     <mappers>
         <mapper class="com.know.dao.UserMapper"/>
+        <mapper class="com.know.dao.TopicMapper"/>
     </mappers>
 
 </configuration>

@@ -6,7 +6,8 @@ import java.util.List;
 
 public interface TopicMapper {
     // 新建话题
-    int bringUpTopic(int userId, String topicName);
+    int insertTopic(Topic topic);
+    // int insertTopic(int userId, Topic topic);
     // 删除话题
     int deleteTopic(int topicId);
     // 查询话题 by id

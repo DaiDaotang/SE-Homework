@@ -27,5 +27,5 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class Topic {
     private int topicId;
-    private int topicName;
+    private String topicName;
 }

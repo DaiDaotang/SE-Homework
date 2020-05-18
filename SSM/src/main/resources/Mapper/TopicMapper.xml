@@ -5,6 +5,9 @@
 
 <mapper namespace="com.know.dao.TopicMapper">
 
-
+<insert id="insertTopic" parameterType="topic" useGeneratedKeys="true" keyProperty="topicId">
+    insert know.topic(topicName)
+    value (#{topicName})
+</insert>
 
 </mapper>

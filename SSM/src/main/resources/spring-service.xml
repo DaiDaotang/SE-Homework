@@ -13,6 +13,10 @@
     <bean id="userServiceImpl" class="com.know.service.UserServiceImpl">
         <property name="userMapper" ref="userMapper"/>
     </bean>
+    
+    <bean id="topicServiceImpl" class="com.know.service.TopicServiceImpl">
+        <property name="topicMapper" ref="topicMapper"/>
+    </bean>
 
     <!-- 3. 声明式事务配置 -->
     <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">

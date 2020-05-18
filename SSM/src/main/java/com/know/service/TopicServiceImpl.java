@@ -10,6 +10,7 @@
  */
 package com.know.service;
 
+import com.know.dao.TopicMapper;
 import com.know.pojo.Topic;
 
 import java.util.List;
@@ -24,8 +25,14 @@ import java.util.List;
  */
 public class TopicServiceImpl implements TopicService{
 
-    public int bringUpTopic(int userId, String topicName) {
-        return 0;
+    private TopicMapper topicMapper;
+
+    public void setTopicMapper(TopicMapper topicMapper) {
+        this.topicMapper = topicMapper;
+    }
+
+    public int insertTopic(int userId, Topic topic) {
+        return topicMapper.insertTopic(topic);
     }
 
     public int deleteTopic(int topicId) {
