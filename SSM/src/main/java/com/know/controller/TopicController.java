@@ -35,10 +35,11 @@ public class TopicController {
     @Qualifier("topicServiceImpl")
     private TopicService topicService;
 
+    // 新建话题
     @RequestMapping("/bringUpTopic")
     public Map<String, Object> bringUpTopic(int userId, String topicName){
-        Topic topic = new Topic(-1, topicName);
         Map<String, Object> map = new HashMap<String, Object>();
+        Topic topic = new Topic(-1, topicName);
         if(topicService.insertTopic(userId, topic) != 1){
             map.put("msg", "新建话题失败");
             map.put("topicId", -1);
@@ -46,6 +47,22 @@ public class TopicController {
         else{
             map.put("msg", "OK");
             map.put("topicId", topic.getTopicId());
+        }
+        return map;
+    }
+
+    // 查询话题是否存在
+    @RequestMapping("/checkTopic")
+    public Map<String, Object> checkTopic(String topicName){
+        Map<String, Object> map = new HashMap<String, Object>();
+        Topic topic;
+        if((topic = topicService.queryTopicExactly(topicName)) != null){
+            map.put("msg", "Yes");
+            map.put("topic", topic);
+        }
+        else{
+            map.put("msg", "No");
+            map.put("topic", null);
         }
         return map;
     }

@@ -43,7 +43,11 @@ public class TopicServiceImpl implements TopicService{
         return null;
     }
 
-    public List<Topic> queryTopicByName(String name) {
+    public List<Topic> queryTopicByName(String topicName) {
         return null;
+    }
+
+    public Topic queryTopicExactly(String topicName) {
+        return topicMapper.queryTopicExactly(topicName);
     }
 }

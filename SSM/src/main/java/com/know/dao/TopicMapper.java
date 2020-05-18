@@ -13,5 +13,7 @@ public interface TopicMapper {
     // 查询话题 by id
     Topic queryTopicById(int topicId);
     // 查询话题 by name
-    List<Topic> queryTopicByName(String name);
+    List<Topic> queryTopicByName(String topicName);
+    // 精准查询话题 by name
+    Topic queryTopicExactly(String topicName);
 }

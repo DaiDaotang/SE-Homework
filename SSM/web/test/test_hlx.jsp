@@ -25,11 +25,24 @@
                 }
             })
         })
+
+        $("#btn_1").click(function () {
+            $.post({
+                url:"${pageContext.request.contextPath}/topic/checkTopic",
+                data:{
+                    'topicName':'网球'
+                },
+                success:function (data) {
+                    console.log(data)
+                }
+            })
+        })
     })
 </script>
 <body>
 <H1>Topic模块</H1>
 <input type="button" id="btn_0" value="新建话题">
+<input type="button" id="btn_1" value="话题存在否">
 </body>
 <script>
 </script>
