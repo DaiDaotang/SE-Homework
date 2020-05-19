@@ -10,7 +10,7 @@
         values (#{telephone},#{password},#{name},#{sex},#{birthday},#{signUpTime},#{answerCollected},#{answerLiked},#{head});
     </insert>
     
-    <select id="logIn" resultType="user">
+    <select id="checkByTelephone" resultType="user">
         select * from know.user where telephone = #{telephone};
     </select>
 

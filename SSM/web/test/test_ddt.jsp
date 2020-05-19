@@ -11,6 +11,14 @@
     <title>DDT Test</title>
 </head>
 <body>
-
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+<script>
+    $(function () {
+        $("#btn").click(function () {
+            location.href="${pageContext.request.contextPath}/test/checkTelephone.jsp";
+        })
+    });
+</script>
+<input type="button" id="btn" value="测试">
 </body>
 </html>

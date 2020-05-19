@@ -18,20 +18,25 @@ public class UserController {
     // 注册
     @RequestMapping("/signUp")
     public int signUp(User user){
-        System.out.println(user);
-        userService.signUp(user);
-        return 1;
+        //System.out.println(user);
+        return userService.signUp(user);
     }
 
     // 登录
     @RequestMapping("/logIn")
     public int logIn(User user){
-        System.out.println(user);
+        //System.out.println(user);
         User u = userService.logIn(user.getTelephone());
         if(u.getPassword().equals(user.getPassword())){
             return u.getUserId();
         }else{
             return -1;
         }
+    }
+
+    // 检查电话号码是否被注册过
+    @RequestMapping("/checkTelephone")
+    public int checkTelephone(String telephone){
+        return userService.checkTelephone(telephone);
     }
 }
