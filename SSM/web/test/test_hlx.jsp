@@ -11,6 +11,7 @@
     <title>CC Test</title>
 </head>
 <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+<%--话题--%>
 <script>
     $(function () {
         $("#btn_0").click(function () {
@@ -65,6 +66,7 @@
         })
     })
 </script>
+<%--测试--%>
 <script>
     function checkTopicName(){
         $.post({
