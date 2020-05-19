@@ -40,14 +40,21 @@ public class TopicController {
     @RequestMapping("/bringUpTopic")
     public Map<String, Object> bringUpTopic(int userId, String topicName){
         Map<String, Object> map = new HashMap<String, Object>();
-        Topic topic = new Topic(-1, topicName);
-        if(topicService.insertTopic(userId, topic) != 1){
-            map.put("msg", "新建话题失败");
+
+        if(topicService.queryTopicExactly(topicName) != null){
+            map.put("msg", "ERR");
             map.put("topicId", -1);
         }
         else{
-            map.put("msg", "OK");
-            map.put("topicId", topic.getTopicId());
+            Topic topic = new Topic(-1, topicName);
+            if(topicService.insertTopic(userId, topic) != 1){
+                map.put("msg", "新建话题失败");
+                map.put("topicId", -1);
+            }
+            else{
+                map.put("msg", "OK");
+                map.put("topicId", topic.getTopicId());
+            }
         }
         return map;
     }

@@ -65,7 +65,64 @@
         })
     })
 </script>
+<script>
+    function checkTopicName(){
+        $.post({
+            url:"${pageContext.request.contextPath}/topic/checkTopic",
+            data:{
+                'topicName':$("#topic_name").val()
+            },
+            success:function (data) {
+                console.log(data)
+                // 若存在这个话题
+                if(data.msg === "Yes"){
+                    $("#repeat").html("Repeat");
+                }
+                // 若不存在
+                else{
+                    $("#repeat").html("Not Repeat");
+                }
+                // 若存在推荐话题或重复话题
+                if(data.topic != null){
+                    $("#topic").html(data.topic.topicName);
+                }
+                else{
+                    $("#topic").html("暂无推荐");
+                }
+            }
+        })
+    }
+
+    $(function () {
+        $("#new_topic").click(function () {
+            $.post({
+                url:"${pageContext.request.contextPath}/topic/bringUpTopic",
+                data:{
+                    'userId':1,
+                    'topicName':$("#topic_name").val()
+                },
+                success:function (data) {
+                    console.log(data)
+                    $("#answer").html(data.topicId);
+                }
+            })
+        })
+    })
+</script>
 <body>
+
+<h1>测试</h1>
+<div>
+    <input type="text" id="topic_name" placeholder="新话题名称" onblur="checkTopicName()">
+    <label id="repeat">1</label>
+    <label id="topic">1</label>
+</div>
+<div>
+    <input type="button" id="new_topic" value="确认建立">
+    <label id="answer">1</label>
+</div>
+
+
 <H1>Topic模块</H1>
 <input type="button" id="btn_0" value="新建话题">
 <input type="button" id="btn_1" value="话题存在">
@@ -74,6 +131,7 @@
 <input type="text" id="btn_3_start" value="0">
 <input type="text" id="btn_3_count" value="10">
 <input type="button" id="btn_3" value="名称查询">
+
 </body>
 <script>
 </script>
