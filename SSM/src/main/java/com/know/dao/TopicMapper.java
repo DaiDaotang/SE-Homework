@@ -15,7 +15,7 @@ public interface TopicMapper {
     Topic queryTopicById(int topicId);
     // 精准查询话题 by name
     Topic queryTopicExactly(String topicName);
-    // 模糊查询话题 by name
+    // 模糊查询多个话题 by name
     List<Topic> queryTopicByName(Map<String, Object> map);
     // 模糊查询一个话题 by name
     Topic queryOneTopicByName(String topicName);

@@ -30,7 +30,7 @@
             $.post({
                 url:"${pageContext.request.contextPath}/topic/checkTopic",
                 data:{
-                    'topicName':'网'
+                    'topicName':'乒'
                 },
                 success:function (data) {
                     console.log(data)
@@ -54,9 +54,9 @@
             $.post({
                 url:"${pageContext.request.contextPath}/topic/queryTopicByName",
                 data:{
-                    'topicName':'球',
-                    'start':1,
-                    'count':3
+                    'topicName':$("#btn_3_name").val(),
+                    'start':$("#btn_3_start").val(),
+                    'count':$("#btn_3_count").val()
                 },
                 success:function (data) {
                     console.log(data)
@@ -70,6 +70,9 @@
 <input type="button" id="btn_0" value="新建话题">
 <input type="button" id="btn_1" value="话题存在">
 <input type="button" id="btn_2" value="ID查询">
+<input type="text" id="btn_3_name" value="球">
+<input type="text" id="btn_3_start" value="0">
+<input type="text" id="btn_3_count" value="10">
 <input type="button" id="btn_3" value="名称查询">
 </body>
 <script>

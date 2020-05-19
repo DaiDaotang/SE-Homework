@@ -57,10 +57,12 @@ public class TopicController {
     public Map<String, Object> checkTopic(String topicName){
         Map<String, Object> map = new HashMap<String, Object>();
         Topic topic;
+        // 若已存在
         if((topic = topicService.queryTopicExactly(topicName)) != null){
             map.put("msg", "Yes");
             map.put("topic", topic);
         }
+        // 若未存在
         else{
             topic = topicService.queryOneTopicByName(topicName);
             map.put("msg", "No");
@@ -80,15 +82,34 @@ public class TopicController {
     public Map<String, Object> queryTopicByName(String topicName, int start, int count){
         Map<String, Object> map = new HashMap<String, Object>();
 
+        // 获取总的数据
         Topic topic = topicService.queryTopicExactly(topicName);
         map.put("topicId", topic == null? -1 : topic.getTopicId());
         map.put("topicName", topicName);
+        // 获取数据，可能要改成从缓冲获取
         List<Topic> topics = topicService.queryTopicByName(map);
         map.clear();
 
-        map.put("msg", "OK");
+        int s = topics.size();
+        // 开始数据处理
         map.put("topic", topic);
-        map.put("topics", topics);
+        map.put("count", s);
+        // start 超出大小
+        if(start > s){
+            map.put("msg", "Out of bound");
+            map.put("topics", null);
+        }
+        else{
+            // 裁剪 list
+            if(start + count < s){
+                topics = topics.subList(start, start + count);
+            }
+            else{
+                topics = topics.subList(start, s);
+            }
+            map.put("msg", "OK");
+            map.put("topics", topics);
+        }
         return map;
     }
 }
