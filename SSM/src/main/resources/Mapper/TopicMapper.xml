@@ -7,12 +7,35 @@
 
     <insert id="insertTopic" parameterType="topic" useGeneratedKeys="true" keyProperty="topicId">
         insert know.topic(topicName)
-        value (#{topicName})
+        value (#{topicName});
     </insert>
 
     <select id="queryTopicExactly" resultType="topic">
         select * from know.topic
-        where topicName = #{topicName}
+        where topicName = #{topicName};
+    </select>
+
+    <select id="queryTopicById" resultType="topic">
+        select *
+        from know.topic
+        where topicId = #{topicId};
+    </select>
+
+    <select id="queryTopicByName" resultType="topic">
+        select *
+        from know.topic
+        where topicName like concat('%', #{topicName}, '%')
+        <if test="topicId != -1">
+            and topicId &lt;&gt; #{topicId}
+        </if>
+        ;
+    </select>
+
+    <select id="queryOneTopicByName" resultType="topic">
+        select *
+        from know.topic
+        where topicName like concat('%', #{topicName}, '%')
+        limit 1;
     </select>
 
 </mapper>

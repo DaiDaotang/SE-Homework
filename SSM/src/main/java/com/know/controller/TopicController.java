@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -61,9 +62,33 @@ public class TopicController {
             map.put("topic", topic);
         }
         else{
+            topic = topicService.queryOneTopicByName(topicName);
             map.put("msg", "No");
-            map.put("topic", null);
+            map.put("topic", topic);
         }
+        return map;
+    }
+
+    // 查询话题 by id
+    @RequestMapping("/queryTopicById")
+    public Topic queryTopicById(int topicId){
+        return topicService.queryTopicById(topicId);
+    }
+
+    // 查询话题 by name
+    @RequestMapping("/queryTopicByName")
+    public Map<String, Object> queryTopicByName(String topicName, int start, int count){
+        Map<String, Object> map = new HashMap<String, Object>();
+
+        Topic topic = topicService.queryTopicExactly(topicName);
+        map.put("topicId", topic == null? -1 : topic.getTopicId());
+        map.put("topicName", topicName);
+        List<Topic> topics = topicService.queryTopicByName(map);
+        map.clear();
+
+        map.put("msg", "OK");
+        map.put("topic", topic);
+        map.put("topics", topics);
         return map;
     }
 }

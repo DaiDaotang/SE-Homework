@@ -13,7 +13,9 @@ package com.know.service;
 import com.know.dao.TopicMapper;
 import com.know.pojo.Topic;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 /**
  * 〈一句话功能简述〉<br> 
@@ -40,14 +42,18 @@ public class TopicServiceImpl implements TopicService{
     }
 
     public Topic queryTopicById(int topicId) {
-        return null;
+        return topicMapper.queryTopicById(topicId);
     }
 
-    public List<Topic> queryTopicByName(String topicName) {
-        return null;
+    public List<Topic> queryTopicByName(Map<String, Object> map) {
+        return topicMapper.queryTopicByName(map);
     }
 
     public Topic queryTopicExactly(String topicName) {
         return topicMapper.queryTopicExactly(topicName);
+    }
+
+    public Topic queryOneTopicByName(String topicName) {
+        return topicMapper.queryOneTopicByName(topicName);
     }
 }

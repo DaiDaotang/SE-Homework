@@ -18,7 +18,7 @@
                 url:"${pageContext.request.contextPath}/topic/bringUpTopic",
                 data:{
                     'userId':1,
-                    'topicName':'网球'
+                    'topicName':'球'
                 },
                 success:function (data) {
                     console.log(data)
@@ -30,7 +30,33 @@
             $.post({
                 url:"${pageContext.request.contextPath}/topic/checkTopic",
                 data:{
-                    'topicName':'网球'
+                    'topicName':'网'
+                },
+                success:function (data) {
+                    console.log(data)
+                }
+            })
+        })
+
+        $("#btn_2").click(function () {
+            $.post({
+                url:"${pageContext.request.contextPath}/topic/queryTopicById",
+                data:{
+                    'topicId':3
+                },
+                success:function (data) {
+                    console.log(data)
+                }
+            })
+        })
+
+        $("#btn_3").click(function () {
+            $.post({
+                url:"${pageContext.request.contextPath}/topic/queryTopicByName",
+                data:{
+                    'topicName':'球',
+                    'start':1,
+                    'count':3
                 },
                 success:function (data) {
                     console.log(data)
@@ -42,7 +68,9 @@
 <body>
 <H1>Topic模块</H1>
 <input type="button" id="btn_0" value="新建话题">
-<input type="button" id="btn_1" value="话题存在否">
+<input type="button" id="btn_1" value="话题存在">
+<input type="button" id="btn_2" value="ID查询">
+<input type="button" id="btn_3" value="名称查询">
 </body>
 <script>
 </script>
