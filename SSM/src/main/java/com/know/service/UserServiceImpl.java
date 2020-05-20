@@ -24,9 +24,13 @@ public class UserServiceImpl implements UserService{
         df.setTimeZone(TimeZone.getTimeZone("Asia/Shanghai"));
         String dateTime = df.format(date);
         user.setSignUpTime(dateTime);
-        userMapper.signUp(user);
-        User u = userMapper.checkByTelephone(user.getTelephone());
-        return u.getUserId();
+        try{
+            userMapper.signUp(user);
+            User u = userMapper.checkByTelephone(user.getTelephone());
+            return u.getUserId();
+        }catch (Exception e){
+            return -1;
+        }
     }
 
     public User logIn(String telephone) {
@@ -40,5 +44,9 @@ public class UserServiceImpl implements UserService{
         }else {
             return -1;
         }
+    }
+
+    public int modifyPassword(User user){
+        return userMapper.modifyPassword(user);
     }
 }

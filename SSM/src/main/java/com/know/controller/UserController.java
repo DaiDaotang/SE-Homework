@@ -39,4 +39,14 @@ public class UserController {
     public int checkTelephone(String telephone){
         return userService.checkTelephone(telephone);
     }
+
+    // 修改密码
+    @RequestMapping("/modifyPassword")
+    public String modifyPassword(User user){
+        if(userService.modifyPassword(user)==0){
+            return "Failed to modify password!";
+        }else {
+            return "OK";
+        }
+    }
 }

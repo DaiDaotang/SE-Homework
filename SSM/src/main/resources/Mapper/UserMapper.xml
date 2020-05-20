@@ -14,4 +14,7 @@
         select * from know.user where telephone = #{telephone};
     </select>
 
+    <update id="modifyPassword" parameterType="user">
+        update know.user set password = #{password} where userId = #{userId};
+    </update>
 </mapper>

@@ -10,4 +10,6 @@ public interface UserService {
     User logIn(String telephone);
     //检查电话号是否已被注册
     int checkTelephone(String telephone);
+    //修改密码
+    int modifyPassword(User user);
 }

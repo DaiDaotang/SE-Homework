@@ -15,7 +15,7 @@
 <script>
     $(function () {
         $("#btn").click(function () {
-            location.href="${pageContext.request.contextPath}/test/checkTelephone.jsp";
+            location.href="${pageContext.request.contextPath}/test/modifyPassword.jsp";
         })
     });
 </script>
