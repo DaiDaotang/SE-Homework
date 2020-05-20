@@ -37,16 +37,15 @@ public class UserServiceImpl implements UserService{
         return userMapper.checkByTelephone(telephone);
     }
 
-    public int checkTelephone(String telephone){
-        User user = userMapper.checkByTelephone(telephone);
-        if(user!=null){
-            return user.getUserId();
-        }else {
-            return -1;
-        }
+    public User checkTelephone(String telephone){
+        return userMapper.checkByTelephone(telephone);
     }
 
     public int modifyPassword(User user){
         return userMapper.modifyPassword(user);
+    }
+
+    public User checkByUserId(int userId){
+        return userMapper.checkByUserId(userId);
     }
 }

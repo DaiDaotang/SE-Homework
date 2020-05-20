@@ -37,7 +37,12 @@ public class UserController {
     // 检查电话号码是否被注册过
     @RequestMapping("/checkTelephone")
     public int checkTelephone(String telephone){
-        return userService.checkTelephone(telephone);
+        User user = userService.checkTelephone(telephone);
+        if(user!=null){
+            return user.getUserId();
+        }else {
+            return -1;
+        }
     }
 
     // 修改密码
@@ -48,5 +53,11 @@ public class UserController {
         }else {
             return "OK";
         }
+    }
+
+    // 查询userId返回用户全部信息
+    @RequestMapping("/checkByUserId")
+    public User checkTelephone(int userId){
+        return userService.checkByUserId(userId);
     }
 }

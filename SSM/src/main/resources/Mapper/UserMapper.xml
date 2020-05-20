@@ -17,4 +17,8 @@
     <update id="modifyPassword" parameterType="user">
         update know.user set password = #{password} where userId = #{userId};
     </update>
+
+    <select id="checkByUserId" resultType="user">
+        select * from know.user where userId = #{userId};
+    </select>
 </mapper>

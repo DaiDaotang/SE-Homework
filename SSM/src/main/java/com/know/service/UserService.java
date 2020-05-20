@@ -8,8 +8,10 @@ public interface UserService {
     int signUp(User user);
     //登录
     User logIn(String telephone);
-    //检查电话号是否已被注册
-    int checkTelephone(String telephone);
+    //通过电话号码查询用户
+    User checkTelephone(String telephone);
     //修改密码
     int modifyPassword(User user);
+    //通过用户Id查询用户
+    User checkByUserId(int userId);
 }
