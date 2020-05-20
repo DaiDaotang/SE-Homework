@@ -94,7 +94,6 @@
             }
         })
     }
-
     $(function () {
         $("#new_topic").click(function () {
             $.post({
