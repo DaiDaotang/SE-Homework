@@ -21,4 +21,9 @@
     <select id="checkByUserId" resultType="user">
         select * from know.user where userId = #{userId};
     </select>
+
+    <update id="modifyPersonalInfo" parameterType="user">
+        update know.user set name = #{name}, birthday = #{birthday}, sex = #{sex}
+        where userId = #{userId};
+    </update>
 </mapper>

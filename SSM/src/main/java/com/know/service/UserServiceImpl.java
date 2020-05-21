@@ -48,4 +48,8 @@ public class UserServiceImpl implements UserService{
     public User checkByUserId(int userId){
         return userMapper.checkByUserId(userId);
     }
+
+    public int modifyPersonalInfo(User user){
+        return userMapper.modifyPersonalInfo(user);
+    }
 }

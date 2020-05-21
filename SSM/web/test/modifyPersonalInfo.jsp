@@ -7,10 +7,12 @@
 <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 <script>
     $.post({
-        url:"${pageContext.request.contextPath}/user/modifyPassword",
+        url:"${pageContext.request.contextPath}/user/modifyPersonalInfo",
         data:{
             'userId':'6',
-            'password':'456'
+            'name':'ddt',
+            'sex':'男',
+            'birthday':'2000-03-12'
         },
         success:function (data) {
             console.log(data);

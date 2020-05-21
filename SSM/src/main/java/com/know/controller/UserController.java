@@ -60,4 +60,14 @@ public class UserController {
     public User checkTelephone(int userId){
         return userService.checkByUserId(userId);
     }
+
+    // 修改个人信息
+    @RequestMapping("/modifyPersonalInfo")
+    public String modifyPersonalInfo(User user){
+        if(userService.modifyPersonalInfo(user)==0){
+            return "Failed to modify!";
+        }else {
+            return "OK";
+        }
+    }
 }

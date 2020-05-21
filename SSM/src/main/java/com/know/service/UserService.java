@@ -14,4 +14,6 @@ public interface UserService {
     int modifyPassword(User user);
     //通过用户Id查询用户
     User checkByUserId(int userId);
+    //修改个人信息
+    int modifyPersonalInfo(User user);
 }

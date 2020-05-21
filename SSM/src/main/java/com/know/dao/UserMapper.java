@@ -7,4 +7,5 @@ public interface UserMapper {
     User checkByTelephone(String telephone);
     int modifyPassword(User user);
     User checkByUserId(int userId);
+    int modifyPersonalInfo(User user);
 }
