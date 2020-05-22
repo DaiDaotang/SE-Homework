@@ -9,8 +9,8 @@
     $.post({
         url:"${pageContext.request.contextPath}/user/modifyPersonalInfo",
         data:{
-            'userId':'6',
-            'name':'ddt',
+            'userId':6,
+            'name':'dd',
             'sex':'男',
             'birthday':'2000-03-12'
         },

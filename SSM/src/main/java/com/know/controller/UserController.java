@@ -2,14 +2,21 @@ package com.know.controller;
 
 import com.know.pojo.User;
 import com.know.service.UserService;
+import com.know.utils.util;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
+
+import javax.servlet.ServletContext;
+import java.io.File;
 
 @RestController
 @RequestMapping("/user")
 public class UserController {
+    @Autowired
+    private ServletContext servletContext;
     // Controller 调 Service
     @Autowired
     @Qualifier("userServiceImpl")
@@ -68,6 +75,43 @@ public class UserController {
             return "Failed to modify!";
         }else {
             return "OK";
+        }
+    }
+
+    // 修改头像
+    @RequestMapping("/modifyHead")
+    public String modifyHead(MultipartFile head, int userId){
+        //System.out.println(userId);
+        System.out.println(head);
+        if(head.isEmpty()){
+            return "The head is empty!";
+        }
+        String webRootPath=servletContext.getRealPath("");
+        String headPath = webRootPath + "head";
+        System.out.println(webRootPath);
+        util u = new util();
+        String newFileName = u.upload(head,headPath);
+        String oldFileName = userService.checkByUserId(userId).getHead();
+        User user = new User();
+        user.setHead(newFileName);
+        user.setUserId(userId);
+        if(userService.modifyHead(user)==0){
+            return "Failed to modify!";
+        }else {
+            if(oldFileName==null){
+                return "OK";
+            }else{
+                File f = new File(headPath + File.separator + oldFileName);
+                if(f.exists()){
+                    boolean b = f.delete();
+                    if(!b){
+                        return "Failed to delete old head!";
+                    }
+                    return "OK";
+                }else{
+                    return "The old head has disappeared!";
+                }
+            }
         }
     }
 }

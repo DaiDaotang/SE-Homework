@@ -16,4 +16,6 @@ public interface UserService {
     User checkByUserId(int userId);
     //修改个人信息
     int modifyPersonalInfo(User user);
+    //修改头像
+    int modifyHead(User user);
 }

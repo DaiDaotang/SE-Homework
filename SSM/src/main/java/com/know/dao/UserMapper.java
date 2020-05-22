@@ -8,4 +8,5 @@ public interface UserMapper {
     int modifyPassword(User user);
     User checkByUserId(int userId);
     int modifyPersonalInfo(User user);
+    int modifyHead(User user);
 }

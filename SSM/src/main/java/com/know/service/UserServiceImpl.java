@@ -2,6 +2,7 @@ package com.know.service;
 
 import com.know.dao.UserMapper;
 import com.know.pojo.User;
+import com.know.utils.util;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -51,5 +52,9 @@ public class UserServiceImpl implements UserService{
 
     public int modifyPersonalInfo(User user){
         return userMapper.modifyPersonalInfo(user);
+    }
+
+    public int modifyHead(User user){
+        return userMapper.modifyHead(user);
     }
 }

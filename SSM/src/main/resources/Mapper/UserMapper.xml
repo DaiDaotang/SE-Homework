@@ -26,4 +26,8 @@
         update know.user set name = #{name}, birthday = #{birthday}, sex = #{sex}
         where userId = #{userId};
     </update>
+
+    <update id="modifyHead" parameterType="user">
+        update know.user set head = #{head} where userId = #{userId};
+    </update>
 </mapper>
