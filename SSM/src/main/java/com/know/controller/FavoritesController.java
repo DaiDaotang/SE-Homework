@@ -70,22 +70,26 @@ public class FavoritesController {
         return favoritesService.queryFavoritesListByUserId(userId, start, count);
     }
 
-    // 查找收藏夹内容 by favoritesId
+    // 收藏/取消收藏
+    @RequestMapping("/toFavour")
+    public String favourAnswer(int answerId, int favoritesId, boolean type){
+        favoritesService.favour(favoritesId, answerId, type);
+        return "OK";
+    }
 
-    // 收藏/取消内容
+    // 检测该回答被哪个收藏夹收藏
+    // TODO...
+
+    // 获取收藏夹内容 by favoritesId
+    // TODO...
 
     // 清空收藏夹
+    // TODO...
 
     // 删除收藏夹
     @RequestMapping("/delete")
     public String deleteFavorites(int[] favoritesIds){
-        // int res = favoritesService.deleteFavorites(favoritesIds);
-        // if(res == favoritesIds.length){
-        //     return "OK";
-        // }
-        // else{
-        //     return "ERR";
-        // }
+        // TODO...
         return "ERR";
     }
 }

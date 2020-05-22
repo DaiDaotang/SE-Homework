@@ -12,6 +12,7 @@ package com.know.service;
 
 import com.know.dao.FavoritesMapper;
 import com.know.pojo.Favorites;
+import com.know.utils.QueryUtil;
 
 import java.util.Date;
 import java.util.HashMap;
@@ -56,8 +57,7 @@ public class FavoritesServiceImpl implements FavoritesService{
     }
 
     public List<Favorites> queryFavoritesListByUserId(int userId, int start, int count) {
-        List<Favorites> favorites = favoritesMapper.queryFavoritesList(userId);
-        return favorites;
+        return QueryUtil.cutList(favoritesMapper.queryFavoritesList(userId), start, count);
     }
 
     public int favour(int favoritesId, int answerId, boolean type) {
@@ -67,11 +67,12 @@ public class FavoritesServiceImpl implements FavoritesService{
         Map<String, Object> map1 = new HashMap<String, Object>();
         map1.put("updateTime", new Date());
         map1.put("contentNumber", type? 1 : -1);
+        map1.put("favoritesId", favoritesId);
         if(type){
             favoritesMapper.favour(map0);
         }
         else{
-            favoritesMapper.unfavour(map1);
+            favoritesMapper.unfavour(map0);
         }
         favoritesMapper.updateFavoritesLike(map1);
         return 0;

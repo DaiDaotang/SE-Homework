@@ -179,6 +179,20 @@
                 }
             })
         })
+
+        $("#btn_f_5").click(function () {
+            $.post({
+                url : "${pageContext.request.contextPath}/favorites/toFavour",
+                data: {
+                    "answerId":2,
+                    "favoritesId":6,
+                    "type":true
+                },
+                success: function (data) {
+                    console.log(data);
+                }
+            })
+        })
     })
 </script>
 <body>
@@ -192,6 +206,7 @@
     <input type="button" id="btn_f_2" value="修改收藏夹名称">
     <input type="button" id="btn_f_3" value="通过ID获取收藏夹">
     <input type="button" id="btn_f_4" value="通过用户ID获取收藏夹">
+    <input type="button" id="btn_f_5" value="收藏/取消收藏回答">
 </div>
 
 

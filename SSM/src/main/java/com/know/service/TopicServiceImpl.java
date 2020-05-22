@@ -52,7 +52,7 @@ public class TopicServiceImpl implements TopicService{
         map.put("topicName", topicName);
         map.put("topicId", topicId);
         List<Topic> topics = topicMapper.queryTopicByName(map);
-        return QueryUtil.cutList(topics, topics.size(), start, count);
+        return QueryUtil.cutList(topics, start, count);
     }
 
     public Topic queryTopicExactly(String topicName) {

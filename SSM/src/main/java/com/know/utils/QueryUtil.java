@@ -24,17 +24,17 @@ public class QueryUtil {
     /**
      * 切割列表
      * @param list  要切割的列表
-     * @param size  列表大小
      * @param start 开始项
      * @param count 数量
      * @param <T>   List中的对象类型
      * @return      切割后的list
      */
-    public static <T> List<T> cutList(List<T> list, int size, int start, int count){
+    public static <T> List<T> cutList(List<T> list, int start, int count){
         // 若列表为空
         if(list == null){
             return null;
         }
+        int size = list.size();
         // 越界
         if(start > size){
             return null;
