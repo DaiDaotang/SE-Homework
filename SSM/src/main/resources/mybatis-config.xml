@@ -20,7 +20,6 @@
     <mappers>
         <mapper class="com.know.dao.UserMapper"/>
         <mapper class="com.know.dao.TopicMapper"/>
-        <mapper class="com.know.dao.FavoritesMapper"/>
     </mappers>
 
 </configuration>

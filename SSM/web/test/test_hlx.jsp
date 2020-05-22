@@ -110,63 +110,7 @@
         })
     })
 </script>
-<%--收藏夹--%>
-<script>
-    $(function () {
-        $("#btn_f_0").click(function () {
-            $.post({
-                url : "${pageContext.request.contextPath}/favorites/newFavorites",
-                data:{
-                    "userId":5,
-                    "favoritesName":$("#txt_f_0").val()
-                },
-                success:function (data) {
-                    console.log(data);
-                }
-            })
-        })
-    })
-
-    $(function () {
-        $("#btn_f_1").click(function () {
-            $.post({
-                url : "${pageContext.request.contextPath}/favorites/delete",
-                data: {
-                    "favoritesIds":[2, 3]
-                },
-                traditional: true,
-                success: function (data) {
-                    console.log(data);
-                }
-            })
-        })
-    })
-
-    $(function () {
-        $("#btn_f_2").click(function () {
-            $.post({
-                url : "${pageContext.request.contextPath}/favorites/updateFavoritesName",
-                data: {
-                    "favoritesId":6,
-                    "favoritesName":$("#txt_f_2").val()
-                },
-                success: function (data) {
-                    console.log(data);
-                }
-            })
-        })
-    })
-</script>
 <body>
-
-<h1>收藏夹</h1>
-<input type="text" id="txt_f_0" placeholder="收藏夹名称">
-<input type="button" id="btn_f_0" value="新建收藏夹">
-<input type="button" id="btn_f_1" value="删除收藏夹">
-<input type="text" id="txt_f_2" placeholder="收藏夹新名称">
-<input type="button" id="btn_f_2" value="修改收藏夹名称">
-
-
 
 <h1>测试</h1>
 <div>
@@ -190,4 +134,6 @@
 <input type="button" id="btn_3" value="名称查询">
 
 </body>
+<script>
+</script>
 </html>

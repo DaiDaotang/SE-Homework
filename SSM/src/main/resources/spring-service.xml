@@ -18,10 +18,6 @@
         <property name="topicMapper" ref="topicMapper"/>
     </bean>
 
-    <bean id="favoritesServiceImpl" class="com.know.service.FavoritesServiceImpl">
-        <property name="favoritesMapper" ref="favoritesMapper"/>
-    </bean>
-
     <!-- 3. 声明式事务配置 -->
     <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
         <!--注入数据源-->
