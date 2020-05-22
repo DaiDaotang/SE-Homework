@@ -5,14 +5,27 @@
 
 <mapper namespace="com.know.dao.FavoritesMapper">
 
-    <insert id="insertFavorites" parameterType="favorites">
+    <insert id="insertFavorites" parameterType="favorites" useGeneratedKeys="true" keyProperty="favoritesId">
         insert into favorites (userId, favoritesName, updateTime, contentNumber)
         values (#{userId},#{favoritesName},#{updateTime},#{contentNumber});
     </insert>
 
-    <delete id="deleteFavorites">
-        delete from favoritescontent where favoritesId = #{favoritesId};
-        delete from favorites where favoritesId =  #{favoritesId};
+    <delete id="emptyFavorites">
+        delete from favoritescontent
+        where favoritesId = #{favoritesId};
+    </delete>
+
+    <delete id="deleteFavorites" parameterType="int[]">
+        delete from favoritescontent
+        where favoritesId in
+        <foreach collection="array" item="favoritesIds" open="(" close=")" separator=",">
+            #{favoritesIds}
+        </foreach>;
+
+        <!--delete from favorites where favoritesId in-->
+        <!--<foreach collection="array" item="favoritesIds" open="(" close=")" separator=",">-->
+        <!--    #{favoritesIds}-->
+        <!--</foreach>;-->
     </delete>
 
     <update id="updateFavoritesName" parameterType="map">
@@ -39,12 +52,12 @@
         where userId = #{userId};
     </select>
 
-    <insert id="like" parameterType="map">
+    <insert id="favour" parameterType="map">
         insert into favoritescontent (favoritesId, answerId)
         values (#{favoritesId}, #{answerId});
     </insert>
 
-    <delete id="dislike" parameterType="map">
+    <delete id="unfavour" parameterType="map">
         delete from favoritescontent
         where favoritesId = #{favoritesId}
         and answerId = #{answerId};

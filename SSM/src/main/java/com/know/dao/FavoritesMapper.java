@@ -8,8 +8,10 @@ import java.util.Map;
 public interface FavoritesMapper {
     // 新建收藏夹
     int insertFavorites(Favorites favorites);
+    // 清空收藏夹
+    int emptyFavorites(int favoritesId);
     // 删除收藏夹
-    int deleteFavorites(int favoritesId);
+    int deleteFavorites(int[] favoritesIds);
     // 更改收藏夹：名称
     int updateFavoritesName(Map<String, Object> map);
     // 更改收藏夹：收藏/取消收藏时
@@ -21,7 +23,7 @@ public interface FavoritesMapper {
     // 查找收藏夹内容 by favoritesId
 
     // 收藏内容
-    int like(Map<String, Object> map);
+    int favour(Map<String, Object> map);
     // 取消收藏
-    int dislike(Map<String, Object> map);
+    int unfavour(Map<String, Object> map);
 }
