@@ -10,12 +10,16 @@ public interface FavoritesMapper {
     int insertFavorites(Favorites favorites);
     // 删除收藏夹
     int deleteFavorites(int favoritesId);
-    // 更改收藏夹
-    int updateFavorites(Favorites favorites);
+    // 更改收藏夹：名称
+    int updateFavoritesName(Map<String, Object> map);
+    // 更改收藏夹：收藏/取消收藏时
+    int updateFavoritesLike(Map<String, Object> map);
     // 查找收藏夹 by Id
     Favorites queryFavoritesById(int favoritesId);
     // 查找收藏夹列表 by userId
     List<Favorites> queryFavoritesList(int userId);
+    // 查找收藏夹内容 by favoritesId
+
     // 收藏内容
     int like(Map<String, Object> map);
     // 取消收藏

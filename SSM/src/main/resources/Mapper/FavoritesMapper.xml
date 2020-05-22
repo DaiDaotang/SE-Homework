@@ -6,7 +6,48 @@
 <mapper namespace="com.know.dao.FavoritesMapper">
 
     <insert id="insertFavorites" parameterType="favorites">
-
+        insert into favorites (userId, favoritesName, updateTime, contentNumber)
+        values (#{userId},#{favoritesName},#{updateTime},#{contentNumber});
     </insert>
+
+    <delete id="deleteFavorites">
+        delete from favoritescontent where favoritesId = #{favoritesId};
+        delete from favorites where favoritesId =  #{favoritesId};
+    </delete>
+
+    <update id="updateFavoritesName" parameterType="map">
+        update favorites
+        set favoritesName = #{favoritesName}
+        where favoritesId = #{favoritesId};
+    </update>
+
+    <update id="updateFavoritesLike" parameterType="map">
+        update favorites
+        set contentNumber = contentNumber + #{contentNumber}, updateTime = #{updateTime}
+        where favoritesId = #{favoritesId};
+    </update>
+
+    <select id="queryFavoritesById" resultType="favorites">
+        select *
+        from favorites
+        where favoritesId = #{favoritesId};
+    </select>
+
+    <select id="queryFavoritesList" resultType="favorites">
+        select *
+        from favorites
+        where userId = #{userId};
+    </select>
+
+    <insert id="like" parameterType="map">
+        insert into favoritescontent (favoritesId, answerId)
+        values (#{favoritesId}, #{answerId});
+    </insert>
+
+    <delete id="dislike" parameterType="map">
+        delete from favoritescontent
+        where favoritesId = #{favoritesId}
+        and answerId = #{answerId};
+    </delete>
 
 </mapper>
