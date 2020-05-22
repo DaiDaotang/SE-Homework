@@ -12,6 +12,7 @@ package com.know.controller;
 
 import com.know.pojo.Topic;
 import com.know.service.TopicService;
+import com.know.utils.QueryUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -48,7 +49,7 @@ public class TopicController {
         else{
             Topic topic = new Topic(-1, topicName);
             if(topicService.insertTopic(userId, topic) != 1){
-                map.put("msg", "新建话题失败");
+                map.put("msg", "ERR");
                 map.put("topicId", -1);
             }
             else{
@@ -89,34 +90,14 @@ public class TopicController {
     public Map<String, Object> queryTopicByName(String topicName, int start, int count){
         Map<String, Object> map = new HashMap<String, Object>();
 
-        // 获取总的数据
+        // 获取数据
         Topic topic = topicService.queryTopicExactly(topicName);
-        map.put("topicId", topic == null? -1 : topic.getTopicId());
-        map.put("topicName", topicName);
-        // 获取数据，可能要改成从缓冲获取
-        List<Topic> topics = topicService.queryTopicByName(map);
-        map.clear();
+        List<Topic> topics = topicService.queryTopicByName(topicName, start, count, topic == null? -1 : topic.getTopicId());
 
-        int s = topics.size();
         // 开始数据处理
         map.put("topic", topic);
-        map.put("count", s);
-        // start 超出大小
-        if(start > s){
-            map.put("msg", "Out of bound");
-            map.put("topics", null);
-        }
-        else{
-            // 裁剪 list
-            if(start + count < s){
-                topics = topics.subList(start, start + count);
-            }
-            else{
-                topics = topics.subList(start, s);
-            }
-            map.put("msg", "OK");
-            map.put("topics", topics);
-        }
+        map.put("topics", topics);
+        map.put("count", topics.size());
         return map;
     }
 }

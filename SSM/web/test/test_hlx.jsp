@@ -11,6 +11,7 @@
     <title>CC Test</title>
 </head>
 <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+<script src="js/utils.js"></script>
 <%--话题--%>
 <script>
     $(function () {
@@ -125,9 +126,7 @@
                 }
             })
         })
-    })
 
-    $(function () {
         $("#btn_f_1").click(function () {
             $.post({
                 url : "${pageContext.request.contextPath}/favorites/delete",
@@ -140,9 +139,7 @@
                 }
             })
         })
-    })
 
-    $(function () {
         $("#btn_f_2").click(function () {
             $.post({
                 url : "${pageContext.request.contextPath}/favorites/updateFavoritesName",
@@ -155,39 +152,74 @@
                 }
             })
         })
+
+        $("#btn_f_3").click(function () {
+            $.post({
+                url : "${pageContext.request.contextPath}/favorites/getFavoritesById",
+                data: {
+                    "favoritesId":6
+                },
+                success: function (data) {
+                    console.log(data);
+                    console.log(timestampToTime(data.updateTime))
+                }
+            })
+        })
+
+        $("#btn_f_4").click(function () {
+            $.post({
+                url : "${pageContext.request.contextPath}/favorites/getFavoritesByUserId",
+                data: {
+                    "userId":5,
+                    "start":0,
+                    "count":2
+                },
+                success: function (data) {
+                    console.log(data);
+                }
+            })
+        })
     })
 </script>
 <body>
 
 <h1>收藏夹</h1>
-<input type="text" id="txt_f_0" placeholder="收藏夹名称">
-<input type="button" id="btn_f_0" value="新建收藏夹">
-<input type="button" id="btn_f_1" value="删除收藏夹">
-<input type="text" id="txt_f_2" placeholder="收藏夹新名称">
-<input type="button" id="btn_f_2" value="修改收藏夹名称">
+<div>
+    <input type="text" id="txt_f_0" placeholder="收藏夹名称">
+    <input type="button" id="btn_f_0" value="新建收藏夹">
+    <input type="button" id="btn_f_1" value="删除收藏夹">
+    <input type="text" id="txt_f_2" placeholder="收藏夹新名称">
+    <input type="button" id="btn_f_2" value="修改收藏夹名称">
+    <input type="button" id="btn_f_3" value="通过ID获取收藏夹">
+    <input type="button" id="btn_f_4" value="通过用户ID获取收藏夹">
+</div>
 
 
 
 <h1>测试</h1>
 <div>
-    <input type="text" id="topic_name" placeholder="新话题名称" onblur="checkTopicName()">
-    <label id="repeat">1</label>
-    <label id="topic">1</label>
-</div>
-<div>
-    <input type="button" id="new_topic" value="确认建立">
-    <label id="answer">1</label>
+    <div>
+        <input type="text" id="topic_name" placeholder="新话题名称" onblur="checkTopicName()">
+        <label id="repeat">1</label>
+        <label id="topic">1</label>
+    </div>
+    <div>
+        <input type="button" id="new_topic" value="确认建立">
+        <label id="answer">1</label>
+    </div>
 </div>
 
 
 <H1>Topic模块</H1>
-<input type="button" id="btn_0" value="新建话题">
-<input type="button" id="btn_1" value="话题存在">
-<input type="button" id="btn_2" value="ID查询">
-<input type="text" id="btn_3_name" value="球">
-<input type="text" id="btn_3_start" value="0">
-<input type="text" id="btn_3_count" value="10">
-<input type="button" id="btn_3" value="名称查询">
+<div>
+    <input type="button" id="btn_0" value="新建话题">
+    <input type="button" id="btn_1" value="话题存在">
+    <input type="button" id="btn_2" value="ID查询">
+    <input type="text" id="btn_3_name" value="球">
+    <input type="text" id="btn_3_start" value="0">
+    <input type="text" id="btn_3_count" value="10">
+    <input type="button" id="btn_3" value="名称查询">
+</div>
 
 </body>
 </html>

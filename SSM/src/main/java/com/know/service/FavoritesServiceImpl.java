@@ -55,8 +55,9 @@ public class FavoritesServiceImpl implements FavoritesService{
         return favoritesMapper.queryFavoritesById(favoritesId);
     }
 
-    public List<Favorites> queryFavoritesList(int userId) {
-        return favoritesMapper.queryFavoritesList(userId);
+    public List<Favorites> queryFavoritesListByUserId(int userId, int start, int count) {
+        List<Favorites> favorites = favoritesMapper.queryFavoritesList(userId);
+        return favorites;
     }
 
     public int favour(int favoritesId, int answerId, boolean type) {

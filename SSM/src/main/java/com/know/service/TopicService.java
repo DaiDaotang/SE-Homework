@@ -13,7 +13,7 @@ public interface TopicService {
     // 查询话题 by id
     Topic queryTopicById(int topicId);
     // 模糊查询话题 by name
-    List<Topic> queryTopicByName(Map<String, Object> map);
+    List<Topic> queryTopicByName(String topicName, int start, int count, int topicId);
     // 精准查询话题 by name
     Topic queryTopicExactly(String topicName);
     // 模糊查询一个话题 by name

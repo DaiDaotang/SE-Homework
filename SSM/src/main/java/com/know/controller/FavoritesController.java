@@ -17,6 +17,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 /**
@@ -50,6 +51,31 @@ public class FavoritesController {
         return map;
     }
 
+    // 更改收藏夹：名称
+    @RequestMapping("/updateFavoritesName")
+    public String updateFavoritesName(int favoritesId, String favoritesName){
+        int res = favoritesService.updateFavoritesName(favoritesId, favoritesName);
+        return res == 1? "OK" : "ERR";
+    }
+
+    // 查找收藏夹 by Id
+    @RequestMapping("/getFavoritesById")
+    public Favorites getFavoritesById(int favoritesId){
+        return favoritesService.queryFavoritesById(favoritesId);
+    }
+
+    // 查找收藏夹列表 by userId
+    @RequestMapping("/getFavoritesByUserId")
+    public List<Favorites> getFavoritesByUserId(int userId, int start, int count){
+        return favoritesService.queryFavoritesListByUserId(userId, start, count);
+    }
+
+    // 查找收藏夹内容 by favoritesId
+
+    // 收藏/取消内容
+
+    // 清空收藏夹
+
     // 删除收藏夹
     @RequestMapping("/delete")
     public String deleteFavorites(int[] favoritesIds){
@@ -62,22 +88,4 @@ public class FavoritesController {
         // }
         return "ERR";
     }
-
-    // 更改收藏夹：名称
-    @RequestMapping("/updateFavoritesName")
-    public String updateFavoritesName(int favoritesId, String favoritesName){
-        int res = favoritesService.updateFavoritesName(favoritesId, favoritesName);
-        return res == 1? "OK" : "ERR";
-    }
-
-    // 查找收藏夹 by Id
-
-    // 查找收藏夹列表 by userId
-
-    // 查找收藏夹内容 by favoritesId
-
-    // 收藏/取消内容
-
-    // 清空收藏夹
-
 }

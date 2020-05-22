@@ -12,8 +12,10 @@ package com.know.service;
 
 import com.know.dao.TopicMapper;
 import com.know.pojo.Topic;
+import com.know.utils.QueryUtil;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -45,8 +47,12 @@ public class TopicServiceImpl implements TopicService{
         return topicMapper.queryTopicById(topicId);
     }
 
-    public List<Topic> queryTopicByName(Map<String, Object> map) {
-        return topicMapper.queryTopicByName(map);
+    public List<Topic> queryTopicByName(String topicName, int start, int count, int topicId) {
+        Map<String, Object> map = new HashMap<String, Object>();
+        map.put("topicName", topicName);
+        map.put("topicId", topicId);
+        List<Topic> topics = topicMapper.queryTopicByName(map);
+        return QueryUtil.cutList(topics, topics.size(), start, count);
     }
 
     public Topic queryTopicExactly(String topicName) {
