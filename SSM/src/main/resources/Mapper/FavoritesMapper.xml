@@ -10,11 +10,6 @@
         values (#{userId},#{favoritesName},#{updateTime},#{contentNumber});
     </insert>
 
-    <delete id="emptyFavorites">
-        delete from favoritescontent
-        where favoritesId = #{favoritesId};
-    </delete>
-
     <delete id="deleteFavorites" parameterType="int[]">
         delete from favoritescontent
         where favoritesId in
@@ -56,6 +51,11 @@
         insert into favoritescontent (favoritesId, answerId)
         values (#{favoritesId}, #{answerId});
     </insert>
+
+    <delete id="emptyFavorites">
+        delete from favoritescontent
+        where favoritesId = #{favoritesId};
+    </delete>
 
     <delete id="unfavour" parameterType="map">
         delete from favoritescontent

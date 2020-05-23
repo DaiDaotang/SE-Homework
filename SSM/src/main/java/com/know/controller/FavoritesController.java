@@ -10,6 +10,7 @@
  */
 package com.know.controller;
 
+import com.know.pojo.Answer;
 import com.know.pojo.Favorites;
 import com.know.service.FavoritesService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -79,8 +80,12 @@ public class FavoritesController {
     // 检测该回答被哪个收藏夹收藏
     // TODO...
 
-    // 获取收藏夹内容 by favoritesId
+    // 获取一个收藏夹内容 by favoritesId
     // TODO...
+    @RequestMapping("/getFavoritesContents")
+    public List<Answer> getFavoritesContents(int favoritesId, int start, int count){
+        return null;
+    }
 
     // 清空收藏夹
     // TODO...

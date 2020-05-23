@@ -1,5 +1,6 @@
 package com.know.dao;
 
+import com.know.pojo.Answer;
 import com.know.pojo.Favorites;
 
 import java.util.List;
@@ -24,6 +25,6 @@ public interface FavoritesMapper {
     Favorites queryFavoritesById(int favoritesId);
     // 查找收藏夹列表 by userId
     List<Favorites> queryFavoritesList(int userId);
-    // 查找收藏夹内容 by favoritesId
-
+    // 查找一个收藏夹的内容 by favoritesId
+    List<Answer> queryFavoritesContent(int favoritesId);
 }

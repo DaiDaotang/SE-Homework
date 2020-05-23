@@ -41,12 +41,11 @@ public class QueryUtil {
         }
         // 最后一个在size前
         if(start + count < size){
-            list = list.subList(start, start + count);
+            return list.subList(start, start + count);
         }
         // 最后一个越界
         else{
-            list = list.subList(start, size);
+            return list.subList(start, size);
         }
-        return list;
     }
 }

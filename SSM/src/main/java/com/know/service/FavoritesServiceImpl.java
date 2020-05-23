@@ -50,10 +50,6 @@ public class FavoritesServiceImpl implements FavoritesService{
         return favoritesMapper.insertFavorites(favorites);
     }
 
-    public int emptyFavorites(int favoritesId) {
-        return favoritesMapper.emptyFavorites(favoritesId);
-    }
-
     public int deleteFavorites(int[] favoritesIds) {
         return favoritesMapper.deleteFavorites(favoritesIds);
     }
@@ -73,6 +69,15 @@ public class FavoritesServiceImpl implements FavoritesService{
         return QueryUtil.cutList(favoritesMapper.queryFavoritesList(userId), start, count);
     }
 
+    /**
+     * 使用方法一，调用多个 mapper 改多个表
+     * 应使用方法二，调用一个 mapper 改多个表，因为这里不需要从表中获取新的数据
+     * @param answerId      回答ID
+     * @param answererId    答主ID
+     * @param favoritesId   收藏夹ID
+     * @param type          true：收藏，false：取消收藏
+     * @return              修改的表的数量
+     */
     public int favour(int answerId, int answererId, int favoritesId, boolean type) {
         Map<String, Object> map = new HashMap<String, Object>();
         map.put("favoritesId", favoritesId);
@@ -82,39 +87,30 @@ public class FavoritesServiceImpl implements FavoritesService{
         map.put("contentNumber", type? 1 : -1);
         map.put("answerCollected", type? 1 : -1);
 
-        // Map<String, Object> map0 = new HashMap<String, Object>();
-        // map0.put("favoritesId", favoritesId);
-        // map0.put("answerId", answerId);
-        // Map<String, Object> map1 = new HashMap<String, Object>();
-        // map1.put("updateTime", new Date());
-        // map1.put("contentNumber", type? 1 : -1);
-        // map1.put("favoritesId", favoritesId);
-        // Map<String, Integer> map2 = new HashMap<String, Integer>();
-        // map2.put("answerId", answerId);
-        // map2.put("answerCollected", type? 1 : -1);
-        // Map<String, Integer> map3 = new HashMap<String, Integer>();
-        // map2.put("userId", answererId);
-        // map2.put("answerCollected", type? 1 : -1);
-
         int res = 0;
         // 修改 favoritescontent 表
-        if(type){
-            // res += favoritesMapper.favour(map0);
-            res += favoritesMapper.favour(map);
-        }
-        else{
-            // res += favoritesMapper.unfavour(map0);
-            res += favoritesMapper.unfavour(map);
-        }
+        res += type? favoritesMapper.favour(map) : favoritesMapper.unfavour(map);
         // 修改 favorites 表
-        // res += favoritesMapper.updateFavoritesLike(map1);
         res += favoritesMapper.updateFavoritesLike(map);
         // 修改 answer 表
-        // TODO...
         res += answerMapper.modifyAnswerCollected(map);
         // 修改 user 表
-        // res += userMapper.modifyCollected(map3);
         res += userMapper.modifyCollected(map);
+        // 判断是否成功的更改了四个表
         return res % 4 + 1;
+    }
+
+    /**
+     * 使用方法一，调用多个 mapper 来修改多个表
+     * @param favoritesId   收藏夹ID
+     * @return              修改数
+     */
+    public int emptyFavorites(int favoritesId) {
+        // 1. 获取该收藏夹中的回答的ID列表
+        // 2. 删除 favoritescontent 中的项
+        // 3. 更新 favorites 中的收藏数与更改时间
+        // 4. 更新 answer 中的对应的回答的收藏数
+        // 5. 更新 user 中答主的收藏数
+        return 0;
     }
 }
