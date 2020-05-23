@@ -11,6 +11,8 @@ import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.ServletContext;
 import java.io.File;
+import java.util.HashMap;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/user")
@@ -64,7 +66,7 @@ public class UserController {
 
     // 查询userId返回用户全部信息
     @RequestMapping("/checkByUserId")
-    public User checkTelephone(int userId){
+    public User checkByUserId(int userId){
         return userService.checkByUserId(userId);
     }
 
@@ -86,11 +88,11 @@ public class UserController {
         if(head.isEmpty()){
             return "The head is empty!";
         }
-        String webRootPath=servletContext.getRealPath("");
+        String webRootPath = servletContext.getRealPath("");
         String headPath = webRootPath + "head";
         System.out.println(webRootPath);
         util u = new util();
-        String newFileName = u.upload(head,headPath);
+        String newFileName = u.upload(head,headPath,userId);
         String oldFileName = userService.checkByUserId(userId).getHead();
         User user = new User();
         user.setHead(newFileName);
@@ -113,5 +115,22 @@ public class UserController {
                 }
             }
         }
+    }
+
+    // 获取头像
+    @RequestMapping("/getHead")
+    public Map<String,Object> getHead(int userId){
+        Map<String,Object> map = new HashMap<String, Object>();
+        String filename = userService.checkByUserId(userId).getHead();
+        if(filename==null){
+            map.put("msg","No head!");
+            return map;
+        }
+        String webRootPath = servletContext.getRealPath("");
+        String headPath = webRootPath + "head";
+        String path = headPath + File.separator + filename;
+        map.put("head",path);
+        map.put("msg","OK");
+        return map;
     }
 }

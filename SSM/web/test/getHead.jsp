@@ -7,10 +7,9 @@
 <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 <script>
     $.post({
-        url:"${pageContext.request.contextPath}/user/logIn",
+        url:"${pageContext.request.contextPath}/user/getHead",
         data:{
-            'telephone':'123',
-            'password':'456'
+            'userId':'6'
         },
         success:function (data) {
             console.log(data);

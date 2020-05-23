@@ -28,6 +28,10 @@
         <property name="answerMapper" ref="answerMapper"/>
     </bean>
 
+    <bean id="commentServiceImpl" class="com.know.service.CommentServiceImpl">
+        <property name="commentMapper" ref="commentMapper"/>
+    </bean>
+
     <!-- 3. 声明式事务配置 -->
     <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
         <!--注入数据源-->
