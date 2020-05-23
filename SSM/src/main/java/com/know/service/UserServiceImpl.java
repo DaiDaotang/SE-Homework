@@ -6,6 +6,8 @@ import com.know.utils.util;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.TimeZone;
 
 public class UserServiceImpl implements UserService{
@@ -56,5 +58,12 @@ public class UserServiceImpl implements UserService{
 
     public int modifyHead(User user){
         return userMapper.modifyHead(user);
+    }
+
+    public int modifyCollected(int userId, int answerCollected) {
+        Map<String, Object> map = new HashMap<String, Object>();
+        map.put("userId", userId);
+        map.put("answerCollected", answerCollected);
+        return userMapper.modifyCollected(map);
     }
 }

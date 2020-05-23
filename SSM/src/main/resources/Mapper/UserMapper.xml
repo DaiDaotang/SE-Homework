@@ -30,4 +30,10 @@
     <update id="modifyHead" parameterType="user">
         update know.user set head = #{head} where userId = #{userId};
     </update>
+
+    <update id="modifyCollected" parameterType="map">
+        update know.user
+        set answerCollected = answerCollected + #{answerCollected}
+        where userId = #{userId};
+    </update>
 </mapper>

@@ -26,5 +26,5 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Answer {
-
+    private int answerId;
 }

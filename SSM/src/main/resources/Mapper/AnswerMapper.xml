@@ -4,5 +4,9 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.know.dao.AnswerMapper">
-
+    <update id="modifyAnswerCollected" parameterType="map">
+        update know.answer
+        set answerCollected = answerCollected + #{answerCollected}
+        where answerId = #{answerId}
+    </update>
 </mapper>

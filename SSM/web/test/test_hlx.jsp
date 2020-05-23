@@ -185,8 +185,9 @@
                 url : "${pageContext.request.contextPath}/favorites/toFavour",
                 data: {
                     "answerId":2,
+                    "answererId": 5,
                     "favoritesId":6,
-                    "type":true
+                    "type":false
                 },
                 success: function (data) {
                     console.log(data);
@@ -196,6 +197,7 @@
     })
 </script>
 <body>
+
 
 <h1>收藏夹</h1>
 <div>
@@ -208,7 +210,6 @@
     <input type="button" id="btn_f_4" value="通过用户ID获取收藏夹">
     <input type="button" id="btn_f_5" value="收藏/取消收藏回答">
 </div>
-
 
 
 <h1>测试</h1>

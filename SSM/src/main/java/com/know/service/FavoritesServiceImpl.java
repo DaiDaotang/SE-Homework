@@ -12,6 +12,7 @@ package com.know.service;
 
 import com.know.dao.AnswerMapper;
 import com.know.dao.FavoritesMapper;
+import com.know.dao.UserMapper;
 import com.know.pojo.Favorites;
 import com.know.utils.QueryUtil;
 
@@ -38,6 +39,11 @@ public class FavoritesServiceImpl implements FavoritesService{
     private AnswerMapper answerMapper;
     public void setAnswerMapper(AnswerMapper answerMapper) {
         this.answerMapper = answerMapper;
+    }
+    // 用户
+    private UserMapper userMapper;
+    public void setUserMapper(UserMapper userMapper) {
+        this.userMapper = userMapper;
     }
 
     public int insertFavorites(Favorites favorites) {
@@ -68,32 +74,47 @@ public class FavoritesServiceImpl implements FavoritesService{
     }
 
     public int favour(int answerId, int answererId, int favoritesId, boolean type) {
-        Map<String, Object> map0 = new HashMap<String, Object>();
-        map0.put("favoritesId", favoritesId);
-        map0.put("answerId", answerId);
-        Map<String, Object> map1 = new HashMap<String, Object>();
-        map1.put("updateTime", new Date());
-        map1.put("contentNumber", type? 1 : -1);
-        map1.put("favoritesId", favoritesId);
-        Map<String, Integer> map2 = new HashMap<String, Integer>();
-        map2.put("answerId", answerId);
-        map2.put("answerLiked", type? 1 : -1);
+        Map<String, Object> map = new HashMap<String, Object>();
+        map.put("favoritesId", favoritesId);
+        map.put("answerId", answerId);
+        map.put("userId", answererId);
+        map.put("updateTime", new Date());
+        map.put("contentNumber", type? 1 : -1);
+        map.put("answerCollected", type? 1 : -1);
+
+        // Map<String, Object> map0 = new HashMap<String, Object>();
+        // map0.put("favoritesId", favoritesId);
+        // map0.put("answerId", answerId);
+        // Map<String, Object> map1 = new HashMap<String, Object>();
+        // map1.put("updateTime", new Date());
+        // map1.put("contentNumber", type? 1 : -1);
+        // map1.put("favoritesId", favoritesId);
+        // Map<String, Integer> map2 = new HashMap<String, Integer>();
+        // map2.put("answerId", answerId);
+        // map2.put("answerCollected", type? 1 : -1);
+        // Map<String, Integer> map3 = new HashMap<String, Integer>();
+        // map2.put("userId", answererId);
+        // map2.put("answerCollected", type? 1 : -1);
+
         int res = 0;
         // 修改 favoritescontent 表
         if(type){
-            res += favoritesMapper.favour(map0);
+            // res += favoritesMapper.favour(map0);
+            res += favoritesMapper.favour(map);
         }
         else{
-            res += favoritesMapper.unfavour(map0);
+            // res += favoritesMapper.unfavour(map0);
+            res += favoritesMapper.unfavour(map);
         }
         // 修改 favorites 表
-        res += favoritesMapper.updateFavoritesLike(map1);
+        // res += favoritesMapper.updateFavoritesLike(map1);
+        res += favoritesMapper.updateFavoritesLike(map);
         // 修改 answer 表
         // TODO...
-        res += 1;
+        res += answerMapper.modifyAnswerCollected(map);
         // 修改 user 表
-        // TODO...
-        res += 1;
+        // res += userMapper.modifyCollected(map3);
+        res += userMapper.modifyCollected(map);
         return res % 4 + 1;
     }
 }

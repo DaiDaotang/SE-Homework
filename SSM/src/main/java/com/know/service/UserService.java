@@ -18,4 +18,6 @@ public interface UserService {
     int modifyPersonalInfo(User user);
     //修改头像
     int modifyHead(User user);
+    // 修改问题收藏数
+    int modifyCollected(int userId, int answerCollected);
 }

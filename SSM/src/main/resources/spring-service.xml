@@ -21,6 +21,7 @@
     <bean id="favoritesServiceImpl" class="com.know.service.FavoritesServiceImpl">
         <property name="favoritesMapper" ref="favoritesMapper"/>
         <property name="answerMapper" ref="answerMapper"/>
+        <property name="userMapper" ref="userMapper"/>
     </bean>
 
     <bean id="answerServiceImpl" class="com.know.service.AnswerServiceImpl">
