@@ -88,9 +88,13 @@ public class FavoritesController {
     }
 
     // 清空收藏夹
-    // TODO...
+    @RequestMapping("/emptyFavorites")
+    public String emptyFavorites(int favoritesId){
+        return favoritesService.emptyFavorites(favoritesId) == 1? "OK" : "ERR";
+    }
 
     // 删除收藏夹
+    // TODO...
     @RequestMapping("/delete")
     public String deleteFavorites(int[] favoritesIds){
         // TODO...

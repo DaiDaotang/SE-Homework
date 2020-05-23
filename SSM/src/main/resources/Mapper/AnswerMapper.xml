@@ -9,4 +9,10 @@
         set answerCollected = answerCollected + #{answerCollected}
         where answerId = #{answerId}
     </update>
+
+    <select id="queryAnswererIdByAnswerId" resultType="int">
+        select answererId
+        from know.answer
+        where answerId = #{answerId};
+    </select>
 </mapper>

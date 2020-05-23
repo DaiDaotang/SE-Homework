@@ -47,20 +47,26 @@
         where userId = #{userId};
     </select>
 
+    <select id="queryCollectedAnswerId" resultType="int">
+        select answerId
+        from know.favoritescontent
+        where favoritesId = #{favoritesId};
+    </select>
+
     <insert id="favour" parameterType="map">
         insert into favoritescontent (favoritesId, answerId)
         values (#{favoritesId}, #{answerId});
     </insert>
 
-    <delete id="emptyFavorites">
-        delete from favoritescontent
-        where favoritesId = #{favoritesId};
-    </delete>
-
     <delete id="unfavour" parameterType="map">
         delete from favoritescontent
         where favoritesId = #{favoritesId}
         and answerId = #{answerId};
+    </delete>
+
+    <delete id="emptyFavorites">
+        delete from favoritescontent
+        where favoritesId = #{favoritesId};
     </delete>
 
 </mapper>

@@ -114,6 +114,7 @@
 <%--收藏夹--%>
 <script>
     $(function () {
+
         $("#btn_f_0").click(function () {
             $.post({
                 url : "${pageContext.request.contextPath}/favorites/newFavorites",
@@ -184,10 +185,22 @@
             $.post({
                 url : "${pageContext.request.contextPath}/favorites/toFavour",
                 data: {
-                    "answerId":2,
+                    "answerId":$("#txt_f_3").val(),
                     "answererId": 5,
                     "favoritesId":6,
-                    "type":false
+                    "type":true
+                },
+                success: function (data) {
+                    console.log(data);
+                }
+            })
+        })
+
+        $("#btn_f_6").click(function () {
+            $.post({
+                url : "${pageContext.request.contextPath}/favorites/emptyFavorites",
+                data: {
+                    "favoritesId":6
                 },
                 success: function (data) {
                     console.log(data);
@@ -201,6 +214,7 @@
 
 <h1>收藏夹</h1>
 <div>
+    <input type="button" id="btn_f" value="TEST">
     <input type="text" id="txt_f_0" placeholder="收藏夹名称">
     <input type="button" id="btn_f_0" value="新建收藏夹">
     <input type="button" id="btn_f_1" value="删除收藏夹">
@@ -208,7 +222,9 @@
     <input type="button" id="btn_f_2" value="修改收藏夹名称">
     <input type="button" id="btn_f_3" value="通过ID获取收藏夹">
     <input type="button" id="btn_f_4" value="通过用户ID获取收藏夹">
+    <input type="text" id="txt_f_3" placeholder="回答的ID">
     <input type="button" id="btn_f_5" value="收藏/取消收藏回答">
+    <input type="button" id="btn_f_6" value="清空收藏夹">
 </div>
 
 

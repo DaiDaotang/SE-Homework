@@ -19,7 +19,7 @@ public interface FavoritesMapper {
     int updateFavoritesLike(Map<String, Object> map);
     // 更新 favoritescontent：收藏内容
     int favour(Map<String, Object> map);
-    // 取消收藏
+    // 更新 favoritescontent：取消收藏
     int unfavour(Map<String, Object> map);
     // 查找收藏夹 by Id
     Favorites queryFavoritesById(int favoritesId);
@@ -27,4 +27,6 @@ public interface FavoritesMapper {
     List<Favorites> queryFavoritesList(int userId);
     // 查找一个收藏夹的内容 by favoritesId
     List<Answer> queryFavoritesContent(int favoritesId);
+    // 查找一个收藏夹收藏的回答的ID
+    List<Integer> queryCollectedAnswerId(int favoritesId);
 }
