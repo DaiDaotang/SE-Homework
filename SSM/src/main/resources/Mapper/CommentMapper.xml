@@ -5,4 +5,8 @@
 
 <mapper namespace="com.know.dao.CommentMapper">
 
+    <insert id="comment" parameterType="comment" useGeneratedKeys="true" keyProperty="commentId">
+        insert into know.comment(commenterId, commentedId, commentContent, commentLiked, answerId, commentTime) values (#{commenterId}, #{commentedId}, #{commentContent}, #{commentLiked}, #{answerId}, #{commentTime});
+    </insert>
+
 </mapper>
