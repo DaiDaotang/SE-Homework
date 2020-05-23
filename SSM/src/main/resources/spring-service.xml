@@ -22,6 +22,10 @@
         <property name="favoritesMapper" ref="favoritesMapper"/>
     </bean>
 
+    <bean id="answerServiceImpl" class="com.know.service.AnswerServiceImpl">
+        <property name="answerMapper" ref="answerMapper"/>
+    </bean>
+
     <!-- 3. 声明式事务配置 -->
     <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
         <!--注入数据源-->

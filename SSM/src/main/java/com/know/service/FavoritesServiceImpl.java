@@ -68,13 +68,19 @@ public class FavoritesServiceImpl implements FavoritesService{
         map1.put("updateTime", new Date());
         map1.put("contentNumber", type? 1 : -1);
         map1.put("favoritesId", favoritesId);
+        int res = 0;
+        // 修改 favoritescontent 表
         if(type){
-            favoritesMapper.favour(map0);
+            res += favoritesMapper.favour(map0);
         }
         else{
-            favoritesMapper.unfavour(map0);
+            res += favoritesMapper.unfavour(map0);
         }
-        favoritesMapper.updateFavoritesLike(map1);
-        return 0;
+        // 修改 favorites 表
+        res += favoritesMapper.updateFavoritesLike(map1);
+        // 修改 answer 表
+        // TODO...
+        res += 1;
+        return res % 3 + 1;
     }
 }

@@ -73,8 +73,7 @@ public class FavoritesController {
     // 收藏/取消收藏
     @RequestMapping("/toFavour")
     public String favourAnswer(int answerId, int favoritesId, boolean type){
-        favoritesService.favour(favoritesId, answerId, type);
-        return "OK";
+        return favoritesService.favour(favoritesId, answerId, type) == 1? "OK" : "ERR";
     }
 
     // 检测该回答被哪个收藏夹收藏
