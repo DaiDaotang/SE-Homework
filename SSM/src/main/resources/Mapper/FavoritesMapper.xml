@@ -10,6 +10,22 @@
         values (#{userId},#{favoritesName},#{updateTime},#{contentNumber});
     </insert>
 
+    <insert id="favour" parameterType="map">
+        insert into favoritescontent (favoritesId, answerId)
+        values (#{favoritesId}, #{answerId});
+    </insert>
+
+    <delete id="unfavour" parameterType="map">
+        delete from favoritescontent
+        where favoritesId = #{favoritesId}
+          and answerId = #{answerId};
+    </delete>
+
+    <delete id="emptyFavorites">
+        delete from favoritescontent
+        where favoritesId = #{favoritesId};
+    </delete>
+
     <delete id="deleteFavorites" parameterType="int[]">
         delete from favoritescontent
         where favoritesId in
@@ -41,7 +57,7 @@
         where favoritesId = #{favoritesId};
     </select>
 
-    <select id="queryFavoritesList" resultType="favorites">
+    <select id="queryFavoritesListByUserId" resultType="favorites">
         select *
         from favorites
         where userId = #{userId};
@@ -53,20 +69,18 @@
         where favoritesId = #{favoritesId};
     </select>
 
-    <insert id="favour" parameterType="map">
-        insert into favoritescontent (favoritesId, answerId)
-        values (#{favoritesId}, #{answerId});
-    </insert>
-
-    <delete id="unfavour" parameterType="map">
-        delete from favoritescontent
-        where favoritesId = #{favoritesId}
+    <select id="queryHostFavoritesIdList" parameterType="map">
+        select favoritesId
+        from favoritescontent
+        where favoritesId in
+        <foreach collection="favoritesIds" item="favoritesId" open="(" close=")" separator=",">
+            #{favoritesId}
+        </foreach>
         and answerId = #{answerId};
-    </delete>
+    </select>
 
-    <delete id="emptyFavorites">
-        delete from favoritescontent
-        where favoritesId = #{favoritesId};
-    </delete>
+    <select id="queryHostFavoritesList" parameterType="map">
+
+    </select>
 
 </mapper>

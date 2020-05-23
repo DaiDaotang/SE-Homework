@@ -187,7 +187,7 @@
                 data: {
                     "answerId":$("#txt_f_3").val(),
                     "answererId": 5,
-                    "favoritesId":6,
+                    "favoritesId":$("#txt_f_4").val(),
                     "type":true
                 },
                 success: function (data) {
@@ -201,6 +201,19 @@
                 url : "${pageContext.request.contextPath}/favorites/emptyFavorites",
                 data: {
                     "favoritesId":6
+                },
+                success: function (data) {
+                    console.log(data);
+                }
+            })
+        })
+
+        $("#btn_f_7").click(function () {
+            $.post({
+                url : "${pageContext.request.contextPath}/favorites/getHostFavorites",
+                data: {
+                    "userId":5,
+                    "answerId":3
                 },
                 success: function (data) {
                     console.log(data);
@@ -223,8 +236,10 @@
     <input type="button" id="btn_f_3" value="通过ID获取收藏夹">
     <input type="button" id="btn_f_4" value="通过用户ID获取收藏夹">
     <input type="text" id="txt_f_3" placeholder="回答的ID">
+    <input type="text" id="txt_f_4" placeholder="收藏夹的ID">
     <input type="button" id="btn_f_5" value="收藏/取消收藏回答">
     <input type="button" id="btn_f_6" value="清空收藏夹">
+    <input type="button" id="btn_f_7" value="获取被哪些收藏夹收藏">
 </div>
 
 

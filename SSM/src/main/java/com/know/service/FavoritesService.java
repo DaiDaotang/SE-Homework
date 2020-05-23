@@ -18,8 +18,8 @@ public interface FavoritesService {
     int favour(int answerId, int answererId, int favoritesId, boolean type);
     // 清空收藏夹
     int emptyFavorites(int favoritesId);
-    // 检测被哪个收藏夹收藏
-    // TODO...
+    // 获取被哪个收藏夹收藏
+    List<Favorites> getHostFavorites(int userId, int answerId);
     // 查找收藏夹内容 by favoritesId
     // TODO...
     // 删除收藏夹

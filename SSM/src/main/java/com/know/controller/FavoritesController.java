@@ -59,8 +59,8 @@ public class FavoritesController {
         return res == 1? "OK" : "ERR";
     }
 
-    // 查找收藏夹 by Id
-    @RequestMapping("/getFavoritesById")
+    // 查找收藏夹 by favoritesId
+    @RequestMapping("/getFavoritesByFavoritesId")
     public Favorites getFavoritesById(int favoritesId){
         return favoritesService.queryFavoritesById(favoritesId);
     }
@@ -77,20 +77,23 @@ public class FavoritesController {
         return favoritesService.favour(answerId, answererId, favoritesId, type) == 1? "OK" : "ERR";
     }
 
-    // 检测该回答被哪个收藏夹收藏
-    // TODO...
+    // 清空收藏夹
+    @RequestMapping("/emptyFavorites")
+    public String emptyFavorites(int favoritesId){
+        return favoritesService.emptyFavorites(favoritesId) == 1? "OK" : "ERR";
+    }
+
+    // 获取该回答被哪个收藏夹收藏
+    @RequestMapping("/getHostFavorites")
+    public List<Favorites> getHostFavorites(int userId, int answerId){
+        return favoritesService.getHostFavorites(userId, answerId);
+    }
 
     // 获取一个收藏夹内容 by favoritesId
     // TODO...
     @RequestMapping("/getFavoritesContents")
     public List<Answer> getFavoritesContents(int favoritesId, int start, int count){
         return null;
-    }
-
-    // 清空收藏夹
-    @RequestMapping("/emptyFavorites")
-    public String emptyFavorites(int favoritesId){
-        return favoritesService.emptyFavorites(favoritesId) == 1? "OK" : "ERR";
     }
 
     // 删除收藏夹

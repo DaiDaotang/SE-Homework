@@ -21,12 +21,16 @@ public interface FavoritesMapper {
     int favour(Map<String, Object> map);
     // 更新 favoritescontent：取消收藏
     int unfavour(Map<String, Object> map);
-    // 查找收藏夹 by Id
+    // 查找收藏夹 by favoritesId
     Favorites queryFavoritesById(int favoritesId);
     // 查找收藏夹列表 by userId
-    List<Favorites> queryFavoritesList(int userId);
+    List<Favorites> queryFavoritesListByUserId(int userId);
     // 查找一个收藏夹的内容 by favoritesId
     List<Answer> queryFavoritesContent(int favoritesId);
-    // 查找一个收藏夹收藏的回答的ID
+    // 查找一个收藏夹收藏的回答的ID列表
     List<Integer> queryCollectedAnswerId(int favoritesId);
+    // 查找收藏这个回答的收藏夹ID列表
+    List<Integer> queryHostFavoritesIdList(Map<String, Object> map);
+    // 查找收藏这个回答的收藏夹列表（仅用 sql 语句）
+    List<Favorites> queryHostFavoritesList(Map<String, Integer> map);
 }
