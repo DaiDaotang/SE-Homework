@@ -19,7 +19,7 @@ public interface FavoritesService {
     // 查找收藏夹列表 by userId
     List<Favorites> queryFavoritesListByUserId(int userId, int start, int count);
     // 收藏/取消内容
-    int favour(int favoritesId, int answerId, boolean type);
+    int favour(int answerId, int answererId, int favoritesId, boolean type);
     // 检测被哪个收藏夹收藏
     // TODO...
     // 查找收藏夹内容 by favoritesId

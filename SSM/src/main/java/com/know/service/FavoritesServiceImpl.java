@@ -10,6 +10,7 @@
  */
 package com.know.service;
 
+import com.know.dao.AnswerMapper;
 import com.know.dao.FavoritesMapper;
 import com.know.pojo.Favorites;
 import com.know.utils.QueryUtil;
@@ -28,9 +29,15 @@ import java.util.Map;
  * @since 1.0.0
  */
 public class FavoritesServiceImpl implements FavoritesService{
+    // 收藏夹
     private FavoritesMapper favoritesMapper;
     public void setFavoritesMapper(FavoritesMapper favoritesMapper) {
         this.favoritesMapper = favoritesMapper;
+    }
+    // 回答
+    private AnswerMapper answerMapper;
+    public void setAnswerMapper(AnswerMapper answerMapper) {
+        this.answerMapper = answerMapper;
     }
 
     public int insertFavorites(Favorites favorites) {
@@ -60,7 +67,7 @@ public class FavoritesServiceImpl implements FavoritesService{
         return QueryUtil.cutList(favoritesMapper.queryFavoritesList(userId), start, count);
     }
 
-    public int favour(int favoritesId, int answerId, boolean type) {
+    public int favour(int answerId, int answererId, int favoritesId, boolean type) {
         Map<String, Object> map0 = new HashMap<String, Object>();
         map0.put("favoritesId", favoritesId);
         map0.put("answerId", answerId);
@@ -68,6 +75,9 @@ public class FavoritesServiceImpl implements FavoritesService{
         map1.put("updateTime", new Date());
         map1.put("contentNumber", type? 1 : -1);
         map1.put("favoritesId", favoritesId);
+        Map<String, Integer> map2 = new HashMap<String, Integer>();
+        map2.put("answerId", answerId);
+        map2.put("answerLiked", type? 1 : -1);
         int res = 0;
         // 修改 favoritescontent 表
         if(type){
@@ -81,6 +91,9 @@ public class FavoritesServiceImpl implements FavoritesService{
         // 修改 answer 表
         // TODO...
         res += 1;
-        return res % 3 + 1;
+        // 修改 user 表
+        // TODO...
+        res += 1;
+        return res % 4 + 1;
     }
 }
