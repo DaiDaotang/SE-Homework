@@ -24,9 +24,17 @@ public class CommentServiceImpl implements CommentService{
         String dateTime = df.format(date);
         comment.setCommentTime(dateTime);
         try{
-            return commentMapper.comment(comment);
+            int i = commentMapper.comment(comment);
+            if(i==1){
+                return comment.getCommentId();
+            }
+            return -1;
         }catch (Exception e){
             return -1;
         }
+    }
+
+    public int deleteComment(int commentId){
+        return commentMapper.deleteComment(commentId);
     }
 }

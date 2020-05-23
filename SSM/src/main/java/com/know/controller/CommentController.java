@@ -1,7 +1,6 @@
 package com.know.controller;
 
 import com.know.pojo.Comment;
-import com.know.pojo.User;
 import com.know.service.CommentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -21,5 +20,15 @@ public class CommentController {
     public int comment(Comment comment){
         //System.out.println(comment);
         return commentService.comment(comment);
+    }
+
+    // 删除评论
+    @RequestMapping("/deleteComment")
+    public String deleteComment(int commentId){
+        if(commentService.deleteComment(commentId)==0){
+            return "No comment!";
+        }else {
+            return "OK";
+        }
     }
 }

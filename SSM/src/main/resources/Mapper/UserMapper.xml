@@ -5,7 +5,7 @@
 
 <mapper namespace="com.know.dao.UserMapper">
 
-    <insert id="signUp" parameterType="user">
+    <insert id="signUp" parameterType="user" useGeneratedKeys="true" keyProperty="userId">
         insert into know.user(telephone, password, name, sex, birthday, signUpTime, answerCollected, answerLiked, head)
         values (#{telephone},#{password},#{name},#{sex},#{birthday},#{signUpTime},#{answerCollected},#{answerLiked},#{head});
     </insert>

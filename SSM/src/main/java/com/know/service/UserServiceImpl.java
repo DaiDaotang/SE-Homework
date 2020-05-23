@@ -28,9 +28,12 @@ public class UserServiceImpl implements UserService{
         String dateTime = df.format(date);
         user.setSignUpTime(dateTime);
         try{
-            userMapper.signUp(user);
-            User u = userMapper.checkByTelephone(user.getTelephone());
-            return u.getUserId();
+            int i = userMapper.signUp(user);
+            if(i==1){
+                return user.getUserId();
+            }else{
+                return -1;
+            }
         }catch (Exception e){
             return -1;
         }
