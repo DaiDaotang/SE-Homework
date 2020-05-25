@@ -30,6 +30,6 @@ public interface FavoritesMapper {
     // 查找一个收藏夹收藏的回答的ID列表
     List<Integer> queryCollectedAnswerId(int favoritesId);
     // 查找收藏这个回答的收藏夹ID列表（注解）
-    @Select("select fc.favoritesId from favoritescontent fc, favorites f where f.userId = #{userId} and f.favoritesId = fc.favoritesId and fc.answerId = #{answerId};")
+    @Select("select fc.favoritesId from know.favoritescontent fc, know.favorites f where f.userId = #{userId} and f.favoritesId = fc.favoritesId and fc.answerId = #{answerId};")
     List<Integer> queryHostFavoritesIdList(@Param("userId") int userId, @Param("answerId") int answerId);
 }

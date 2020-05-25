@@ -6,28 +6,28 @@
 <mapper namespace="com.know.dao.FavoritesMapper">
 
     <insert id="insertFavorites" parameterType="favorites" useGeneratedKeys="true" keyProperty="favoritesId">
-        insert into favorites (userId, favoritesName, updateTime, contentNumber)
+        insert into know.favorites (userId, favoritesName, updateTime, contentNumber)
         values (#{userId},#{favoritesName},#{updateTime},#{contentNumber});
     </insert>
 
     <insert id="favour" parameterType="map">
-        insert into favoritescontent (favoritesId, answerId)
+        insert into know.favoritescontent (favoritesId, answerId)
         values (#{favoritesId}, #{answerId});
     </insert>
 
     <delete id="unfavour" parameterType="map">
-        delete from favoritescontent
+        delete from know.favoritescontent
         where favoritesId = #{favoritesId}
           and answerId = #{answerId};
     </delete>
 
     <delete id="emptyFavorites">
-        delete from favoritescontent
+        delete from know.favoritescontent
         where favoritesId = #{favoritesId};
     </delete>
 
     <delete id="deleteFavorites" parameterType="int">
-        delete from favorites
+        delete from know.favorites
         where favoritesId in
         <foreach collection="array" item="favoritesIds" open="(" close=")" separator=",">
             #{favoritesIds}
@@ -35,26 +35,26 @@
     </delete>
 
     <update id="updateFavoritesName" parameterType="map">
-        update favorites
+        update know.favorites
         set favoritesName = #{favoritesName}
         where favoritesId = #{favoritesId};
     </update>
 
     <update id="updateFavoritesLike" parameterType="map">
-        update favorites
+        update know.favorites
         set contentNumber = contentNumber + #{contentNumber}, updateTime = #{updateTime}
         where favoritesId = #{favoritesId};
     </update>
 
     <select id="queryFavoritesById" resultType="favorites">
         select *
-        from favorites
+        from know.favorites
         where favoritesId = #{favoritesId};
     </select>
 
     <select id="queryFavoritesListByUserId" resultType="favorites">
         select *
-        from favorites
+        from know.favorites
         where userId = #{userId};
     </select>
 
