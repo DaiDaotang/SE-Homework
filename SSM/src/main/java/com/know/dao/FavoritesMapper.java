@@ -11,8 +11,6 @@ import java.util.Map;
 public interface FavoritesMapper {
     // 新建收藏夹
     int insertFavorites(Favorites favorites);
-    // 清空收藏夹
-    int emptyFavorites(int favoritesId);
     // 删除收藏夹
     int deleteFavorites(int[] favoritesIds);
     // 更新 favorites：名称

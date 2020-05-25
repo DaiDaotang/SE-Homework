@@ -26,17 +26,12 @@
         where favoritesId = #{favoritesId};
     </delete>
 
-    <delete id="deleteFavorites" parameterType="int[]">
-        delete from favoritescontent
+    <delete id="deleteFavorites" parameterType="int">
+        delete from favorites
         where favoritesId in
         <foreach collection="array" item="favoritesIds" open="(" close=")" separator=",">
             #{favoritesIds}
         </foreach>;
-
-        <!--delete from favorites where favoritesId in-->
-        <!--<foreach collection="array" item="favoritesIds" open="(" close=")" separator=",">-->
-        <!--    #{favoritesIds}-->
-        <!--</foreach>;-->
     </delete>
 
     <update id="updateFavoritesName" parameterType="map">

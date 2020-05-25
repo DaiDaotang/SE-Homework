@@ -100,7 +100,6 @@ public class FavoritesController {
     // TODO...
     @RequestMapping("/delete")
     public String deleteFavorites(int[] favoritesIds){
-        // TODO...
         return "ERR";
     }
 }
