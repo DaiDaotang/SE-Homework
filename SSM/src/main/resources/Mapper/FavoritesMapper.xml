@@ -26,7 +26,7 @@
         where favoritesId = #{favoritesId};
     </delete>
 
-    <delete id="deleteFavorites" parameterType="int">
+    <delete id="deleteFavorites">
         delete from know.favorites
         where favoritesId in
         <foreach collection="array" item="favoritesIds" open="(" close=")" separator=",">

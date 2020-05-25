@@ -129,11 +129,10 @@
         })
 
         $("#btn_f_1").click(function () {
-            fs[0] =
             $.post({
                 url : "${pageContext.request.contextPath}/favorites/delete",
                 data: {
-                    "favoritesIds":[2, 3]
+                    "favoritesIds":[7, 8]
                 },
                 traditional: true,
                 success: function (data) {

@@ -53,7 +53,9 @@ public class FavoritesServiceImpl implements FavoritesService{
         for (int favoritesId : favoritesIds) {
             res += emptyFavorites(favoritesId);
         }
-        return favoritesMapper.deleteFavorites(favoritesIds);
+        // 删除收藏夹
+        res += favoritesMapper.deleteFavorites(favoritesIds);
+        return res % (2 * favoritesIds.length) + 1;
     }
 
     public int updateFavoritesName(int favoritesId, String favoritesName) {
