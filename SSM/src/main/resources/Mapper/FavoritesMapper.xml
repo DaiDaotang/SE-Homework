@@ -69,18 +69,4 @@
         where favoritesId = #{favoritesId};
     </select>
 
-    <select id="queryHostFavoritesIdList" parameterType="map">
-        select favoritesId
-        from favoritescontent
-        where favoritesId in
-        <foreach collection="favoritesIds" item="favoritesId" open="(" close=")" separator=",">
-            #{favoritesId}
-        </foreach>
-        and answerId = #{answerId};
-    </select>
-
-    <select id="queryHostFavoritesList" parameterType="map">
-
-    </select>
-
 </mapper>

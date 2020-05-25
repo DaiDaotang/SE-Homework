@@ -210,10 +210,10 @@
 
         $("#btn_f_7").click(function () {
             $.post({
-                url : "${pageContext.request.contextPath}/favorites/getHostFavorites",
+                url : "${pageContext.request.contextPath}/favorites/getHostFavoritesId",
                 data: {
                     "userId":5,
-                    "answerId":3
+                    "answerId":1
                 },
                 success: function (data) {
                     console.log(data);

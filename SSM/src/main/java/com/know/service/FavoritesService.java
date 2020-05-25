@@ -19,7 +19,7 @@ public interface FavoritesService {
     // 清空收藏夹
     int emptyFavorites(int favoritesId);
     // 获取被哪个收藏夹收藏
-    List<Favorites> getHostFavorites(int userId, int answerId);
+    List<Integer> getHostFavoritesIds(int userId, int answerId);
     // 查找收藏夹内容 by favoritesId
     // TODO...
     // 删除收藏夹

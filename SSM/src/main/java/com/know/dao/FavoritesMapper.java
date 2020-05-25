@@ -2,6 +2,8 @@ package com.know.dao;
 
 import com.know.pojo.Answer;
 import com.know.pojo.Favorites;
+import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.Select;
 
 import java.util.List;
 import java.util.Map;
@@ -29,8 +31,7 @@ public interface FavoritesMapper {
     List<Answer> queryFavoritesContent(int favoritesId);
     // 查找一个收藏夹收藏的回答的ID列表
     List<Integer> queryCollectedAnswerId(int favoritesId);
-    // 查找收藏这个回答的收藏夹ID列表
-    List<Integer> queryHostFavoritesIdList(Map<String, Object> map);
-    // 查找收藏这个回答的收藏夹列表（仅用 sql 语句）
-    List<Favorites> queryHostFavoritesList(Map<String, Integer> map);
+    // 查找收藏这个回答的收藏夹ID列表（注解）
+    @Select("select fc.favoritesId from favoritescontent fc, favorites f where f.userId = #{userId} and f.favoritesId = fc.favoritesId and fc.answerId = #{answerId};")
+    List<Integer> queryHostFavoritesIdList(@Param("userId") int userId, @Param("answerId") int answerId);
 }

@@ -108,6 +108,9 @@ public class FavoritesServiceImpl implements FavoritesService{
         // 1. 获取该收藏夹中的回答的ID列表
         List<Integer> answerIds = favoritesMapper.queryCollectedAnswerId(favoritesId);
         int size = answerIds.size();
+        if(size == 0){
+            return 1;
+        }
         // 2. 删除 favoritescontent 中的项
         // 3. 更新 answer 中的对应的回答的收藏数
         // 4. 更新 user 中答主的收藏数
@@ -118,8 +121,11 @@ public class FavoritesServiceImpl implements FavoritesService{
             map.put("answerId", answerId);
             // 这一步很重要，不赋值给 tmp 而是直接 put 会报错
             // 虽然我不知道为什么，可能是因为被视为Object而不是Integer
+            // Correct:::::::
             tmp = answerMapper.queryAnswererIdByAnswerId(answerId);
             map.put("userId", tmp);
+            // Wrong:::::::
+            // map.put("userId", answerMapper.queryAnswererIdByAnswerId(answerId));
             res += favoritesMapper.unfavour(map);
             res += answerMapper.modifyAnswerCollected(map);
             res += userMapper.modifyCollected(map);
@@ -132,33 +138,7 @@ public class FavoritesServiceImpl implements FavoritesService{
         return res % (3 * size + 1) + 1;
     }
 
-    public List<Favorites> getHostFavorites(int userId, int answerId) {
-        // 1. 获取用户的收藏夹列表，得出ID列表
-        List<Favorites> favoritesList = favoritesMapper.queryFavoritesListByUserId(userId);
-        if (favoritesList == null){
-            return null;
-        }
-        List<Integer> favoritesIdList = new ArrayList<Integer>();
-        for(Favorites favorites : favoritesList){
-            favoritesIdList.add(favorites.getFavoritesId());
-        }
-        // 2. 查找含有 answerId 的收藏夹ID列表
-        Map<String, Object> map = new HashMap<String, Object>();
-        map.put("answerId", answerId);
-        map.put("favoritesIds", favoritesIdList);
-        favoritesIdList = favoritesMapper.queryHostFavoritesIdList(map);
-        // 3. 筛选，构造新的列表返回
-        if(favoritesIdList == null){
-            return null;
-        }
-        List<Favorites> res = new ArrayList<Favorites>();
-        for (Integer integer : favoritesIdList) {
-            for (Favorites favorites : favoritesList) {
-                if(integer == favorites.getFavoritesId()){
-                    res.add(favorites);
-                }
-            }
-        }
-        return res;
+    public List<Integer> getHostFavoritesIds(int userId, int answerId) {
+        return favoritesMapper.queryHostFavoritesIdList(userId, answerId);
     }
 }

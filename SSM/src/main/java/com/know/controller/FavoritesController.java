@@ -83,10 +83,10 @@ public class FavoritesController {
         return favoritesService.emptyFavorites(favoritesId) == 1? "OK" : "ERR";
     }
 
-    // 获取该回答被哪个收藏夹收藏
-    @RequestMapping("/getHostFavorites")
-    public List<Favorites> getHostFavorites(int userId, int answerId){
-        return favoritesService.getHostFavorites(userId, answerId);
+    // 获取收藏该回答的收藏夹ID列表
+    @RequestMapping("/getHostFavoritesId")
+    public List<Integer> getHostFavorites(int userId, int answerId){
+        return favoritesService.getHostFavoritesIds(userId, answerId);
     }
 
     // 获取一个收藏夹内容 by favoritesId
