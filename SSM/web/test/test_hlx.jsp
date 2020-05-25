@@ -19,8 +19,8 @@
             $.post({
                 url:"${pageContext.request.contextPath}/topic/bringUpTopic",
                 data:{
-                    'userId':1,
-                    'topicName':'球'
+                    'userId':5,
+                    'topicName':$("#txt_t_0").val()
                 },
                 success:function (data) {
                     console.log(data)
@@ -32,7 +32,7 @@
             $.post({
                 url:"${pageContext.request.contextPath}/topic/checkTopic",
                 data:{
-                    'topicName':'乒'
+                    'topicName':$("#txt_t_1").val()
                 },
                 success:function (data) {
                     console.log(data)
@@ -44,7 +44,7 @@
             $.post({
                 url:"${pageContext.request.contextPath}/topic/queryTopicById",
                 data:{
-                    'topicId':3
+                    'topicId':$("#txt_t_2").val()
                 },
                 success:function (data) {
                     console.log(data)
@@ -129,6 +129,7 @@
         })
 
         $("#btn_f_1").click(function () {
+            fs[0] =
             $.post({
                 url : "${pageContext.request.contextPath}/favorites/delete",
                 data: {
@@ -145,24 +146,11 @@
             $.post({
                 url : "${pageContext.request.contextPath}/favorites/updateFavoritesName",
                 data: {
-                    "favoritesId":6,
+                    "favoritesId":$("#txt_f_1").val(),
                     "favoritesName":$("#txt_f_2").val()
                 },
                 success: function (data) {
                     console.log(data);
-                }
-            })
-        })
-
-        $("#btn_f_3").click(function () {
-            $.post({
-                url : "${pageContext.request.contextPath}/favorites/getFavoritesById",
-                data: {
-                    "favoritesId":6
-                },
-                success: function (data) {
-                    console.log(data);
-                    console.log(timestampToTime(data.updateTime))
                 }
             })
         })
@@ -172,8 +160,8 @@
                 url : "${pageContext.request.contextPath}/favorites/getFavoritesByUserId",
                 data: {
                     "userId":5,
-                    "start":0,
-                    "count":2
+                    "start":$("#txt_f_7").val(),
+                    "count":$("#txt_f_8").val()
                 },
                 success: function (data) {
                     console.log(data);
@@ -200,7 +188,7 @@
             $.post({
                 url : "${pageContext.request.contextPath}/favorites/emptyFavorites",
                 data: {
-                    "favoritesId":6
+                    "favoritesId":$("#txt_f_5").val()
                 },
                 success: function (data) {
                     console.log(data);
@@ -213,7 +201,7 @@
                 url : "${pageContext.request.contextPath}/favorites/getHostFavoritesId",
                 data: {
                     "userId":5,
-                    "answerId":1
+                    "answerId":$("#txt_f_6").val()
                 },
                 success: function (data) {
                     console.log(data);
@@ -224,22 +212,26 @@
 </script>
 <body>
 
+<h1>以下操作，均为5号用户所为</h1>
 
 <h1>收藏夹</h1>
 <div>
-    <input type="button" id="btn_f" value="TEST">
     <input type="text" id="txt_f_0" placeholder="收藏夹名称">
-    <input type="button" id="btn_f_0" value="新建收藏夹">
-    <input type="button" id="btn_f_1" value="删除收藏夹">
+    <input type="button" id="btn_f_0" value="新建收藏夹"><br>
+    <input type="button" id="btn_f_1" value="删除收藏夹"><br>
+    <input type="text" id="txt_f_1" placeholder="收藏夹原ID">
     <input type="text" id="txt_f_2" placeholder="收藏夹新名称">
-    <input type="button" id="btn_f_2" value="修改收藏夹名称">
-    <input type="button" id="btn_f_3" value="通过ID获取收藏夹">
-    <input type="button" id="btn_f_4" value="通过用户ID获取收藏夹">
+    <input type="button" id="btn_f_2" value="修改收藏夹名称"><br>
+    <input type="text" id="txt_f_7" placeholder="start" value="0">
+    <input type="text" id="txt_f_8" placeholder="count" value="10">
+    <input type="button" id="btn_f_4" value="通过用户ID获取收藏夹"><br>
     <input type="text" id="txt_f_3" placeholder="回答的ID">
     <input type="text" id="txt_f_4" placeholder="收藏夹的ID">
-    <input type="button" id="btn_f_5" value="收藏/取消收藏回答">
-    <input type="button" id="btn_f_6" value="清空收藏夹">
-    <input type="button" id="btn_f_7" value="获取被哪些收藏夹收藏">
+    <input type="button" id="btn_f_5" value="收藏/取消收藏回答"><br>
+    <input type="text" id="txt_f_5" placeholder="收藏夹的ID">
+    <input type="button" id="btn_f_6" value="清空收藏夹"><br>
+    <input type="text" id="txt_f_6" placeholder="问题的ID">
+    <input type="button" id="btn_f_7" value="获取被哪些收藏夹收藏"><br>
 </div>
 
 
@@ -259,9 +251,12 @@
 
 <H1>Topic模块</H1>
 <div>
-    <input type="button" id="btn_0" value="新建话题">
-    <input type="button" id="btn_1" value="话题存在">
-    <input type="button" id="btn_2" value="ID查询">
+    <input type="text" id="txt_t_0" placeholder="新话题名称">
+    <input type="button" id="btn_0" value="新建话题"><br>
+    <input type="text" id="txt_t_1" placeholder="话题名称">
+    <input type="button" id="btn_1" value="话题存在"><br>
+    <input type="text" id="txt_t_2" placeholder="话题名称">
+    <input type="button" id="btn_2" value="ID查询"><br>
     <input type="text" id="btn_3_name" value="球">
     <input type="text" id="btn_3_start" value="0">
     <input type="text" id="btn_3_count" value="10">

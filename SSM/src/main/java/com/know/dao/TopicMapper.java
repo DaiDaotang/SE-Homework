@@ -8,7 +8,6 @@ import java.util.Map;
 public interface TopicMapper {
     // 新建话题
     int insertTopic(Topic topic);
-    // int insertTopic(int userId, Topic topic);
     // 删除话题
     int deleteTopic(int topicId);
     // 查询话题 by id

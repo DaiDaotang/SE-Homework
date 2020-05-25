@@ -14,6 +14,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.Date;
+
 /**
  * 〈一句话功能简述〉<br> 
  * 〈话题〉
@@ -28,4 +30,6 @@ import lombok.NoArgsConstructor;
 public class Topic {
     private int topicId;
     private String topicName;
+    private int userId;
+    private Date topicTime;
 }

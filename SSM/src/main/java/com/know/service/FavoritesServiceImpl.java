@@ -48,6 +48,11 @@ public class FavoritesServiceImpl implements FavoritesService{
     }
 
     public int deleteFavorites(int[] favoritesIds) {
+        int res = 0;
+        // 清空所有收藏夹
+        for (int favoritesId : favoritesIds) {
+            res += emptyFavorites(favoritesId);
+        }
         return favoritesMapper.deleteFavorites(favoritesIds);
     }
 

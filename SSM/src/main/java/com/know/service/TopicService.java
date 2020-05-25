@@ -7,7 +7,7 @@ import java.util.Map;
 
 public interface TopicService {
     // 新建话题
-    int insertTopic(int userId, Topic topic);
+    int insertTopic(Topic topic);
     // 删除话题
     int deleteTopic(int topicId);
     // 查询话题 by id

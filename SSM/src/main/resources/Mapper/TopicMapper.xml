@@ -5,9 +5,9 @@
 
 <mapper namespace="com.know.dao.TopicMapper">
 
-    <insert id="insertTopic" parameterType="topic" useGeneratedKeys="true" keyProperty="topicId">
-        insert know.topic(topicName)
-        value (#{topicName});
+    <insert id="insertTopic" parameterType="topic" useGeneratedKeys="true" keyProperty="topicId" keyColumn="topicId">
+        insert know.topic(topicName, userId, topicTime)
+        value (#{topicName}, #{userId}, #{topicTime});
     </insert>
 
     <select id="queryTopicExactly" resultType="topic">

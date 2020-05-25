@@ -18,6 +18,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -41,14 +42,14 @@ public class TopicController {
     @RequestMapping("/bringUpTopic")
     public Map<String, Object> bringUpTopic(int userId, String topicName){
         Map<String, Object> map = new HashMap<String, Object>();
-
+        // 若已有
         if(topicService.queryTopicExactly(topicName) != null){
             map.put("msg", "ERR");
             map.put("topicId", -1);
         }
         else{
-            Topic topic = new Topic(-1, topicName);
-            if(topicService.insertTopic(userId, topic) != 1){
+            Topic topic = new Topic(-1, topicName, userId, new Date());
+            if(topicService.insertTopic(topic) != 1){
                 map.put("msg", "ERR");
                 map.put("topicId", -1);
             }

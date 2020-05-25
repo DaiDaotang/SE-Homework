@@ -35,7 +35,7 @@ public class TopicServiceImpl implements TopicService{
         this.topicMapper = topicMapper;
     }
 
-    public int insertTopic(int userId, Topic topic) {
+    public int insertTopic(Topic topic) {
         return topicMapper.insertTopic(topic);
     }
 
