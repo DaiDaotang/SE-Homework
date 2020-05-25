@@ -12,4 +12,12 @@
     <delete id="deleteComment">
         delete from know.comment where commentId = #{commentId};
     </delete>
+
+    <select id="queryCommentOrderByTime" resultType="comment">
+        select * from know.comment where answerId = #{answerId} order by commentTime;
+    </select>
+
+    <select id="queryCommentOrderByLiked" resultType="comment">
+        select * from know.comment where answerId = #{answerId} order by commentLiked desc;
+    </select>
 </mapper>

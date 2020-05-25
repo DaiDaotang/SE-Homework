@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/comment")
 public class CommentController {
@@ -37,5 +39,17 @@ public class CommentController {
     public int responseComment(Comment comment){
         //System.out.println(comment);
         return commentService.comment(comment);
+    }
+
+    //按照时间返回评论
+    @RequestMapping("/getCommentsOrderByTime")
+    public List<Comment> getCommentsOrderByTime(int answerId, int start, int count){
+        return commentService.queryCommentOrderByTime(answerId,start,count);
+    }
+
+    //按照点赞数返回评论
+    @RequestMapping("/getCommentsOrderByLiked")
+    public List<Comment> getCommentsOrderByLiked(int answerId, int start, int count){
+        return commentService.queryCommentOrderByLiked(answerId,start,count);
     }
 }
