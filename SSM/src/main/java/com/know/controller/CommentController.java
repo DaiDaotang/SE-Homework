@@ -31,4 +31,11 @@ public class CommentController {
             return "OK";
         }
     }
+
+    // 回复评论
+    @RequestMapping("/responseComment")
+    public int responseComment(Comment comment){
+        //System.out.println(comment);
+        return commentService.comment(comment);
+    }
 }

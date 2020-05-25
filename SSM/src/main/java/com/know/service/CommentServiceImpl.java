@@ -2,7 +2,6 @@ package com.know.service;
 
 import com.know.dao.CommentMapper;
 import com.know.pojo.Comment;
-import com.know.pojo.User;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -16,8 +15,6 @@ public class CommentServiceImpl implements CommentService{
     }
 
     public int comment(Comment comment){
-        comment.setCommentedId(0);
-        comment.setCommentLiked(0);
         Date date = new Date();
         SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         df.setTimeZone(TimeZone.getTimeZone("Asia/Shanghai"));
@@ -37,4 +34,6 @@ public class CommentServiceImpl implements CommentService{
     public int deleteComment(int commentId){
         return commentMapper.deleteComment(commentId);
     }
+
+
 }
