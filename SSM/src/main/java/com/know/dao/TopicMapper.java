@@ -18,4 +18,6 @@ public interface TopicMapper {
     List<Topic> queryTopicByName(Map<String, Object> map);
     // 模糊查询一个话题 by name
     Topic queryOneTopicByName(String topicName);
+    // 查询一个话题下的问题
+    List<Topic> queryQuestions(Map<String, Object> map);
 }
