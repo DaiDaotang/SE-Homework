@@ -140,6 +140,7 @@
                 },
                 success:function (data) {
                     console.log(data);
+                    console.log(data.list[0].answerContent)
                 }
             })
         })
@@ -234,6 +235,8 @@
                 },
                 success: function (data) {
                     console.log(data);
+                    console.log(data.list[0].answerContent)
+                    data.get("list")
                 }
             })
         })
@@ -292,6 +295,11 @@
 <body>
 
 <h1>以下操作，均为5号用户所为</h1>
+
+
+<form action="/user/modifyHead" method="post">
+    <input>
+</form>
 
 
 <h1>点赞</h1>

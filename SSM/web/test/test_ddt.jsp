@@ -15,7 +15,7 @@
 <script>
     $(function () {
         $("#btn").click(function () {
-            location.href="${pageContext.request.contextPath}/test/getCommentsOrderByLiked.jsp";
+            location.href="${pageContext.request.contextPath}/test/modifyHead.jsp";
         })
     });
 </script>
