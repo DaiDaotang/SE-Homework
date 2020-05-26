@@ -241,7 +241,49 @@
 </script>
 <%--关注--%>
 <script>
+    $(function () {
+        $("#btn_follow_0").click(function () {
+            $.post({
+                url : "${pageContext.request.contextPath}/follow/follow",
+                data:{
+                    "fanId":5,
+                    "userId": $("#txt_follow_0").val(),
+                    "type":false
+                },
+                success:function (data) {
+                    console.log(data);
+                }
+            })
+        })
 
+        $("#btn_follow_2").click(function () {
+            $.post({
+                url : "${pageContext.request.contextPath}/follow/getList",
+                data:{
+                    "userId": 5,
+                    "start":0,
+                    "count":10,
+                    "type":$("#txt_follow_1").val()
+                },
+                success:function (data) {
+                    console.log(data);
+                }
+            })
+        })
+
+        $("#btn_follow_3").click(function () {
+            $.post({
+                url : "${pageContext.request.contextPath}/follow/checkRelation",
+                data:{
+                    "userId": 5,
+                    "targetUserId":$("#txt_follow_2").val()
+                },
+                success:function (data) {
+                    console.log(data);
+                }
+            })
+        })
+    })
 </script>
 <%--点赞--%>
 <script>
@@ -256,7 +298,14 @@
 
 
 <h1>关注</h1>
-
+<div>
+    <input type="text" id="txt_follow_0" placeholder="用户ID">
+    <input type="button" id="btn_follow_0" value="关注/取消关注"><br>
+    <input type="text" id="txt_follow_1" placeholder="0关注1粉丝">
+    <input type="button" id="btn_follow_2" value="关注/粉丝列表"><br>
+    <input type="text" id="txt_follow_2" placeholder="目标用户ID">
+    <input type="button" id="btn_follow_3" value="检查是否关注"><br>
+</div>
 
 <h1>收藏夹</h1>
 <div>

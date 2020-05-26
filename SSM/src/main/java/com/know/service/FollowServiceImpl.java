@@ -11,6 +11,10 @@
 package com.know.service;
 
 import com.know.dao.FollowMapper;
+import com.know.pojo.User;
+import com.know.utils.QueryUtil;
+
+import java.util.List;
 
 /**
  * 〈一句话功能简述〉<br> 
@@ -24,5 +28,25 @@ public class FollowServiceImpl implements FollowService{
     private FollowMapper followMapper;
     public void setFollowMapper(FollowMapper followMapper) {
         this.followMapper = followMapper;
+    }
+
+    public int follow(int fanId, int userId) {
+        return followMapper.follow(fanId, userId);
+    }
+
+    public int unfollow(int fanId, int userId) {
+        return followMapper.unfollow(fanId, userId);
+    }
+
+    public List<User> getFollowingList(int userId, int start, int count) {
+        return QueryUtil.cutList(followMapper.getFollowingList(userId), start, count);
+    }
+
+    public List<User> getFansList(int userId, int start, int count) {
+        return QueryUtil.cutList(followMapper.getFansList(userId), start, count);
+    }
+
+    public Integer checkRelation(int fanId, int userId) {
+        return followMapper.checkRelation(fanId, userId);
     }
 }

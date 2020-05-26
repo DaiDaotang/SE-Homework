@@ -4,4 +4,17 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.know.dao.FollowMapper">
+    <select id="getFollowingList" resultType="user">
+        select u.*
+        from know.user u, know.followuser f
+        where f.fanId = #{userId}
+          and u.userId = f.userId;
+    </select>
+
+    <select id="getFansList" resultType="user">
+        select u.*
+        from know.user u, know.followuser f
+        where f.userId = #{userId}
+          and u.userId = f.fanId;
+    </select>
 </mapper>
