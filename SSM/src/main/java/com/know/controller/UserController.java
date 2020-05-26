@@ -10,7 +10,9 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.ServletContext;
+import javax.servlet.http.HttpServletResponse;
 import java.io.File;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -132,5 +134,16 @@ public class UserController {
         map.put("head",path);
         map.put("msg","OK");
         return map;
+    }
+    // 获取头像文件
+    @RequestMapping("/getHeadFile")
+    public String getHeadFile(HttpServletResponse response) throws IOException {
+        String fileName = userService.checkByUserId(6).getHead();
+        String webRootPath = servletContext.getRealPath("");
+        String headPath = webRootPath + "head";
+        System.out.println(webRootPath);
+        util u = new util();
+        u.download(response,headPath,fileName);
+        return "OK";
     }
 }
