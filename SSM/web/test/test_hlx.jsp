@@ -15,6 +15,7 @@
 <%--话题--%>
 <script>
     $(function () {
+        // 新建话题
         $("#btn_0").click(function () {
             $.post({
                 url:"${pageContext.request.contextPath}/topic/bringUpTopic",
@@ -27,7 +28,7 @@
                 }
             })
         })
-
+        // 检测是否已存在同名话题
         $("#btn_1").click(function () {
             $.post({
                 url:"${pageContext.request.contextPath}/topic/checkTopic",
@@ -39,7 +40,7 @@
                 }
             })
         })
-
+        // 获取话题 by topicId
         $("#btn_2").click(function () {
             $.post({
                 url:"${pageContext.request.contextPath}/topic/queryTopicById",
@@ -51,7 +52,7 @@
                 }
             })
         })
-
+        // 获取话题 by topicName（模糊）
         $("#btn_3").click(function () {
             $.post({
                 url:"${pageContext.request.contextPath}/topic/queryTopicByName",
@@ -65,7 +66,7 @@
                 }
             })
         })
-
+        // 获取话题下的问题
         $("#btn_4").click(function () {
             $.post({
                 url:"${pageContext.request.contextPath}/topic/queryQuestions",
@@ -129,7 +130,7 @@
 <%--收藏夹--%>
 <script>
     $(function () {
-
+        // 新建收藏夹
         $("#btn_f_0").click(function () {
             $.post({
                 url : "${pageContext.request.contextPath}/favorites/newFavorites",
@@ -142,7 +143,7 @@
                 }
             })
         })
-
+        // 删除收藏夹
         $("#btn_f_1").click(function () {
             $.post({
                 url : "${pageContext.request.contextPath}/favorites/delete",
@@ -155,7 +156,7 @@
                 }
             })
         })
-
+        // 修改收藏夹名称
         $("#btn_f_2").click(function () {
             $.post({
                 url : "${pageContext.request.contextPath}/favorites/updateFavoritesName",
@@ -168,7 +169,7 @@
                 }
             })
         })
-
+        // 获取收藏夹列表 by userId
         $("#btn_f_4").click(function () {
             $.post({
                 url : "${pageContext.request.contextPath}/favorites/getFavoritesByUserId",
@@ -182,7 +183,7 @@
                 }
             })
         })
-
+        // 收藏回答/取消收藏回答
         $("#btn_f_5").click(function () {
             $.post({
                 url : "${pageContext.request.contextPath}/favorites/toFavour",
@@ -197,7 +198,7 @@
                 }
             })
         })
-
+        // 清空收藏夹内容
         $("#btn_f_6").click(function () {
             $.post({
                 url : "${pageContext.request.contextPath}/favorites/emptyFavorites",
@@ -209,7 +210,7 @@
                 }
             })
         })
-
+        // 获取收藏该回答的收藏夹ID列表
         $("#btn_f_7").click(function () {
             $.post({
                 url : "${pageContext.request.contextPath}/favorites/getHostFavoritesId",
@@ -222,6 +223,8 @@
                 }
             })
         })
+        // 获取收藏夹内的回答
+        // TODO...
     })
 </script>
 <body>
