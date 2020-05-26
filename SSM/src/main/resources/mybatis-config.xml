@@ -11,12 +11,12 @@
         <setting name="logImpl" value="STDOUT_LOGGING"/>
     </settings>
 
-    <!-- 2. 假名 -->
+    <!-- 2. pojo 的假名 -->
     <typeAliases>
         <package name="com.know.pojo"/>
     </typeAliases>
 
-    <!-- 3. 注册 -->
+    <!-- 3. 注册 Mapper -->
     <mappers>
         <mapper class="com.know.dao.UserMapper"/>
         <mapper class="com.know.dao.TopicMapper"/>

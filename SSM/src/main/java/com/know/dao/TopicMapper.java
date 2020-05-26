@@ -1,5 +1,6 @@
 package com.know.dao;
 
+import com.know.pojo.Question;
 import com.know.pojo.Topic;
 
 import java.util.List;
@@ -19,5 +20,5 @@ public interface TopicMapper {
     // 模糊查询一个话题 by name
     Topic queryOneTopicByName(String topicName);
     // 查询一个话题下的问题
-    List<Topic> queryQuestions(Map<String, Object> map);
+    List<Question> queryQuestions(Map<String, Integer> map);
 }

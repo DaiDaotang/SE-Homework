@@ -38,4 +38,33 @@
         limit 1;
     </select>
 
+    <select id="queryQuestions" parameterType="map" resultType="question">
+        select q.*
+        from question q, qtrelation qt
+        where qt.topicId = #{topicId}
+          and q.questionId = qt.questionId
+        <if test="extra != 0">
+            order by
+            <choose>
+                <when test="extra == 1">
+                    q.questionTime DESC
+                </when>
+                <when test="extra == 2">
+                    q.questionTime
+                </when>
+                <when test="extra == 3">
+                    q.answerNumber DESC
+                </when>
+                <when test="extra == 4">
+                    q.answerNumber
+                </when>
+                <when test="extra == 5">
+                    q.browseNumber DESC
+                </when>
+                <when test="extra == 6">
+                    q.browseNumber
+                </when>
+            </choose>
+        </if>;
+    </select>
 </mapper>

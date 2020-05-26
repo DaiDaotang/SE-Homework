@@ -89,19 +89,20 @@ public class TopicController {
     // 查询话题 by name
     @RequestMapping("/queryTopicByName")
     public Map<String, Object> queryTopicByName(String topicName, int start, int count){
-        Map<String, Object> map = new HashMap<String, Object>();
+        Map<String, Object> map;
 
         // 获取数据
         Topic topic = topicService.queryTopicExactly(topicName);
-        List<Topic> topics = topicService.queryTopicByName(topicName, start, count, topic == null? -1 : topic.getTopicId());
-
-        // 开始数据处理
+        map = topicService.queryTopicByName(topicName, topic == null? -1 : topic.getTopicId(), start, count);
+        System.out.println(map.toString());
+        // 数据处理
         map.put("topic", topic);
-        map.put("topics", topics);
-        map.put("count", topics.size());
         return map;
     }
 
     // 查询话题下的问题
-
+    @RequestMapping("/queryQuestions")
+    public Map<String, Object> queryQuestion(int topicId, int extra, int start, int count){
+        return topicService.queryQuestion(topicId, extra, start, count);
+    }
 }

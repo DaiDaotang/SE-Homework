@@ -11,6 +11,7 @@
 package com.know.service;
 
 import com.know.dao.TopicMapper;
+import com.know.pojo.Question;
 import com.know.pojo.Topic;
 import com.know.utils.QueryUtil;
 
@@ -47,12 +48,16 @@ public class TopicServiceImpl implements TopicService{
         return topicMapper.queryTopicById(topicId);
     }
 
-    public List<Topic> queryTopicByName(String topicName, int start, int count, int topicId) {
+    public Map<String, Object> queryTopicByName(String topicName, int topicId, int start, int count) {
         Map<String, Object> map = new HashMap<String, Object>();
         map.put("topicName", topicName);
         map.put("topicId", topicId);
         List<Topic> topics = topicMapper.queryTopicByName(map);
-        return QueryUtil.cutList(topics, start, count);
+        map.clear();
+
+        map.put("count", topics.size());
+        map.put("topics", QueryUtil.cutList(topics, start, count));
+        return map;
     }
 
     public Topic queryTopicExactly(String topicName) {
@@ -61,5 +66,16 @@ public class TopicServiceImpl implements TopicService{
 
     public Topic queryOneTopicByName(String topicName) {
         return topicMapper.queryOneTopicByName(topicName);
+    }
+
+    public Map<String, Object> queryQuestion(int topicId, int extra, int start, int count) {
+        Map<String, Object> map = new HashMap<String, Object>();
+        Map<String, Integer> tmp = new HashMap<String, Integer>();
+        tmp.put("topicId", topicId);
+        tmp.put("extra", extra);
+        List<Question> questions = topicMapper.queryQuestions(tmp);
+        map.put("count", questions.size());
+        map.put("questions", QueryUtil.cutList(questions, start, count));
+        return map;
     }
 }

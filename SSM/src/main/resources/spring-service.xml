@@ -9,7 +9,7 @@
     <!-- 1. 扫描 service 下的包 -->
     <context:component-scan base-package="com.know.service"/>
 
-    <!-- 2. 将我们的所有业务类，注入Spring，配置 / 注解 -->
+    <!-- 2. 将我们的所有业务类，注入Spring，配置 / 注解 ServiceImpl-->
     <bean id="userServiceImpl" class="com.know.service.UserServiceImpl">
         <property name="userMapper" ref="userMapper"/>
     </bean>

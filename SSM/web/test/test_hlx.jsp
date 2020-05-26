@@ -65,6 +65,21 @@
                 }
             })
         })
+
+        $("#btn_4").click(function () {
+            $.post({
+                url:"${pageContext.request.contextPath}/topic/queryQuestions",
+                data:{
+                    'topicId':$("#txt_t_3").val(),
+                    'extra':$("#txt_t_4").val(),
+                    'start':$("#txt_t_5").val(),
+                    'count':$("#txt_t_6").val()
+                },
+                success:function (data) {
+                    console.log(data)
+                }
+            })
+        })
     })
 </script>
 <%--测试--%>
@@ -259,7 +274,12 @@
     <input type="text" id="btn_3_name" value="球">
     <input type="text" id="btn_3_start" value="0">
     <input type="text" id="btn_3_count" value="10">
-    <input type="button" id="btn_3" value="名称查询">
+    <input type="button" id="btn_3" value="名称查询"><br>
+    <input type="text" id="txt_t_3" value="14">
+    <input type="text" id="txt_t_4" value="1">
+    <input type="text" id="txt_t_5" value="0">
+    <input type="text" id="txt_t_6" value="10">
+    <input type="button" id="btn_4" value="查询问题">
 </div>
 
 </body>
