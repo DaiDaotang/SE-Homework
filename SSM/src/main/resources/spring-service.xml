@@ -32,6 +32,14 @@
         <property name="commentMapper" ref="commentMapper"/>
     </bean>
 
+    <bean id="followServiceImpl" class="com.know.service.FollowServiceImpl">
+        <property name="followMapper" ref="followMapper"/>
+    </bean>
+
+    <bean id="likeServiceImpl" class="com.know.service.LikeServiceImpl">
+        <property name="likeMapper" ref="likeMapper"/>
+    </bean>
+
     <!-- 3. 声明式事务配置 -->
     <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
         <!--注入数据源-->

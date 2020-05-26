@@ -23,6 +23,8 @@
         <mapper class="com.know.dao.FavoritesMapper"/>
         <mapper class="com.know.dao.AnswerMapper"/>
         <mapper class="com.know.dao.CommentMapper"/>
+        <mapper class="com.know.dao.FollowMapper"/>
+        <mapper class="com.know.dao.LikeMapper"/>
     </mappers>
 
 </configuration>
