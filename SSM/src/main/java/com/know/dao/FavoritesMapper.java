@@ -25,7 +25,7 @@ public interface FavoritesMapper {
     Favorites queryFavoritesById(int favoritesId);
     // 查找收藏夹列表 by userId
     List<Favorites> queryFavoritesListByUserId(int userId);
-    // 查找一个收藏夹的内容 by favoritesId
+    // 查找一个收藏夹收藏的回答列表 by favoritesId
     List<Answer> queryFavoritesContent(int favoritesId);
     // 查找一个收藏夹收藏的回答的ID列表
     List<Integer> queryCollectedAnswerId(int favoritesId);

@@ -64,4 +64,11 @@
         where favoritesId = #{favoritesId};
     </select>
 
+    <select id="queryFavoritesContent" resultType="answer">
+        select a.*
+        from favoritescontent fc, answer a
+        where fc.favoritesId = #{favoritesId}
+          and fc.answerId = a.answerId;
+    </select>
+
 </mapper>

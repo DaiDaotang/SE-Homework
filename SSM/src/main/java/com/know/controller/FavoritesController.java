@@ -88,11 +88,10 @@ public class FavoritesController {
         return favoritesService.getHostFavoritesIds(userId, answerId);
     }
 
-    // 获取一个收藏夹内容 by favoritesId
-    // TODO...
+    // 获取一个收藏夹的回答 by favoritesId
     @RequestMapping("/getFavoritesContents")
-    public List<Answer> getFavoritesContents(int favoritesId, int start, int count){
-        return null;
+    public Map<String, Object> getFavoritesContents(int favoritesId, int start, int count){
+        return favoritesService.queryAnswers(favoritesId, start, count);
     }
 
     // 删除收藏夹

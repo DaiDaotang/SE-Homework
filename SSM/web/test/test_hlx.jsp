@@ -224,7 +224,19 @@
             })
         })
         // 获取收藏夹内的回答
-        // TODO...
+        $("#btn_f_8").click(function () {
+            $.post({
+                url : "${pageContext.request.contextPath}/favorites/getFavoritesContents",
+                data: {
+                    "favoritesId":$("#txt_f_9").val(),
+                    "start":0,
+                    "count":10
+                },
+                success: function (data) {
+                    console.log(data);
+                }
+            })
+        })
     })
 </script>
 <body>
@@ -249,6 +261,8 @@
     <input type="button" id="btn_f_6" value="清空收藏夹"><br>
     <input type="text" id="txt_f_6" placeholder="问题的ID">
     <input type="button" id="btn_f_7" value="获取被哪些收藏夹收藏"><br>
+    <input type="text" id="txt_f_9" placeholder="favoritesId" value="9">
+    <input type="button" id="btn_f_8" value="获取收藏夹收藏的回答"><br>
 </div>
 
 
