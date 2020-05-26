@@ -89,13 +89,11 @@ public class TopicController {
     // 查询话题 by name
     @RequestMapping("/queryTopicByName")
     public Map<String, Object> queryTopicByName(String topicName, int start, int count){
-        Map<String, Object> map;
-
         // 获取数据
         Topic topic = topicService.queryTopicExactly(topicName);
-        map = topicService.queryTopicByName(topicName, topic == null? -1 : topic.getTopicId(), start, count);
-        System.out.println(map.toString());
-        // 数据处理
+        Map<String, Object> map = topicService.queryTopicByName(topicName, topic == null? -1 : topic.getTopicId(), start, count);
+
+        // 添加额外数据
         map.put("topic", topic);
         return map;
     }

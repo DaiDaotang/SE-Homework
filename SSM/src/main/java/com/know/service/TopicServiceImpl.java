@@ -52,12 +52,8 @@ public class TopicServiceImpl implements TopicService{
         Map<String, Object> map = new HashMap<String, Object>();
         map.put("topicName", topicName);
         map.put("topicId", topicId);
-        List<Topic> topics = topicMapper.queryTopicByName(map);
-        map.clear();
 
-        map.put("count", topics.size());
-        map.put("topics", QueryUtil.cutList(topics, start, count));
-        return map;
+        return QueryUtil.queryResult(topicMapper.queryTopicByName(map), start, count);
     }
 
     public Topic queryTopicExactly(String topicName) {
@@ -69,13 +65,9 @@ public class TopicServiceImpl implements TopicService{
     }
 
     public Map<String, Object> queryQuestion(int topicId, int extra, int start, int count) {
-        Map<String, Object> map = new HashMap<String, Object>();
         Map<String, Integer> tmp = new HashMap<String, Integer>();
         tmp.put("topicId", topicId);
         tmp.put("extra", extra);
-        List<Question> questions = topicMapper.queryQuestions(tmp);
-        map.put("count", questions.size());
-        map.put("questions", QueryUtil.cutList(questions, start, count));
-        return map;
+        return QueryUtil.queryResult(topicMapper.queryQuestions(tmp), start, count);
     }
 }

@@ -69,8 +69,8 @@ public class FavoritesServiceImpl implements FavoritesService{
         return favoritesMapper.queryFavoritesById(favoritesId);
     }
 
-    public List<Favorites> queryFavoritesListByUserId(int userId, int start, int count) {
-        return QueryUtil.cutList(favoritesMapper.queryFavoritesListByUserId(userId), start, count);
+    public Map<String, Object> queryFavoritesListByUserId(int userId, int start, int count) {
+        return QueryUtil.queryResult(favoritesMapper.queryFavoritesListByUserId(userId), start, count);
     }
 
     /**
@@ -145,7 +145,8 @@ public class FavoritesServiceImpl implements FavoritesService{
         return res % (3 * size + 1) + 1;
     }
 
-    public List<Integer> getHostFavoritesIds(int userId, int answerId) {
-        return favoritesMapper.queryHostFavoritesIdList(userId, answerId);
+    public Map<String, Object> getHostFavoritesIds(int userId, int answerId) {
+        List<Integer> idList = favoritesMapper.queryHostFavoritesIdList(userId, answerId);
+        return QueryUtil.queryResult(idList, 0, idList.size());
     }
 }

@@ -10,7 +10,9 @@
  */
 package com.know.utils;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * 〈一句话功能简述〉<br> 
@@ -47,5 +49,20 @@ public class QueryUtil {
         else{
             return list.subList(start, size);
         }
+    }
+
+    /**
+     * 将切割的列表，和原查询结果的总数量放入 Map
+     * @param list      需要切割的列表
+     * @param start     开始项
+     * @param count     数量
+     * @param <T>       列表泛型
+     * @return          Map
+     */
+    public static <T> Map<String, Object> queryResult(List<T> list, int start, int count){
+        Map<String, Object> map = new HashMap<String, Object>();
+        map.put("list", cutList(list, start, count));
+        map.put("total", list.size());
+        return map;
     }
 }

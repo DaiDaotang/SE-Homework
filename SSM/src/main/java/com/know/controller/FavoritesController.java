@@ -55,8 +55,7 @@ public class FavoritesController {
     // 更改收藏夹：名称
     @RequestMapping("/updateFavoritesName")
     public String updateFavoritesName(int favoritesId, String favoritesName){
-        int res = favoritesService.updateFavoritesName(favoritesId, favoritesName);
-        return res == 1? "OK" : "ERR";
+        return favoritesService.updateFavoritesName(favoritesId, favoritesName) == 1? "OK" : "ERR";
     }
 
     // 查找收藏夹 by favoritesId
@@ -67,7 +66,7 @@ public class FavoritesController {
 
     // 查找收藏夹列表 by userId
     @RequestMapping("/getFavoritesByUserId")
-    public List<Favorites> getFavoritesByUserId(int userId, int start, int count){
+    public Map<String, Object> getFavoritesByUserId(int userId, int start, int count){
         return favoritesService.queryFavoritesListByUserId(userId, start, count);
     }
 
@@ -85,7 +84,7 @@ public class FavoritesController {
 
     // 获取收藏该回答的收藏夹ID列表
     @RequestMapping("/getHostFavoritesId")
-    public List<Integer> getHostFavorites(int userId, int answerId){
+    public Map<String, Object> getHostFavorites(int userId, int answerId){
         return favoritesService.getHostFavoritesIds(userId, answerId);
     }
 
@@ -97,7 +96,6 @@ public class FavoritesController {
     }
 
     // 删除收藏夹
-    // TODO...
     @RequestMapping("/delete")
     public String deleteFavorites(int[] favoritesIds){
         return favoritesService.deleteFavorites(favoritesIds) == 1 ? "OK" : "ERR";
