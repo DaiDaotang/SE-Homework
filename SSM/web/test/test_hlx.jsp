@@ -245,6 +245,7 @@
 <%--关注--%>
 <script>
     $(function () {
+        // 关注/取消关注
         $("#btn_follow_0").click(function () {
             $.post({
                 url : "${pageContext.request.contextPath}/follow/follow",
@@ -258,7 +259,7 @@
                 }
             })
         })
-
+        // 关注/粉丝列表
         $("#btn_follow_2").click(function () {
             $.post({
                 url : "${pageContext.request.contextPath}/follow/getList",
@@ -273,7 +274,7 @@
                 }
             })
         })
-
+        // 检查是否检查
         $("#btn_follow_3").click(function () {
             $.post({
                 url : "${pageContext.request.contextPath}/follow/checkRelation",
