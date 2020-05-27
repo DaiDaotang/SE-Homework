@@ -1,6 +1,8 @@
 package com.know.dao;
 
 import com.know.pojo.Comment;
+import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.Update;
 
 import java.util.List;
 
@@ -13,5 +15,7 @@ public interface CommentMapper {
     List<Comment> queryCommentOrderByTime(int answerId);
     //根据点赞数返回回答下的评论
     List<Comment> queryCommentOrderByLiked(int answerId);
-
+    // 修改点赞数
+    @Update("update know.comment set commentLiked = commentLiked + #{count} where commentId = #{commentedId}")
+    int modifyLiked(@Param("commentId") int commentId, @Param("count") int count);
 }

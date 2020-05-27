@@ -11,6 +11,7 @@
 package com.know.service;
 
 import com.know.dao.AnswerMapper;
+import com.know.dao.CommentMapper;
 import com.know.dao.LikeMapper;
 import com.know.dao.UserMapper;
 
@@ -37,6 +38,10 @@ public class LikeServiceImpl implements LikeService{
     public void setAnswerMapper(AnswerMapper answerMapper) {
         this.answerMapper = answerMapper;
     }
+    private CommentMapper commentMapper;
+    public void setCommentMapper(CommentMapper commentMapper) {
+        this.commentMapper = commentMapper;
+    }
 
     public int likeAnswer(int userId, int answerId, boolean type) {
         int res = 0;
@@ -54,9 +59,16 @@ public class LikeServiceImpl implements LikeService{
     }
 
     public int likeComment(int userId, int commentId, boolean type) {
-        return type?
-                likeMapper.likeComment(userId, commentId, new Date()) :
-                likeMapper.dislikeComment(userId, commentId);
+        int res = 0;
+        if(type){
+            res += likeMapper.likeComment(userId, commentId, new Date());
+            res += commentMapper.modifyLiked(commentId, 1);
+        }
+        else{
+            res += likeMapper.dislikeComment(userId, commentId);
+            res += commentMapper.modifyLiked(commentId, -1);
+        }
+        return res % 2 + 1;
     }
 
     public boolean whetherLikedAnswer(int userId, int answerId) {

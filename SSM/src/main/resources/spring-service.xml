@@ -41,6 +41,7 @@
         <property name="likeMapper" ref="likeMapper"/>
         <property name="userMapper" ref="userMapper"/>
         <property name="answerMapper" ref="answerMapper"/>
+        <property name="commentMapper" ref="commentMapper"/>
     </bean>
 
     <!-- 3. 声明式事务配置 -->
