@@ -44,6 +44,11 @@
         <property name="commentMapper" ref="commentMapper"/>
     </bean>
 
+    <bean id="searchServiceImpl" class="com.know.service.SearchServiceImpl">
+
+    </bean>
+
+
     <!-- 3. 声明式事务配置 -->
     <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
         <!--注入数据源-->

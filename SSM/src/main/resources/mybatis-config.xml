@@ -26,6 +26,7 @@
         <mapper class="com.know.dao.FollowMapper"/>
         <mapper class="com.know.dao.LikeMapper"/>
         <mapper class="com.know.dao.QuestionMapper"/>
+        <mapper class="com.know.dao.SearchMapper"/>
     </mappers>
 
 </configuration>
