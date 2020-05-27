@@ -19,7 +19,10 @@ public interface UserMapper {
     int modifyHead(User user);
     // 修改回答收藏数
     int modifyCollected(Map<String, Object> map);
-    // 修改关注/粉丝数
-    int modifyFCount(Map<String, Integer> map);
-
+    // 修改关注数
+    int modifyFollowingCount(Map<String, Integer> map);
+    // 修改关注数
+    int modifyFansCount(Map<String, Integer> map);
+    // 修改获赞数
+    int modifyLiked(Map<String, Integer> map);
 }

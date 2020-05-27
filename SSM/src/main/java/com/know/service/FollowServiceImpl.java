@@ -15,7 +15,9 @@ import com.know.dao.UserMapper;
 import com.know.pojo.User;
 import com.know.utils.QueryUtil;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * 〈一句话功能简述〉<br> 
@@ -36,11 +38,25 @@ public class FollowServiceImpl implements FollowService{
     }
 
     public int follow(int fanId, int userId) {
-        return followMapper.follow(fanId, userId);
+        Map<String, Integer> map = new HashMap<String, Integer>();
+        map.put("fanId", fanId);
+        map.put("userId", userId);
+        map.put("count", 1);
+        return (followMapper.follow(fanId, userId) +
+                userMapper.modifyFollowingCount(map) +
+                userMapper.modifyFansCount(map))
+                % 3 + 1;
     }
 
     public int unfollow(int fanId, int userId) {
-        return followMapper.unfollow(fanId, userId);
+        Map<String, Integer> map = new HashMap<String, Integer>();
+        map.put("fanId", fanId);
+        map.put("userId", userId);
+        map.put("count", -1);
+        return (followMapper.unfollow(fanId, userId) +
+                userMapper.modifyFollowingCount(map) +
+                userMapper.modifyFansCount(map))
+                % 3 + 1;
     }
 
     public List<User> getFollowingList(int userId, int start, int count) {

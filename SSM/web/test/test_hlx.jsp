@@ -252,7 +252,7 @@
                 data:{
                     "fanId":5,
                     "userId": $("#txt_follow_0").val(),
-                    "type":false
+                    "type":true
                 },
                 success:function (data) {
                     console.log(data);

@@ -37,7 +37,21 @@
         where userId = #{userId};
     </update>
 
-    <update id="modifyFCount" parameterType="map">
-        
+    <update id="modifyFollowingCount" parameterType="map">
+        update know.user
+        set followingCount = followingCount + #{count}
+        where userId = #{fanId}
+    </update>
+
+    <update id="modifyFansCount" parameterType="map">
+        update know.user
+        set fansCount = fansCount + #{count}
+        where userId = #{userId}
+    </update>
+
+    <update id="modifyLiked" parameterType="map">
+        update know.user
+        set answerLiked = answerLiked + #{count}
+        where userId = #{userId};
     </update>
 </mapper>
