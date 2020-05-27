@@ -27,6 +27,7 @@
         <mapper class="com.know.dao.LikeMapper"/>
         <mapper class="com.know.dao.QuestionMapper"/>
         <mapper class="com.know.dao.SearchMapper"/>
+        <mapper class="com.know.dao.QtrelationMapper"/>
     </mappers>
 
 </configuration>

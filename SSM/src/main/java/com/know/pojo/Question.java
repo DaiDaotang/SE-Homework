@@ -35,4 +35,5 @@ public class Question {
     private String questionContent;
     private int answerNumber;
     private int browseNumber;
+    private int[] topicId;
 }

@@ -51,6 +51,11 @@
         <property name="searchMapper" ref="searchMapper"/>
     </bean>
 
+    <bean id="questionServiceImpl" class="com.know.service.QuestionServiceImpl">
+        <property name="questionMapper" ref="questionMapper"/>
+        <property name="qtrelationMapper" ref="qtrelationMapper"/>
+    </bean>
+
 
     <!-- 3. 声明式事务配置 -->
     <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">

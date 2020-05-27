@@ -5,5 +5,8 @@
 
 <mapper namespace="com.know.dao.QuestionMapper">
 
-
+    <insert id="askQuestion" parameterType="question" useGeneratedKeys="true" keyProperty="questionId">
+        insert into know.question(questionerId, questionTime, questionTitle, questionContent, answerNumber, browseNumber)
+        values (#{questionerId}, #{questionTime}, #{questionTitle}, #{questionContent}, #{answerNumber}, #{browseNumber});
+    </insert>
 </mapper>

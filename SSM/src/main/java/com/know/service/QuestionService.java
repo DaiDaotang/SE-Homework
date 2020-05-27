@@ -1,5 +1,8 @@
 package com.know.service;
 
-public interface QuestionService {
+import com.know.pojo.Question;
 
+public interface QuestionService {
+    //提问
+    int askQuestion(Question question);
 }
