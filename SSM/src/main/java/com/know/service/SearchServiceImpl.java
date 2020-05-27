@@ -10,6 +10,12 @@
  */
 package com.know.service;
 
+import com.know.dao.QuestionMapper;
+import com.know.dao.TopicMapper;
+import com.know.dao.UserMapper;
+import com.know.pojo.Question;
+import com.know.pojo.Topic;
+
 /**
  * 〈一句话功能简述〉<br> 
  * 〈搜索模块〉
@@ -19,5 +25,19 @@ package com.know.service;
  * @since 1.0.0
  */
 public class SearchServiceImpl {
+    private UserMapper userMapper;
+    private TopicMapper topicMapper;
+    private QuestionMapper questionMapper;
 
+    public void setUserMapper(UserMapper userMapper) {
+        this.userMapper = userMapper;
+    }
+
+    public void setTopicMapper(TopicMapper topicMapper) {
+        this.topicMapper = topicMapper;
+    }
+
+    public void setQuestionMapper(QuestionMapper questionMapper) {
+        this.questionMapper = questionMapper;
+    }
 }
