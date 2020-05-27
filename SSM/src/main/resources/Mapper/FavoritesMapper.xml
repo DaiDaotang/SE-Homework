@@ -11,8 +11,8 @@
     </insert>
 
     <insert id="favour" parameterType="map">
-        insert into know.favoritescontent (favoritesId, answerId)
-        values (#{favoritesId}, #{answerId});
+        insert into know.favoritescontent (favoritesId, answerId, favoritesTime)
+        values (#{favoritesId}, #{answerId}, #{updateTime});
     </insert>
 
     <delete id="unfavour" parameterType="map">
@@ -66,9 +66,11 @@
 
     <select id="queryFavoritesContent" resultType="answer">
         select a.*
-        from favoritescontent fc, answer a
+        from know.favoritescontent fc left join know.answer a
+            on fc.answerId = a.answerId
         where fc.favoritesId = #{favoritesId}
-          and fc.answerId = a.answerId;
+          and fc.answerId = a.answerId
+        order by fc.favoritesTime desc
     </select>
 
 </mapper>
