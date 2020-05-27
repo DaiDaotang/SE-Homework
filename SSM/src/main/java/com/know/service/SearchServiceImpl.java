@@ -11,6 +11,7 @@
 package com.know.service;
 
 import com.know.dao.QuestionMapper;
+import com.know.dao.SearchMapper;
 import com.know.dao.TopicMapper;
 import com.know.dao.UserMapper;
 import com.know.pojo.Question;
@@ -28,16 +29,18 @@ public class SearchServiceImpl {
     private UserMapper userMapper;
     private TopicMapper topicMapper;
     private QuestionMapper questionMapper;
-
     public void setUserMapper(UserMapper userMapper) {
         this.userMapper = userMapper;
     }
-
     public void setTopicMapper(TopicMapper topicMapper) {
         this.topicMapper = topicMapper;
     }
-
     public void setQuestionMapper(QuestionMapper questionMapper) {
         this.questionMapper = questionMapper;
+    }
+    private SearchMapper searchMapper;
+
+    public void setSearchMapper(SearchMapper searchMapper) {
+        this.searchMapper = searchMapper;
     }
 }

@@ -48,6 +48,7 @@
         <property name="userMapper" ref="userMapper"/>
         <property name="topicMapper" ref="topicMapper"/>
         <property name="questionMapper" ref="questionMapper"/>
+        <property name="searchMapper" ref="searchMapper"/>
     </bean>
 
 
