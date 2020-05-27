@@ -11,6 +11,7 @@
 package com.know.service;
 
 import com.know.dao.FollowMapper;
+import com.know.dao.UserMapper;
 import com.know.pojo.User;
 import com.know.utils.QueryUtil;
 
@@ -28,6 +29,10 @@ public class FollowServiceImpl implements FollowService{
     private FollowMapper followMapper;
     public void setFollowMapper(FollowMapper followMapper) {
         this.followMapper = followMapper;
+    }
+    private UserMapper userMapper;
+    public void setUserMapper(UserMapper userMapper) {
+        this.userMapper = userMapper;
     }
 
     public int follow(int fanId, int userId) {

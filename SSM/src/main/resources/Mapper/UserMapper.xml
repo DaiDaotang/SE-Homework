@@ -36,4 +36,8 @@
         set answerCollected = answerCollected + #{answerCollected}
         where userId = #{userId};
     </update>
+
+    <update id="modifyFCount" parameterType="map">
+        
+    </update>
 </mapper>

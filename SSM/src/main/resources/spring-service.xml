@@ -34,6 +34,7 @@
 
     <bean id="followServiceImpl" class="com.know.service.FollowServiceImpl">
         <property name="followMapper" ref="followMapper"/>
+        <property name="userMapper" ref="userMapper"/>
     </bean>
 
     <bean id="likeServiceImpl" class="com.know.service.LikeServiceImpl">

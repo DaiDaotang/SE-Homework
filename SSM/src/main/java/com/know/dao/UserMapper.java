@@ -17,5 +17,9 @@ public interface UserMapper {
     int modifyPersonalInfo(User user);
     //修改头像
     int modifyHead(User user);
+    // 修改回答收藏数
     int modifyCollected(Map<String, Object> map);
+    // 修改关注/粉丝数
+    int modifyFCount(Map<String, Integer> map);
+
 }
