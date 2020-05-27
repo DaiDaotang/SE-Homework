@@ -53,6 +53,7 @@ public class SearchServiceImpl implements SearchService{
         map.put("extra", extra);
         switch (type){
             // 问题
+            // TODO...提取问题内容的前 n 个字
             case 0:
                 return QueryUtil.queryResult(searchMapper.queryQuestions(map), start, count);
             // 话题
