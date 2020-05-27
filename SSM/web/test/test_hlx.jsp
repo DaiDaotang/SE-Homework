@@ -148,7 +148,7 @@
             $.post({
                 url : "${pageContext.request.contextPath}/favorites/delete",
                 data: {
-                    "favoritesIds":[7, 8]
+                    "favoritesIds":[9, 10]
                 },
                 traditional: true,
                 success: function (data) {
@@ -347,9 +347,89 @@
         })
     })
 </script>
+<%--搜索--%>
+<script>
+    $(function () {
+        // 搜索问题
+        $("#btn_s_0").click(function () {
+            $.post({
+                url : "${pageContext.request.contextPath}/search/questions",
+                data:{
+                    "keyword": $("#txt_s_0").val(),
+                    "extra": $("#txt_s_1").val(),
+                    "start":$("#txt_s_3").val(),
+                    "count":$("#txt_s_4").val()
+                },
+                success:function (data) {
+                    console.log(data);
+                }
+            })
+        })
+        // 搜索话题
+        $("#btn_s_1").click(function () {
+            $.post({
+                url : "${pageContext.request.contextPath}/search/topics",
+                data:{
+                    "keyword": $("#txt_s_0").val(),
+                    "extra": $("#txt_s_1").val(),
+                    "start":$("#txt_s_3").val(),
+                    "count":$("#txt_s_4").val()
+                },
+                success:function (data) {
+                    console.log(data);
+                }
+            })
+        })
+        // 搜索用户
+        $("#btn_s_2").click(function () {
+            $.post({
+                url : "${pageContext.request.contextPath}/search/users",
+                data:{
+                    "keyword": $("#txt_s_0").val(),
+                    "extra": $("#txt_s_1").val(),
+                    "start":$("#txt_s_3").val(),
+                    "count":$("#txt_s_4").val()
+                },
+                success:function (data) {
+                    console.log(data);
+                }
+            })
+        })
+        // 搜索
+        $("#btn_s_3").click(function () {
+            $.post({
+                url : "${pageContext.request.contextPath}/search/search",
+                data:{
+                    "keyword": $("#txt_s_0").val(),
+                    "type": $("#txt_s_2").val(),
+                    "extra": $("#txt_s_1").val(),
+                    "start":$("#txt_s_3").val(),
+                    "count":$("#txt_s_4").val()
+                },
+                success:function (data) {
+                    console.log(data);
+                }
+            })
+        })
+    })
+</script>
 <body>
 
 <h1>以下操作，均为5号用户所为</h1>
+
+
+<h1>搜索</h1>
+<div>
+    <input type="text" id="txt_s_0" placeholder="关键字">
+    <input type="text" id="txt_s_1" placeholder="排序方法" value="0">
+    <input type="text" id="txt_s_2" placeholder="搜索类型" value="0">
+    <input type="text" id="txt_s_3" placeholder="开始" value="0">
+    <input type="text" id="txt_s_4" placeholder="数量" value="4">
+    <input type="button" id="btn_s_0" value="搜索问题">
+    <input type="button" id="btn_s_1" value="搜索话题">
+    <input type="button" id="btn_s_2" value="搜索用户">
+    <input type="button" id="btn_s_3" value="搜索">
+</div>
 
 
 <h1>点赞</h1>

@@ -16,6 +16,10 @@ import com.know.dao.TopicMapper;
 import com.know.dao.UserMapper;
 import com.know.pojo.Question;
 import com.know.pojo.Topic;
+import com.know.utils.QueryUtil;
+
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * 〈一句话功能简述〉<br> 
@@ -25,7 +29,7 @@ import com.know.pojo.Topic;
  * @create 2020/5/27
  * @since 1.0.0
  */
-public class SearchServiceImpl {
+public class SearchServiceImpl implements SearchService{
     private UserMapper userMapper;
     private TopicMapper topicMapper;
     private QuestionMapper questionMapper;
@@ -39,8 +43,26 @@ public class SearchServiceImpl {
         this.questionMapper = questionMapper;
     }
     private SearchMapper searchMapper;
-
     public void setSearchMapper(SearchMapper searchMapper) {
         this.searchMapper = searchMapper;
+    }
+
+    public Map<String, Object> query(int type, String keyword, int extra, int start, int count) {
+        Map<String, Object> map = new HashMap<String, Object>();
+        map.put("keyword", keyword);
+        map.put("extra", extra);
+        switch (type){
+            // 问题
+            case 0:
+                return QueryUtil.queryResult(searchMapper.queryQuestions(map), start, count);
+            // 话题
+            case 1:
+                return QueryUtil.queryResult(searchMapper.queryTopics(map), start, count);
+            // 用户
+            case 2:
+                return QueryUtil.queryResult(searchMapper.queryUsers(map), start, count);
+            default:
+                return null;
+        }
     }
 }

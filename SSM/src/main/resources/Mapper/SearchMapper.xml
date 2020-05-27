@@ -5,5 +5,67 @@
 
 <mapper namespace="com.know.dao.SearchMapper">
 
+    <select id="queryUsers" resultType="user" parameterType="map">
+        select *
+        from know.user
+        where name like concat('%', #{keyword}, '%')
+        order by
+            <choose>
+                <when test="extra == 1">
+                    fansCount DESC
+                </when>
+                <when test="extra == 2">
+                    followingCount DESC
+                </when>
+                <when test="extra == 3">
+                    answerLiked DESC
+                </when>
+                <when test="extra == 4">
+                    answerCollected DESC
+                </when>
+                 <otherwise>
+                     length(substring_index(name, #{keyword}, 1)),
+                     length(name)
+                 </otherwise>
+            </choose>;
+    </select>
+
+    <select id="queryTopics" resultType="topic" parameterType="map">
+        select *
+        from know.topic
+        where topicName like concat('%', #{keyword}, '%')
+        order by
+             <choose>
+                 <otherwise>
+                     length(substring_index(topicName, #{keyword}, 1)),
+                     length(topicName)
+                 </otherwise>
+             </choose>;
+    </select>
+
+    <select id="queryQuestions" resultType="question" parameterType="map">
+        select *
+        from know.question
+        where questionTitle like concat('%', #{keyword}, '%')
+        order by
+            <choose>
+                <when test="extra == 1">
+                    answerNumber DESC
+                </when>
+                <when test="extra == 2">
+                    browseNumber DESC
+                </when>
+                <when test="extra == 3">
+                    questionTime DESC
+                </when>
+                <when test="extra == 4">
+                    questionTime
+                </when>
+                 <otherwise>
+                     length(substring_index(questionTitle, #{keyword}, 1)),
+                     length(questionTitle)
+                 </otherwise>
+            </choose>;
+    </select>
 
 </mapper>

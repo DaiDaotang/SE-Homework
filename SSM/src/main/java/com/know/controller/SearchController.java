@@ -10,6 +10,14 @@
  */
 package com.know.controller;
 
+import com.know.service.SearchService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import java.util.Map;
+
 /**
  * 〈一句话功能简述〉<br> 
  * 〈搜索Controller〉
@@ -18,6 +26,33 @@ package com.know.controller;
  * @create 2020/5/27
  * @since 1.0.0
  */
+@RestController
+@RequestMapping("/search")
 public class SearchController {
+    @Autowired
+    @Qualifier("searchServiceImpl")
+    private SearchService searchServiceImpl;
+    public void setSearchServiceImpl(SearchService searchServiceImpl) {
+        this.searchServiceImpl = searchServiceImpl;
+    }
 
+    @RequestMapping("/users")
+    public Map<String, Object> queryUsers(String keyword, int extra, int start, int count){
+        return searchServiceImpl.query(2, keyword, extra, start, count);
+    }
+
+    @RequestMapping("/topics")
+    public Map<String, Object> queryTopics(String keyword, int extra, int start, int count){
+        return searchServiceImpl.query(1, keyword, extra, start, count);
+    }
+
+    @RequestMapping("/questions")
+    public Map<String, Object> queryQuestions(String keyword, int extra, int start, int count){
+        return searchServiceImpl.query(0, keyword, extra, start, count);
+    }
+
+    @RequestMapping("/search")
+    public Map<String, Object> query(String keyword, int type, int extra, int start, int count){
+        return searchServiceImpl.query(type, keyword, extra, start, count);
+    }
 }
