@@ -4,4 +4,20 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.know.dao.LikeMapper">
+    <insert id="likeAnswer">
+        insert into know.likeanswer (userId, answerId, likeTime)
+        values (#{userId}, #{answerId}, #{likeTime});
+    </insert>
+    <delete id="dislikeAnswer">
+        delete from know.likeanswer
+        where userId = #{userId} and answerId = #{answerId}
+    </delete>
+    <insert id="likeComment">
+        insert into know.likecomment (userId, commentId, likeTime)
+        values (#{userId}, #{commentId}, #{likeTime});
+    </insert>
+    <delete id="dislikeComment">
+        delete from know.likecomment
+        where userId = #{userId} and commentId = #{commentId}
+    </delete>
 </mapper>

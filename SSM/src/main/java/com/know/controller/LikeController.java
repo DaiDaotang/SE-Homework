@@ -14,6 +14,7 @@ import com.know.service.LikeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
@@ -32,5 +33,15 @@ public class LikeController {
     private LikeService likeService;
     public void setLikeService(LikeService likeService) {
         this.likeService = likeService;
+    }
+
+    @RequestMapping("/answer")
+    public String likeAnswer(int userId, int answerId, boolean type){
+        return likeService.likeAnswer(userId, answerId, type) == 1? "OK" : "ERR";
+    }
+
+    @RequestMapping("/comment")
+    public String likeComment(int userId, int answerId, boolean type){
+        return likeService.likeComment(userId, answerId, type) == 1? "OK" : "ERR";
     }
 }

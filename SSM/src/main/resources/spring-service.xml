@@ -39,6 +39,8 @@
 
     <bean id="likeServiceImpl" class="com.know.service.LikeServiceImpl">
         <property name="likeMapper" ref="likeMapper"/>
+        <property name="userMapper" ref="userMapper"/>
+        <property name="answerMapper" ref="answerMapper"/>
     </bean>
 
     <!-- 3. 声明式事务配置 -->

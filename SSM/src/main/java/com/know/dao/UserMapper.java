@@ -24,5 +24,5 @@ public interface UserMapper {
     // 修改关注数
     int modifyFansCount(Map<String, Integer> map);
     // 修改获赞数
-    int modifyLiked(Map<String, Integer> map);
+    int modifyLiked(int userId, int count);
 }

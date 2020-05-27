@@ -49,7 +49,7 @@
         where userId = #{userId}
     </update>
 
-    <update id="modifyLiked" parameterType="map">
+    <update id="modifyLiked">
         update know.user
         set answerLiked = answerLiked + #{count}
         where userId = #{userId};

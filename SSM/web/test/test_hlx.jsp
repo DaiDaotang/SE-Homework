@@ -298,12 +298,10 @@
 <h1>以下操作，均为5号用户所为</h1>
 
 
-<form action="/user/modifyHead" method="post">
-    <input>
-</form>
-
-
 <h1>点赞</h1>
+<div>
+
+</div>
 
 
 <h1>关注</h1>
