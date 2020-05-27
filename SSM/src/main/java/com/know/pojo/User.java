@@ -18,4 +18,6 @@ public class User {
     private int answerCollected;
     private int answerLiked;
     private String head;
+    private int fansCount;
+    private int followingCount;
 }
