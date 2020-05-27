@@ -43,12 +43,14 @@ public class LikeServiceImpl implements LikeService{
         if(type){
             res += likeMapper.likeAnswer(userId, answerId, new Date());
             res += userMapper.modifyLiked(userId, 1);
+            res += answerMapper.modifyAnswerLiked(answerId, 1);
         }
         else{
             res += likeMapper.dislikeAnswer(userId, answerId);
             res += userMapper.modifyLiked(userId, -1);
+            res += answerMapper.modifyAnswerLiked(answerId, -1);
         }
-        return res % 2 + 1;
+        return res % 3 + 1;
     }
 
     public int likeComment(int userId, int commentId, boolean type) {

@@ -48,10 +48,4 @@
         set fansCount = fansCount + #{count}
         where userId = #{userId}
     </update>
-
-    <update id="modifyLiked">
-        update know.user
-        set answerLiked = answerLiked + #{count}
-        where userId = #{userId};
-    </update>
 </mapper>

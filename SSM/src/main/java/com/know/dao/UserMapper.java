@@ -1,6 +1,8 @@
 package com.know.dao;
 
 import com.know.pojo.User;
+import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.Update;
 
 import java.util.Map;
 
@@ -24,5 +26,6 @@ public interface UserMapper {
     // 修改关注数
     int modifyFansCount(Map<String, Integer> map);
     // 修改获赞数
-    int modifyLiked(int userId, int count);
+    @Update("update know.user set answerLiked = answerLiked + #{count} where userId = #{userId};")
+    int modifyLiked(@Param("userId") int userId, @Param("count") int count);
 }

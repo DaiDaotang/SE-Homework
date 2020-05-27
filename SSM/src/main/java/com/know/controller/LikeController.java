@@ -44,4 +44,14 @@ public class LikeController {
     public String likeComment(int userId, int answerId, boolean type){
         return likeService.likeComment(userId, answerId, type) == 1? "OK" : "ERR";
     }
+
+    @RequestMapping("/likedAnswer")
+    public boolean likedAnswer(int userId, int answerId){
+        return likeService.whetherLikedAnswer(userId, answerId);
+    }
+
+    @RequestMapping("/likedCommentd")
+    public boolean likedCommentd(int userId, int commentId){
+        return likeService.whetherLikedComment(userId, commentId);
+    }
 }

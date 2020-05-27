@@ -291,7 +291,62 @@
 </script>
 <%--点赞--%>
 <script>
-
+    $(function () {
+        // 点赞/取消点赞回答
+        $("#btn_like_0").click(function () {
+            $.post({
+                url : "${pageContext.request.contextPath}/like/answer",
+                data:{
+                    "userId":5,
+                    "answerId": $("#txt_like_0").val(),
+                    "type":true
+                },
+                success:function (data) {
+                    console.log(data);
+                }
+            })
+        })
+        // 查询是否点赞回答
+        $("#btn_like_1").click(function () {
+            $.post({
+                url : "${pageContext.request.contextPath}/like/likedAnswer",
+                data:{
+                    "userId": 5,
+                    "answerId": $("#txt_like_0").val()
+                },
+                success:function (data) {
+                    console.log(data);
+                }
+            })
+        })
+        // 点赞/取消点赞评论
+        $("#btn_like_2").click(function () {
+            $.post({
+                url : "${pageContext.request.contextPath}/like/comment",
+                data:{
+                    "userId":5,
+                    "commentId": $("#txt_like_1").val(),
+                    "type":true
+                },
+                success:function (data) {
+                    console.log(data);
+                }
+            })
+        })
+        // 查询是否点赞评论
+        $("#btn_like_3").click(function () {
+            $.post({
+                url : "${pageContext.request.contextPath}/like/likedCommentd",
+                data:{
+                    "userId":5,
+                    "commentId": $("#txt_like_1").val()
+                },
+                success:function (data) {
+                    console.log(data);
+                }
+            })
+        })
+    })
 </script>
 <body>
 
@@ -300,7 +355,12 @@
 
 <h1>点赞</h1>
 <div>
-
+    <input type="text" id="txt_like_0" placeholder="回答ID">
+    <input type="button" id="btn_like_0" value="点赞"><br>
+    <input type="button" id="btn_like_1" value="查询点赞"><br>
+    <input type="text" id="txt_like_1" placeholder="评论ID">
+    <input type="button" id="btn_like_2" value="点赞"><br>
+    <input type="button" id="btn_like_3" value="查询点赞"><br>
 </div>
 
 
