@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.ServletContext;
 import java.io.File;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -61,18 +62,31 @@ public class QuestionController {
 
     // 查找问题
     @RequestMapping("/queryQuestionByQuestionId")
-    public Question queryQuestionByQuestionId(int questionId){
-        return questionService.queryQuestionByQuestionId(questionId);
+    public Question queryQuestionByQuestionId(int questionId) {
+        String root = servletContext.getRealPath("") + "markdown";
+        Question question =  questionService.queryQuestionByQuestionId(questionId);
+        String fileName = question.getQuestionContent();
+        util util = new util();
+        String content = util.download(root, fileName);
+        System.out.println(content);
+        question.setQuestionContent(content);
+        return question;
     }
 
     // 根据用户id返回问题
     @RequestMapping("/queryQuestionListByUserId")
     public Map<String, Object> queryQuestionListByUserId(@Param("userId") int userId, @Param("start")int start, @Param("count")int count){
         Map<String,Object> map = new HashMap<String, Object>();
-        List<Question> list = questionService.queryQuestionListByUserId(userId);
+        util util = new util();
+        String root = servletContext.getRealPath("") + "markdown";
+        List<Question> list = QueryUtil.cutList(questionService.queryQuestionListByUserId(userId),start,count);
+        for (Question question:list) {
+            String fileName = question.getQuestionContent();
+            question.setQuestionContent(util.download(root, fileName));
+        }
         int length = list.size();
         map.put("total",length);
-        map.put("list", QueryUtil.cutList(list,start,count));
+        map.put("list", list);
         return map;
     }
 }

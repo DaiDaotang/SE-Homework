@@ -2,12 +2,13 @@ package com.know.utils;
 
 import org.springframework.web.multipart.MultipartFile;
 
-import javax.servlet.http.HttpServletResponse;
+
 import java.io.*;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class util {
+
 
     public String upload(MultipartFile file, String root, int id){
         SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmssSS");
@@ -58,28 +59,31 @@ public class util {
 
 
 
-    public void download(HttpServletResponse response, String path, String fileName) throws IOException {
-        //1、设置response 响应头
-        response.reset(); //设置页面不缓存,清空buffer
-        response.setCharacterEncoding("UTF-8"); //字符编码
-        response.setContentType("multipart/form-data"); //二进制传输数据
-        //设置响应头
-        response.setHeader("Content-Disposition",
-                "attachment;fileName="+fileName);
-        File file = new File(path,fileName);
-        //2、 读取文件--输入流
-        InputStream input=new FileInputStream(file);
-        //3、 写出文件--输出流
-        OutputStream out = response.getOutputStream();
-
-        byte[] buff =new byte[1024];
-        int index=0;
-        //4、执行 写出操作
-        while((index= input.read(buff))!= -1){
-            out.write(buff, 0, index);
-            out.flush();
+    public String download(String root, String fileName) {
+        File markdown = new File(root + File.separator + fileName);
+        FileInputStream is = null;
+        StringBuilder stringBuilder = null;
+        try {
+            if (markdown.length() != 0) {
+                /**
+                 * 文件有内容才去读文件
+                 */
+                is = new FileInputStream(markdown);
+                InputStreamReader streamReader = new InputStreamReader(is);
+                BufferedReader reader = new BufferedReader(streamReader);
+                String line;
+                stringBuilder = new StringBuilder();
+                while ((line = reader.readLine()) != null) {
+                    stringBuilder.append(line);
+                }
+                reader.close();
+                is.close();
+            } else {
+                return null;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-        out.close();
-        input.close();
+        return String.valueOf(stringBuilder);
     }
 }
