@@ -48,7 +48,7 @@ public class SearchServiceImpl implements SearchService{
         this.searchMapper = searchMapper;
     }
 
-    public Map<String, Object> query(int type, String keyword, int extra, int start, int count, int n) {
+    public Map<String, Object> query(int type, String keyword, int extra, int start, int count, int n, String root) {
         Map<String, Object> map = new HashMap<String, Object>();
         map.put("keyword", keyword);
         map.put("extra", extra);
@@ -56,7 +56,7 @@ public class SearchServiceImpl implements SearchService{
             // 问题
             case 0:
                 return QueryUtil.queryResult(
-                        QueryUtil.changeQContent(searchMapper.queryQuestions(map), n),
+                        QueryUtil.changeQContent(searchMapper.queryQuestions(map), n, root),
                         start,
                         count);
             // 话题

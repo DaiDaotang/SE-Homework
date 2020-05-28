@@ -69,16 +69,20 @@ public class QueryUtil {
         return map;
     }
 
-    public static List<Question> changeQContent(List<Question> questions, int n){
+    public static List<Question> changeQContent(List<Question> questions, int n, String root){
+        String tmp;
         for (Question question : questions) {
-            question.setQuestionContent(question.getQuestionContent().substring(0, n));
+            tmp = new util().download(root, question.getQuestionContent());
+            question.setQuestionContent((tmp).substring(0, Math.min(n, tmp.length())));
         }
         return questions;
     }
 
-    public static List<Answer> changeAContent(List<Answer> answers, int n){
+    public static List<Answer> changeAContent(List<Answer> answers, int n, String root){
+        String tmp;
         for (Answer answer : answers) {
-            answer.setAnswerContent(answer.getAnswerContent());
+            tmp = new util().download(root, answer.getAnswerContent());
+            answer.setAnswerContent((tmp).substring(0, Math.min(n, tmp.length())));
         }
         return answers;
     }

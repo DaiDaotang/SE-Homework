@@ -55,7 +55,7 @@ public class AnswerController {
 
     @RequestMapping("/modify")
     public String modifyAnswer(int answerId, String answerContent){
-        Answer answer = answerService.queryAnswerByAnswerId(answerId);
+        Answer answer = answerService.getRawAnswer(answerId);
         String markdownPath = servletContext.getRealPath("") + "markdown";
         String oldName = answer.getAnswerContent();
         // 上传新文件
@@ -83,16 +83,16 @@ public class AnswerController {
 
     @RequestMapping("/getAnswerByAnswerId")
     public Answer getAnswerByAnswerId(int answerId){
-        return answerService.queryAnswerByAnswerId(answerId);
+        return answerService.queryAnswerByAnswerId(answerId, servletContext.getRealPath("") + "markdown");
     }
 
     @RequestMapping("/getAnswersListByUserId")
     public Map<String, Object> getAnswersListByUserId(int userId, int extra, int start, int count, int n){
-        return answerService.queryAnswerListByQUId(userId, -1, extra, start, count, n);
+        return answerService.queryAnswerListByQUId(userId, -1, extra, start, count, n, servletContext.getRealPath("") + "markdown");
     }
 
     @RequestMapping("/getAnswersListByQuestionId")
     public Map<String, Object> getAnswersListByQuestionId(int questionId, int extra, int start, int count, int n){
-        return answerService.queryAnswerListByQUId(-1, questionId, extra, start, count, n);
+        return answerService.queryAnswerListByQUId(-1, questionId, extra, start, count, n, servletContext.getRealPath("") + "markdown");
     }
 }

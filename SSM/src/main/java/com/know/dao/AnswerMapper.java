@@ -2,6 +2,7 @@ package com.know.dao;
 
 import com.know.pojo.Answer;
 import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
 import java.util.List;
@@ -25,4 +26,7 @@ public interface AnswerMapper {
     int modifyAnswerLiked(@Param("answerId") int answerId, @Param("count") int count);
     // 查询答主Id by answerId
     int queryAnswererIdByAnswerId(int answerId);
+    // // 只获得回答的content
+    // @Select("select answerContent from know.answer where answerId = #{answerId}")
+    // String getAnswerContent(@Param("answerId") int answerId);
 }

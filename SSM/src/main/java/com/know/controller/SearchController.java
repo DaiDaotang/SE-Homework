@@ -16,6 +16,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.servlet.ServletContext;
 import java.util.Map;
 
 /**
@@ -32,24 +33,26 @@ public class SearchController {
     @Autowired
     @Qualifier("searchServiceImpl")
     private SearchService searchServiceImpl;
+    @Autowired
+    ServletContext servletContext;
 
     @RequestMapping("/users")
     public Map<String, Object> queryUsers(String keyword, int extra, int start, int count){
-        return searchServiceImpl.query(2, keyword, extra, start, count, 0);
+        return searchServiceImpl.query(2, keyword, extra, start, count, 0, servletContext.getRealPath("") + "markdown");
     }
 
     @RequestMapping("/topics")
     public Map<String, Object> queryTopics(String keyword, int extra, int start, int count){
-        return searchServiceImpl.query(1, keyword, extra, start, count, 0);
+        return searchServiceImpl.query(1, keyword, extra, start, count, 0, servletContext.getRealPath("") + "markdown");
     }
 
     @RequestMapping("/questions")
     public Map<String, Object> queryQuestions(String keyword, int extra, int start, int count, int n){
-        return searchServiceImpl.query(0, keyword, extra, start, count, n);
+        return searchServiceImpl.query(0, keyword, extra, start, count, n, servletContext.getRealPath("") + "markdown");
     }
 
     @RequestMapping("/search")
     public Map<String, Object> query(String keyword, int type, int extra, int start, int count, int n){
-        return searchServiceImpl.query(type, keyword, extra, start, count, n);
+        return searchServiceImpl.query(type, keyword, extra, start, count, n, servletContext.getRealPath("") + "markdown");
     }
 }

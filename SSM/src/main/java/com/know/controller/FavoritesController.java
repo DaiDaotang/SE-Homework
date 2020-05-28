@@ -18,6 +18,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.servlet.ServletContext;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
@@ -36,6 +37,8 @@ public class FavoritesController {
     @Autowired
     @Qualifier("favoritesServiceImpl")
     private FavoritesService favoritesService;
+    @Autowired
+    private ServletContext servletContext;
 
     // 新建收藏夹
     @RequestMapping("/newFavorites")
@@ -91,7 +94,7 @@ public class FavoritesController {
     // 获取一个收藏夹的回答 by favoritesId
     @RequestMapping("/getFavoritesContents")
     public Map<String, Object> getFavoritesContents(int favoritesId, int start, int count, int n){
-        return favoritesService.queryAnswers(favoritesId, start, count, n);
+        return favoritesService.queryAnswers(favoritesId, start, count, n, servletContext.getRealPath("") + "markdown");
     }
 
     // 删除收藏夹

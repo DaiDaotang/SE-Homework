@@ -22,7 +22,7 @@ public interface FavoritesService {
     // 获取被哪个收藏夹收藏
     Map<String, Object> getHostFavoritesIds(int userId, int answerId);
     // 查找收藏夹内容 by favoritesId
-    Map<String, Object> queryAnswers(int favoritesId, int start, int count, int n);
+    Map<String, Object> queryAnswers(int favoritesId, int start, int count, int n, String root);
     // 删除收藏夹
     int deleteFavorites(int[] favoritesIds);
 }

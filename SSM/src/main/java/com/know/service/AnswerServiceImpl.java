@@ -75,19 +75,23 @@ public class AnswerServiceImpl implements AnswerService{
         return answerMapper.updateAnswer(answer);
     }
 
-    public Answer queryAnswerByAnswerId(int answerId) {
+    public Answer getRawAnswer(int answerId) {
+        return answerMapper.queryAnswerByAnswerId(answerId);
+    }
+
+    public Answer queryAnswerByAnswerId(int answerId, String root) {
         Answer answer = answerMapper.queryAnswerByAnswerId(answerId);
-        // answer.setAnswerContent("");
+        answer.setAnswerContent(new util().download(root, answer.getAnswerContent()));
         return answer;
     }
 
-    public Map<String, Object> queryAnswerListByQUId(int answererId, int answerQuestionId, int extra, int start, int count, int n) {
+    public Map<String, Object> queryAnswerListByQUId(int answererId, int answerQuestionId, int extra, int start, int count, int n, String root) {
         Map<String, Integer> map = new HashMap<String, Integer>();
         map.put("answererId", answererId);
         map.put("answerQuestionId", answerQuestionId);
         map.put("extra", extra);
         return QueryUtil.queryResult(
-                QueryUtil.changeAContent(answerMapper.queryAnswerListByQUId(map), n),
+                QueryUtil.changeAContent(answerMapper.queryAnswerListByQUId(map), n, root),
                 start,
                 count);
     }

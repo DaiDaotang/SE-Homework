@@ -6,5 +6,5 @@ import java.util.List;
 import java.util.Map;
 
 public interface SearchService {
-    Map<String, Object> query(int type, String keyword, int extra, int start, int count, int n);
+    Map<String, Object> query(int type, String keyword, int extra, int start, int count, int n, String root);
 }
