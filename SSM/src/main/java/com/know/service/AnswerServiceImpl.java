@@ -17,12 +17,8 @@ public class AnswerServiceImpl implements AnswerService{
         this.answerMapper = answerMapper;
     }
     private QuestionMapper questionMapper;
-    private UserMapper userMapper;
     public void setQuestionMapper(QuestionMapper questionMapper) {
         this.questionMapper = questionMapper;
-    }
-    public void setUserMapper(UserMapper userMapper) {
-        this.userMapper = userMapper;
     }
 
     public int insertAnswer(int userId, String content, int questionId) {
@@ -41,9 +37,9 @@ public class AnswerServiceImpl implements AnswerService{
         }
     }
 
-    public int deleteAnswer(int answerId) {
-        // TODO...
-        return answerMapper.deleteAnswer(answerId);
+    public int deleteAnswer(int answerId, int questionId) {
+
+        return (answerMapper.deleteAnswer(answerId) + questionMapper.updateAnswerNumber(questionId, -1)) % 2 + 1;
     }
 
     public int updateAnswer(int answerId, String content) {

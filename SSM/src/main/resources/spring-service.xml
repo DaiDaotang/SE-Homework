@@ -26,7 +26,6 @@
 
     <bean id="answerServiceImpl" class="com.know.service.AnswerServiceImpl">
         <property name="answerMapper" ref="answerMapper"/>
-        <property name="userMapper" ref="userMapper"/>
         <property name="questionMapper" ref="questionMapper"/>
     </bean>
 

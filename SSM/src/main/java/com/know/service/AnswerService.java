@@ -9,7 +9,7 @@ public interface AnswerService {
     // 新建回答
     int insertAnswer(int userId, String content, int questionId);
     // 删除回答
-    int deleteAnswer(int answerId);
+    int deleteAnswer(int answerId, int questionId);
     // 修改回答
     int updateAnswer(int answerId, String content);
      // 获取回答 by answerId
