@@ -1,7 +1,10 @@
 package com.know.service;
 
 import com.know.dao.AnswerMapper;
+import com.know.dao.QuestionMapper;
+import com.know.dao.UserMapper;
 import com.know.pojo.Answer;
+import com.know.pojo.Question;
 import com.know.utils.QueryUtil;
 
 import java.util.Date;
@@ -13,8 +16,17 @@ public class AnswerServiceImpl implements AnswerService{
     public void setAnswerMapper(AnswerMapper answerMapper) {
         this.answerMapper = answerMapper;
     }
+    private QuestionMapper questionMapper;
+    private UserMapper userMapper;
+    public void setQuestionMapper(QuestionMapper questionMapper) {
+        this.questionMapper = questionMapper;
+    }
+    public void setUserMapper(UserMapper userMapper) {
+        this.userMapper = userMapper;
+    }
 
     public int insertAnswer(int userId, String content, int questionId) {
+        // TODO...
         Answer answer = new Answer();
         answer.setAnswererId(userId);
         answer.setAnswerContent(content);
@@ -24,6 +36,7 @@ public class AnswerServiceImpl implements AnswerService{
     }
 
     public int deleteAnswer(int answerId) {
+        // TODO...
         return answerMapper.deleteAnswer(answerId);
     }
 

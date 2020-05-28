@@ -413,9 +413,46 @@
         })
     })
 </script>
+<%--回答--%>
+<script>
+    $(function () {
+        // 新建回答
+        $("#btn_a_0").click(function () {
+            $.post({
+                url : "${pageContext.request.contextPath}/answer/new",
+                data:{
+                    "userId": 5,
+                    "questionId": 1,
+                    "answerContent":$("#txt_a_0").val()
+                },
+                success:function (data) {
+                    console.log(data);
+                }
+            })
+        })
+        // 修改回答
+
+        // 删除回答
+
+        // 获取回答 by answerId
+
+        // 获取回答列表 by userId
+
+        // 获取回答列表 by questionId
+
+
+    })
+</script>
 <body>
 
 <h1>以下操作，均为5号用户所为</h1>
+
+
+<h1>回答</h1>
+<div>
+    <input type="text" id="txt_a_0" placeholder="回答" value="Just an answer!">
+    <input type="button" id="btn_a_0" value="创建回答">
+</div>
 
 
 <h1>搜索</h1>
