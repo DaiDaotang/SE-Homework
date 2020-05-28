@@ -4,10 +4,8 @@ import com.know.dao.CommentMapper;
 import com.know.pojo.Comment;
 import com.know.utils.QueryUtil;
 
-import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
-import java.util.TimeZone;
 
 public class CommentServiceImpl implements CommentService{
 
@@ -17,11 +15,7 @@ public class CommentServiceImpl implements CommentService{
     }
 
     public int comment(Comment comment){
-        Date date = new Date();
-        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        df.setTimeZone(TimeZone.getTimeZone("Asia/Shanghai"));
-        String dateTime = df.format(date);
-        comment.setCommentTime(dateTime);
+        comment.setCommentTime(new Date());
         try{
             int i = commentMapper.comment(comment);
             if(i==1){

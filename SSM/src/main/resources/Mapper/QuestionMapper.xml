@@ -12,7 +12,7 @@
 
     <update id="updateQuestion" parameterType="question">
         update know.question set questionTitle = #{questionTitle}, questionTime = #{questionTime}, questionContent = #{questionContent}
-        where questionerId = #{questionId};
+        where questionId = #{questionId};
     </update>
 
     <select id="queryQuestionByQuestionId" resultType="question">

@@ -36,10 +36,12 @@ public class QuestionController {
     public String updateQuestion(Question question){
         util u = new util();
         String markdownPath = servletContext.getRealPath("") + "markdown";
-        String oldName = question.getQuestionContent();
+        String oldName = questionService.queryQuestionByQuestionId(question.getQuestionId()).getQuestionContent();
         String newName = u.upload(question.getQuestionContent(), markdownPath, question.getQuestionerId());
         question.setQuestionContent(newName);
-        questionService.updateQuestion(question);
+        if(questionService.updateQuestion(question)==-1){
+            return "Failed to update the question!";
+        }
         File f = new File(markdownPath + File.separator + oldName);
         if(f.exists()) {
             boolean b = f.delete();

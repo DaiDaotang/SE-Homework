@@ -4,6 +4,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.Date;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -14,7 +16,7 @@ public class User {
     private String name;
     private String sex;
     private String birthday;
-    private String signUpTime;
+    private Date signUpTime;
     private int answerCollected;
     private int answerLiked;
     private String head;

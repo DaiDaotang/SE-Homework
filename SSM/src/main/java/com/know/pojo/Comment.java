@@ -4,6 +4,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.Date;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -14,5 +16,5 @@ public class Comment {
     private String commentContent;
     private int commentLiked;
     private int answerId;
-    private String commentTime;
+    private Date commentTime;
 }

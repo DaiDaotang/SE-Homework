@@ -22,11 +22,7 @@ public class UserServiceImpl implements UserService{
     public int signUp(User user) {
         user.setAnswerCollected(0);
         user.setAnswerLiked(0);
-        Date date = new Date();
-        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        df.setTimeZone(TimeZone.getTimeZone("Asia/Shanghai"));
-        String dateTime = df.format(date);
-        user.setSignUpTime(dateTime);
+        user.setSignUpTime(new Date());
         try{
             int i = userMapper.signUp(user);
             if(i==1){
