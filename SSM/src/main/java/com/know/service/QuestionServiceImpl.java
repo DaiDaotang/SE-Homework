@@ -67,4 +67,15 @@ public class QuestionServiceImpl implements QuestionService{
         question.setTopicId(topicId);
         return question;
     }
+
+
+    public List<Question> queryQuestionListByUserId(int userId){
+        List<Question> list = questionMapper.queryQuestionListByUserId(userId);
+        for (Question question:list) {
+            List<Integer> topicIdList = qtrelationMapper.queryTopicListByquestionId(question.getQuestionId());
+            int[] topicId = topicIdList.stream().mapToInt(Integer::valueOf).toArray();
+            question.setTopicId(topicId);
+        }
+        return list;
+    }
 }

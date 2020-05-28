@@ -18,4 +18,8 @@
     <select id="queryQuestionByQuestionId" resultType="question">
         select * from know.question where questionId = #{questionId};
     </select>
+
+    <select id="queryQuestionListByUserId" resultType="question">
+        select * from know.question where questionerId = #{userId} order by questionTime desc;
+    </select>
 </mapper>

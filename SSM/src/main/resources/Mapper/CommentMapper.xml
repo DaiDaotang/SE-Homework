@@ -14,7 +14,7 @@
     </delete>
 
     <select id="queryCommentOrderByTime" resultType="comment">
-        select * from know.comment where answerId = #{answerId} order by commentTime;
+        select * from know.comment where answerId = #{answerId} order by commentTime desc;
     </select>
 
     <select id="queryCommentOrderByLiked" resultType="comment">
