@@ -431,10 +431,34 @@
             })
         })
         // 修改回答
+        $("#btn_a_1").click(function () {
+            $.post({
+                url : "${pageContext.request.contextPath}/answer/modify",
+                data:{
+                    "answerId": $("#txt_a_1").val(),
+                    "answerContent":$("#txt_a_2").val()
+                },
+                success:function (data) {
+                    console.log(data);
+                }
+            })
+        })
 
         // 删除回答
 
         // 获取回答 by answerId
+        $("#btn_a_3").click(function () {
+            $.post({
+                url : "${pageContext.request.contextPath}/answer/getAnswerByAnswerId",
+                data:{
+                    "answerId": $("#txt_a_4").val()
+                },
+                success:function (data) {
+                    console.log(data);
+                    console.log(timestampToTime(data.answerTime))
+                }
+            })
+        })
 
         // 获取回答列表 by userId
 
@@ -451,7 +475,18 @@
 <h1>回答</h1>
 <div>
     <input type="text" id="txt_a_0" placeholder="回答" value="Just an answer!">
-    <input type="button" id="btn_a_0" value="创建回答">
+    <input type="button" id="btn_a_0" value="创建回答"><br>
+    <input type="text" id="txt_a_1" placeholder="回答ID" value="6">
+    <input type="text" id="txt_a_2" placeholder="新内容" value="Just an answer!">
+    <input type="button" id="btn_a_1" value="修改回答"><br>
+    <input type="text" id="txt_a_3" placeholder="回答ID" value="1">
+    <input type="button" id="btn_a_2" value="删除回答"><br>
+    <input type="text" id="txt_a_4" placeholder="回答ID" value="1">
+    <input type="button" id="btn_a_3" value="获取回答"><br>
+    <input type="text" id="txt_a_5" placeholder="用户ID" value="5">
+    <input type="button" id="btn_a_4" value="获取回答"><br>
+    <input type="text" id="txt_a_6" placeholder="问题ID" value="1">
+    <input type="button" id="btn_a_5" value="获取回答"><br>
 </div>
 
 

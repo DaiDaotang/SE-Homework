@@ -16,7 +16,7 @@
 
     <update id="updateAnswer" parameterType="answer">
         update know.answer
-        set answerTime = #{answerTime}
+        set answerTime = #{answerTime} and answerContent = #{answerContent}
         where answerId = #{answerId};
     </update>
 

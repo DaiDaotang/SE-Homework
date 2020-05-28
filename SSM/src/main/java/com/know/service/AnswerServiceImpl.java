@@ -45,6 +45,7 @@ public class AnswerServiceImpl implements AnswerService{
     public int updateAnswer(int answerId, String content) {
         Answer answer = new Answer();
         answer.setAnswerId(answerId);
+        answer.setAnswerTime(new Date());
         answer.setAnswerContent(content);
         return answerMapper.updateAnswer(answer);
     }

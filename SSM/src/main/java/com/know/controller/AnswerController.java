@@ -30,7 +30,7 @@ import java.util.Map;
  * @since 1.0.0
  */
 @RestController
-@Qualifier("/answer")
+@RequestMapping("/answer")
 public class AnswerController {
     @Autowired
     @Qualifier("answerServiceImpl")
@@ -40,7 +40,7 @@ public class AnswerController {
     public Map<String, Object> insertNewAnswer(int userId, int questionId, String answerContent){
         int res = answerService.insertAnswer(userId, answerContent, questionId);
         Map<String, Object> map = new HashMap<String, Object>();
-        map.put("msg", res == 1? "OK" : "ERR");
+        map.put("msg", res > 0? "OK" : "ERR");
         map.put("answerId", res);
         return map;
     }
