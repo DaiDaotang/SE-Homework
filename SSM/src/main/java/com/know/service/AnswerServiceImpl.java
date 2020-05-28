@@ -31,8 +31,14 @@ public class AnswerServiceImpl implements AnswerService{
         answer.setAnswerContent(content);
         answer.setAnswerQuestionId(questionId);
         answer.setAnswerTime(new Date());
-
-        return answerMapper.insertAnswer(answer) == 1? answer.getAnswerId() : -1;
+        int res = answerMapper.insertAnswer(answer);
+        if(res == 1){
+            res = questionMapper.updateAnswerNumber(questionId, 1);
+            return res == 1? answer.getAnswerId() : -1;
+        }
+        else{
+            return -1;
+        }
     }
 
     public int deleteAnswer(int answerId) {

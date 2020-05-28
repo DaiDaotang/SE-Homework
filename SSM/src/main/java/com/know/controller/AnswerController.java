@@ -10,6 +10,7 @@
  */
 package com.know.controller;
 
+import com.know.pojo.Answer;
 import com.know.service.AnswerServiceImpl;
 import com.know.service.FavoritesService;
 import org.springframework.beans.factory.annotation.Autowired;
