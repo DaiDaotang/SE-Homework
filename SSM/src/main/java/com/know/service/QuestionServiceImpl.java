@@ -5,6 +5,7 @@ import com.know.dao.QuestionMapper;
 import com.know.pojo.Question;
 
 import java.util.Date;
+import java.util.List;
 
 public class QuestionServiceImpl implements QuestionService{
 
@@ -60,6 +61,10 @@ public class QuestionServiceImpl implements QuestionService{
     }
 
     public Question queryQuestionByQuestionId(int questionId){
-        return questionMapper.queryQuestionByQuestionId(questionId);
+        List<Integer> list = qtrelationMapper.queryTopicListByquestionId(questionId);
+        int[] topicId = list.stream().mapToInt(Integer::valueOf).toArray();
+        Question question = questionMapper.queryQuestionByQuestionId(questionId);
+        question.setTopicId(topicId);
+        return question;
     }
 }

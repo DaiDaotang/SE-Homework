@@ -16,7 +16,7 @@ public interface QtrelationMapper {
     @Delete("delete from know.qtrelation where questionId = #{questionId};")
     int deleteTopic(@Param("questionId")int questionId);
     //查询问题的话题
-    @Select("delete from know.qtrelation where questionId = #{questionId};")
+    @Select("SELECT topicId FROM know.qtrelation where questionId = #{questionId};")
     List<Integer> queryTopicListByquestionId(@Param("questionId")int questionId);
 
 }
