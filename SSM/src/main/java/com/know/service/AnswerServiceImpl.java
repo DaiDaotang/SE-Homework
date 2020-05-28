@@ -6,6 +6,7 @@ import com.know.dao.UserMapper;
 import com.know.pojo.Answer;
 import com.know.pojo.Question;
 import com.know.utils.QueryUtil;
+import com.know.utils.util;
 
 import java.util.Date;
 import java.util.HashMap;
@@ -37,9 +38,12 @@ public class AnswerServiceImpl implements AnswerService{
         }
     }
 
-    public int deleteAnswer(int answerId, int questionId) {
+    public int deleteAnswer(int answerId) {
+        Answer answer = answerMapper.queryAnswerByAnswerId(answerId);
 
-        return (answerMapper.deleteAnswer(answerId) + questionMapper.updateAnswerNumber(questionId, -1)) % 2 + 1;
+        return (answerMapper.deleteAnswer(answerId) +
+                questionMapper.updateAnswerNumber(answer.getAnswerQuestionId(), -1))
+                % 2 + 1;
     }
 
     public int updateAnswer(int answerId, String content) {

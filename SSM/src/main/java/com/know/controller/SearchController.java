@@ -32,9 +32,6 @@ public class SearchController {
     @Autowired
     @Qualifier("searchServiceImpl")
     private SearchService searchServiceImpl;
-    public void setSearchServiceImpl(SearchService searchServiceImpl) {
-        this.searchServiceImpl = searchServiceImpl;
-    }
 
     @RequestMapping("/users")
     public Map<String, Object> queryUsers(String keyword, int extra, int start, int count){

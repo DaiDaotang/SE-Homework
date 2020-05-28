@@ -33,9 +33,6 @@ public class FollowController {
     @Autowired
     @Qualifier("followServiceImpl")
     private FollowService followService;
-    public void setFollowService(FollowService followService) {
-        this.followService = followService;
-    }
 
     // 关注/取消关注
     @RequestMapping("/follow")

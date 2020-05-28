@@ -445,6 +445,18 @@
         })
 
         // 删除回答
+        $("#btn_a_2").click(function () {
+            <%--$.post({--%>
+            <%--    url : "${pageContext.request.contextPath}/answer/delete",--%>
+            <%--    data:{--%>
+            <%--        "answerId": $("#txt_a_4").val()--%>
+            <%--    },--%>
+            <%--    success:function (data) {--%>
+            <%--        console.log(data);--%>
+            <%--        console.log(timestampToTime(data.answerTime))--%>
+            <%--    }--%>
+            <%--})--%>
+        })
 
         // 获取回答 by answerId
         $("#btn_a_3").click(function () {
@@ -461,9 +473,36 @@
         })
 
         // 获取回答列表 by userId
+        $("#btn_a_4").click(function () {
+            $.post({
+                url : "${pageContext.request.contextPath}/answer/getAnswersListByUserId",
+                data:{
+                    "userId": $("#txt_a_5").val(),
+                    "extra":$("#txt_a_5_0").val(),
+                    "start":0,
+                    "count":100
+                },
+                success:function (data) {
+                    console.log(data);
+                }
+            })
+        })
 
         // 获取回答列表 by questionId
-
+        $("#btn_a_5").click(function () {
+            $.post({
+                url : "${pageContext.request.contextPath}/answer/getAnswersListByQuestionId",
+                data:{
+                    "questionId": $("#txt_a_6").val(),
+                    "extra":$("#txt_a_6_0").val(),
+                    "start":0,
+                    "count":100
+                },
+                success:function (data) {
+                    console.log(data);
+                }
+            })
+        })
 
     })
 </script>
@@ -484,8 +523,10 @@
     <input type="text" id="txt_a_4" placeholder="回答ID" value="1">
     <input type="button" id="btn_a_3" value="获取回答"><br>
     <input type="text" id="txt_a_5" placeholder="用户ID" value="5">
+    <input type="text" id="txt_a_5_0" placeholder="排序方法" value="5">
     <input type="button" id="btn_a_4" value="获取回答"><br>
     <input type="text" id="txt_a_6" placeholder="问题ID" value="1">
+    <input type="text" id="txt_a_6_0" placeholder="排序方法" value="1">
     <input type="button" id="btn_a_5" value="获取回答"><br>
 </div>
 

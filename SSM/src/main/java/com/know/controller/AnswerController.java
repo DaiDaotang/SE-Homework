@@ -55,8 +55,8 @@ public class AnswerController {
     }
 
     @RequestMapping("/delete")
-    public String deleteAnswer(int answerId, int questionId){
-        return answerService.deleteAnswer(answerId, questionId) == 1? "OK" : "ERR";
+    public String deleteAnswer(int answerId){
+        return answerService.deleteAnswer(answerId) == 1? "OK" : "ERR";
     }
 
     @RequestMapping("/getAnswerByAnswerId")

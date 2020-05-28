@@ -31,9 +31,6 @@ public class LikeController {
     @Autowired
     @Qualifier("likeServiceImpl")
     private LikeService likeService;
-    public void setLikeService(LikeService likeService) {
-        this.likeService = likeService;
-    }
 
     @RequestMapping("/answer")
     public String likeAnswer(int userId, int answerId, boolean type){
