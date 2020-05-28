@@ -41,4 +41,25 @@ public class QuestionServiceImpl implements QuestionService{
             return -1;
         }
     }
+
+    public int updateQuestion(Question question){
+        question.setQuestionTime(new Date());
+        try{
+            int i = questionMapper.updateQuestion(question);
+            if(i==0){
+                return -1;
+            }
+            qtrelationMapper.deleteTopic(question.getQuestionId());
+            for(int topicId:question.getTopicId()){
+                qtrelationMapper.insert(question.getQuestionId(),topicId);
+            }
+            return 1;
+        }catch (Exception e){
+            return -1;
+        }
+    }
+
+    public Question queryQuestionByQuestionId(int questionId){
+        return questionMapper.queryQuestionByQuestionId(questionId);
+    }
 }

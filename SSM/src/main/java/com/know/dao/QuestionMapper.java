@@ -7,4 +7,6 @@ public interface QuestionMapper {
     int askQuestion(Question question);
     //修改问题
     int updateQuestion(Question question);
+    //查询问题
+    Question queryQuestionByQuestionId(int questionId);
 }

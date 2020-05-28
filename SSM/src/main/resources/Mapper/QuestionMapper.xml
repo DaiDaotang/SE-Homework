@@ -11,7 +11,11 @@
     </insert>
 
     <update id="updateQuestion" parameterType="question">
-        update know.question set questionTitle = #{questionTitle}, questionTime = #{questionTime}, questionContent = #{questionContent},
-
+        update know.question set questionTitle = #{questionTitle}, questionTime = #{questionTime}, questionContent = #{questionContent}
+        where questionerId = #{questionId};
     </update>
+
+    <select id="queryQuestionByQuestionId" resultType="question">
+        select * from know.question where questionId = #{questionId};
+    </select>
 </mapper>

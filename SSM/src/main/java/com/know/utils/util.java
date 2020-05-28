@@ -56,6 +56,8 @@ public class util {
         }
     }
 
+
+
     public void download(HttpServletResponse response, String path, String fileName) throws IOException {
         //1、设置response 响应头
         response.reset(); //设置页面不缓存,清空buffer
