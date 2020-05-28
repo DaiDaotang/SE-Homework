@@ -9,10 +9,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.ServletContext;
 import java.io.File;
-import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -88,5 +88,33 @@ public class QuestionController {
         map.put("total",length);
         map.put("list", list);
         return map;
+    }
+
+    // 传Markdown中的图片
+    @RequestMapping("/sendPicture")
+    public Map<String,String> sendPicture(MultipartFile picture, int userId){
+        String path = servletContext.getRealPath("") + "markdown" + File.separator + "pictures";
+        util u = new util();
+        String fileName = u.upload(picture,path,userId);
+        Map<String,String> map = new HashMap<>();
+        map.put("path",path + File.separator + fileName);
+        map.put("fileName",fileName);
+        return map;
+    }
+
+    // 删除Markdown中的图片
+    @RequestMapping("/deletePicture")
+    public String deletePicture(String fileName){
+        String path = servletContext.getRealPath("") + "markdown" + File.separator + "pictures" + File.separator + fileName;
+        File f = new File(path);
+        if(f.exists()){
+            boolean b = f.delete();
+            if(!b){
+                return "Failed to delete the picture!";
+            }
+            return "OK";
+        }else{
+            return "The picture has disappeared!";
+        }
     }
 }
