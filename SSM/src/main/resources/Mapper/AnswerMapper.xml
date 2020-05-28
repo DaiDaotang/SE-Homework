@@ -4,6 +4,55 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.know.dao.AnswerMapper">
+
+    <insert id="insertAnswer" parameterType="answer" useGeneratedKeys="true" keyProperty="answerId">
+        insert into know.answer(answerQuestionId, answererId, answerContent, answerCollected, answerLiked, answerTime)
+        values (#{answerQuestionId},#{answererId},#{answerContent},0,0,#{answerTime});
+    </insert>
+
+    <delete id="deleteAnswer">
+        delete from know.answer where answerId = #{answerId}
+    </delete>
+
+    <update id="updateAnswer" parameterType="answer">
+        update know.answer
+        set answerTime = #{answerTime}
+        where answerId = #{answerId};
+    </update>
+
+    <select id="queryAnswerByAnswerId" resultType="answer">
+        select * from know.answer where answerId = #{answerId}
+    </select>
+
+    <select id="queryAnswerListByQUId" parameterType="map" resultType="answer">
+        select *
+        from know.answer
+        where
+            <choose>
+                <when test="answererId != -1">
+                    answererId = #{answererId}
+                </when>
+                <when test="answerQuestionId != -1">
+                    answerQuestionId = #{answerQuestionId}
+                </when>
+            </choose>
+        order by
+            <choose>
+                <when test="extra == 1">
+                    answerTime
+                </when>
+                <when test="extra == 2">
+                    answerLiked DESC
+                </when>
+                <when test="extra == 3">
+                    answerCollected DESC
+                </when>
+                <otherwise>
+                    answerTime DESC
+                </otherwise>
+            </choose>;
+    </select>
+
     <update id="modifyAnswerCollected" parameterType="map">
         update know.answer
         set answerCollected = answerCollected + #{answerCollected}
