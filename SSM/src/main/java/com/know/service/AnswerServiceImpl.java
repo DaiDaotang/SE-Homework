@@ -26,12 +26,12 @@ public class AnswerServiceImpl implements AnswerService{
     }
 
     public int insertAnswer(int userId, String content, int questionId) {
-        // TODO...
         Answer answer = new Answer();
         answer.setAnswererId(userId);
         answer.setAnswerContent(content);
         answer.setAnswerQuestionId(questionId);
         answer.setAnswerTime(new Date());
+
         return answerMapper.insertAnswer(answer) == 1? answer.getAnswerId() : -1;
     }
 
