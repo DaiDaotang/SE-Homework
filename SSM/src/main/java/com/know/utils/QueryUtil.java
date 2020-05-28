@@ -10,6 +10,9 @@
  */
 package com.know.utils;
 
+import com.know.pojo.Answer;
+import com.know.pojo.Question;
+
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -64,5 +67,19 @@ public class QueryUtil {
         map.put("list", cutList(list, start, count));
         map.put("total", list.size());
         return map;
+    }
+
+    public static List<Question> changeQContent(List<Question> questions, int n){
+        for (Question question : questions) {
+            question.setQuestionContent(question.getQuestionContent().substring(0, n));
+        }
+        return questions;
+    }
+
+    public static List<Answer> changeAContent(List<Answer> answers, int n){
+        for (Answer answer : answers) {
+            answer.setAnswerContent(answer.getAnswerContent());
+        }
+        return answers;
     }
 }

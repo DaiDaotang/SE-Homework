@@ -35,21 +35,21 @@ public class SearchController {
 
     @RequestMapping("/users")
     public Map<String, Object> queryUsers(String keyword, int extra, int start, int count){
-        return searchServiceImpl.query(2, keyword, extra, start, count);
+        return searchServiceImpl.query(2, keyword, extra, start, count, 0);
     }
 
     @RequestMapping("/topics")
     public Map<String, Object> queryTopics(String keyword, int extra, int start, int count){
-        return searchServiceImpl.query(1, keyword, extra, start, count);
+        return searchServiceImpl.query(1, keyword, extra, start, count, 0);
     }
 
     @RequestMapping("/questions")
-    public Map<String, Object> queryQuestions(String keyword, int extra, int start, int count){
-        return searchServiceImpl.query(0, keyword, extra, start, count);
+    public Map<String, Object> queryQuestions(String keyword, int extra, int start, int count, int n){
+        return searchServiceImpl.query(0, keyword, extra, start, count, n);
     }
 
     @RequestMapping("/search")
-    public Map<String, Object> query(String keyword, int type, int extra, int start, int count){
-        return searchServiceImpl.query(type, keyword, extra, start, count);
+    public Map<String, Object> query(String keyword, int type, int extra, int start, int count, int n){
+        return searchServiceImpl.query(type, keyword, extra, start, count, n);
     }
 }

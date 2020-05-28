@@ -150,7 +150,9 @@ public class FavoritesServiceImpl implements FavoritesService{
         return QueryUtil.queryResult(idList, 0, idList.size());
     }
 
-    public Map<String, Object> queryAnswers(int favoritesId, int start, int count) {
-        return QueryUtil.queryResult(favoritesMapper.queryFavoritesContent(favoritesId), start, count);
+    public Map<String, Object> queryAnswers(int favoritesId, int start, int count, int n) {
+        return QueryUtil.queryResult(
+                QueryUtil.changeAContent(favoritesMapper.queryFavoritesContent(favoritesId), n),
+                start, count);
     }
 }

@@ -90,8 +90,8 @@ public class FavoritesController {
 
     // 获取一个收藏夹的回答 by favoritesId
     @RequestMapping("/getFavoritesContents")
-    public Map<String, Object> getFavoritesContents(int favoritesId, int start, int count){
-        return favoritesService.queryAnswers(favoritesId, start, count);
+    public Map<String, Object> getFavoritesContents(int favoritesId, int start, int count, int n){
+        return favoritesService.queryAnswers(favoritesId, start, count, n);
     }
 
     // 删除收藏夹

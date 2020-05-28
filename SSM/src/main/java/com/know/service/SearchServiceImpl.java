@@ -19,6 +19,7 @@ import com.know.pojo.Topic;
 import com.know.utils.QueryUtil;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -47,15 +48,17 @@ public class SearchServiceImpl implements SearchService{
         this.searchMapper = searchMapper;
     }
 
-    public Map<String, Object> query(int type, String keyword, int extra, int start, int count) {
+    public Map<String, Object> query(int type, String keyword, int extra, int start, int count, int n) {
         Map<String, Object> map = new HashMap<String, Object>();
         map.put("keyword", keyword);
         map.put("extra", extra);
         switch (type){
             // 问题
-            // TODO...提取问题内容的前 n 个字
             case 0:
-                return QueryUtil.queryResult(searchMapper.queryQuestions(map), start, count);
+                return QueryUtil.queryResult(
+                        QueryUtil.changeQContent(searchMapper.queryQuestions(map), n),
+                        start,
+                        count);
             // 话题
             case 1:
                 return QueryUtil.queryResult(searchMapper.queryTopics(map), start, count);

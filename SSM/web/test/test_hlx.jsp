@@ -230,7 +230,8 @@
                 data: {
                     "favoritesId":$("#txt_f_9").val(),
                     "start":0,
-                    "count":10
+                    "count":10,
+                    "n": 100
                 },
                 success: function (data) {
                     console.log(data);
@@ -358,7 +359,8 @@
                     "keyword": $("#txt_s_0").val(),
                     "extra": $("#txt_s_1").val(),
                     "start":$("#txt_s_3").val(),
-                    "count":$("#txt_s_4").val()
+                    "count":$("#txt_s_4").val(),
+                    "n":100
                 },
                 success:function (data) {
                     console.log(data);
@@ -373,7 +375,8 @@
                     "keyword": $("#txt_s_0").val(),
                     "extra": $("#txt_s_1").val(),
                     "start":$("#txt_s_3").val(),
-                    "count":$("#txt_s_4").val()
+                    "count":$("#txt_s_4").val(),
+                    "n":0
                 },
                 success:function (data) {
                     console.log(data);
@@ -388,7 +391,8 @@
                     "keyword": $("#txt_s_0").val(),
                     "extra": $("#txt_s_1").val(),
                     "start":$("#txt_s_3").val(),
-                    "count":$("#txt_s_4").val()
+                    "count":$("#txt_s_4").val(),
+                    "n":0
                 },
                 success:function (data) {
                     console.log(data);
@@ -404,7 +408,8 @@
                     "type": $("#txt_s_2").val(),
                     "extra": $("#txt_s_1").val(),
                     "start":$("#txt_s_3").val(),
-                    "count":$("#txt_s_4").val()
+                    "count":$("#txt_s_4").val(),
+                    "n":100
                 },
                 success:function (data) {
                     console.log(data);
@@ -480,7 +485,8 @@
                     "userId": $("#txt_a_5").val(),
                     "extra":$("#txt_a_5_0").val(),
                     "start":0,
-                    "count":100
+                    "count":100,
+                    "n":100
                 },
                 success:function (data) {
                     console.log(data);
@@ -496,7 +502,8 @@
                     "questionId": $("#txt_a_6").val(),
                     "extra":$("#txt_a_6_0").val(),
                     "start":0,
-                    "count":100
+                    "count":100,
+                    "n":100
                 },
                 success:function (data) {
                     console.log(data);

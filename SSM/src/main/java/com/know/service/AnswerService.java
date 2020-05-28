@@ -15,5 +15,5 @@ public interface AnswerService {
      // 获取回答 by answerId
     Answer queryAnswerByAnswerId(int answerId);
     // 获取回答列表 by questionid / userId
-    public Map<String, Object> queryAnswerListByQUId(int answererId, int answerQuestionId, int extra, int start, int count);
+    public Map<String, Object> queryAnswerListByQUId(int answererId, int answerQuestionId, int extra, int start, int count, int n);
 }
