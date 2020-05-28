@@ -8,5 +8,7 @@ public interface QtrelationMapper {
     //添加问题的话题
     @Insert("insert into know.qtrelation(questionId, topicId) values (#{questionId},#{topicId});")
     int insert(@Param("questionId")int questionId, @Param("topicId")int topicId);
+    //删除问题的话题
+
 
 }

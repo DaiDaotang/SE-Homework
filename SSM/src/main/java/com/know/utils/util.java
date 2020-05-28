@@ -9,13 +9,13 @@ import java.util.Date;
 
 public class util {
 
-    public String upload(MultipartFile file, String root, int userId){
+    public String upload(MultipartFile file, String root, int id){
         SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmssSS");
         String res = sdf.format(new Date());
         //原始名称
         String originalFilename = file.getOriginalFilename();
         //新的文件名称
-        String newFileName = userId + "_" + res + originalFilename.substring(originalFilename.lastIndexOf("."));
+        String newFileName = id + "_" + res + originalFilename.substring(originalFilename.lastIndexOf("."));
         File newFile = new File(root + File.separator + newFileName);
         //判断目标文件所在的目录是否存在
         if(!newFile.getParentFile().exists()) {
@@ -28,6 +28,30 @@ public class util {
             file.transferTo(newFile);
             return newFileName;
         } catch (Exception e) {
+            return null;
+        }
+    }
+
+    public String upload(String content, String root, int id){
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmssSS");
+        String res = sdf.format(new Date());
+        //新的文件名称
+        String newFileName = id + "_" + res + ".txt";
+        File newFile = new File(root + File.separator + newFileName);
+        //判断目标文件所在的目录是否存在
+        if(!newFile.getParentFile().exists()) {
+            //如果目标文件所在的目录不存在，则创建父目录
+            newFile.getParentFile().mkdirs();
+        }
+        try {
+            FileWriter fw = new FileWriter(newFile);
+            BufferedWriter bw = new BufferedWriter(fw);
+            bw.write(content);
+            bw.close();
+            fw.close();
+            return newFileName;
+        } catch (Exception e) {
+            e.printStackTrace();
             return null;
         }
     }

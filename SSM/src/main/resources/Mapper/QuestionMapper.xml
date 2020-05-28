@@ -9,4 +9,9 @@
         insert into know.question(questionerId, questionTime, questionTitle, questionContent, answerNumber, browseNumber)
         values (#{questionerId}, #{questionTime}, #{questionTitle}, #{questionContent}, #{answerNumber}, #{browseNumber});
     </insert>
+
+    <update id="updateQuestion" parameterType="question">
+        update know.question set questionTitle = #{questionTitle}, questionTime = #{questionTime}, questionContent = #{questionContent},
+
+    </update>
 </mapper>

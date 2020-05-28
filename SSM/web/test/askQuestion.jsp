@@ -14,6 +14,7 @@
             "questionContent":"我",
             "topicId":['14','15']
         },
+        traditional: true,
         success:function (data) {
             console.log(data);
         }
