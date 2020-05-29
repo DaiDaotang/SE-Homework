@@ -40,22 +40,22 @@ public class QueryUtil {
             return null;
         }
         int size = list.size();
-        // 越界
+        // 若 start 越界
         if(start > size){
             return null;
         }
-        // 最后一个在size前
+        // 若 start + count 未越界
         if(start + count < size){
             return list.subList(start, start + count);
         }
-        // 最后一个越界
+        // 若 start + count 越界
         else{
             return list.subList(start, size);
         }
     }
 
     /**
-     * 将切割的列表，和原查询结果的总数量放入 Map
+     * 将切割后的列表，和原查询结果的总数量放入 Map 中
      * @param list      需要切割的列表
      * @param start     开始项
      * @param count     数量
@@ -69,6 +69,13 @@ public class QueryUtil {
         return map;
     }
 
+    /**
+     * 将问题列表中的问题的内容改为其对应的文件的内容的前 n 字
+     * @param questions     问题列表
+     * @param n             需要显示的字数
+     * @param root          根目录
+     * @return              修改后的问题列表
+     */
     public static List<Question> changeQContent(List<Question> questions, int n, String root){
         String tmp;
         for (Question question : questions) {

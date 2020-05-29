@@ -31,18 +31,6 @@ import java.util.Map;
  * @since 1.0.0
  */
 public class SearchServiceImpl implements SearchService{
-    private UserMapper userMapper;
-    private TopicMapper topicMapper;
-    private QuestionMapper questionMapper;
-    public void setUserMapper(UserMapper userMapper) {
-        this.userMapper = userMapper;
-    }
-    public void setTopicMapper(TopicMapper topicMapper) {
-        this.topicMapper = topicMapper;
-    }
-    public void setQuestionMapper(QuestionMapper questionMapper) {
-        this.questionMapper = questionMapper;
-    }
     private SearchMapper searchMapper;
     public void setSearchMapper(SearchMapper searchMapper) {
         this.searchMapper = searchMapper;
@@ -57,8 +45,7 @@ public class SearchServiceImpl implements SearchService{
             case 0:
                 return QueryUtil.queryResult(
                         QueryUtil.changeQContent(searchMapper.queryQuestions(map), n, root),
-                        start,
-                        count);
+                        start, count);
             // 话题
             case 1:
                 return QueryUtil.queryResult(searchMapper.queryTopics(map), start, count);

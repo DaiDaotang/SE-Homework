@@ -46,9 +46,6 @@
     </bean>
 
     <bean id="searchServiceImpl" class="com.know.service.SearchServiceImpl">
-        <property name="userMapper" ref="userMapper"/>
-        <property name="topicMapper" ref="topicMapper"/>
-        <property name="questionMapper" ref="questionMapper"/>
         <property name="searchMapper" ref="searchMapper"/>
     </bean>
 
