@@ -49,18 +49,10 @@
         where questionTitle like concat('%', #{keyword}, '%')
         order by
             <choose>
-                <when test="extra == 1">
-                    answerNumber DESC
-                </when>
-                <when test="extra == 2">
-                    browseNumber DESC
-                </when>
-                <when test="extra == 3">
-                    questionTime DESC
-                </when>
-                <when test="extra == 4">
-                    questionTime
-                </when>
+                <when test="extra == 1">answerNumber DESC</when>
+                <when test="extra == 2">browseNumber DESC</when>
+                <when test="extra == 3">questionTime DESC</when>
+                <when test="extra == 4">questionTime</when>
                  <otherwise>
                      length(substring_index(questionTitle, #{keyword}, 1)),
                      length(questionTitle)

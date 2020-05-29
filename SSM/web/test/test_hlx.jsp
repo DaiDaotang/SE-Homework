@@ -74,7 +74,8 @@
                     'topicId':$("#txt_t_3").val(),
                     'extra':$("#txt_t_4").val(),
                     'start':$("#txt_t_5").val(),
-                    'count':$("#txt_t_6").val()
+                    'count':$("#txt_t_6").val(),
+                    'n':100
                 },
                 success:function (data) {
                     console.log(data)

@@ -18,6 +18,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.servlet.ServletContext;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -37,6 +38,8 @@ public class TopicController {
     @Autowired
     @Qualifier("topicServiceImpl")
     private TopicService topicService;
+    @Autowired
+    private ServletContext servletContext;
 
     // 新建话题
     @RequestMapping("/bringUpTopic")
@@ -100,7 +103,7 @@ public class TopicController {
 
     // 查询话题下的问题
     @RequestMapping("/queryQuestions")
-    public Map<String, Object> queryQuestion(int topicId, int extra, int start, int count){
-        return topicService.queryQuestion(topicId, extra, start, count);
+    public Map<String, Object> queryQuestion(int topicId, int extra, int start, int count, int n){
+        return topicService.queryQuestion(topicId, extra, start, count, n, servletContext.getRealPath("") + "markdown");
     }
 }

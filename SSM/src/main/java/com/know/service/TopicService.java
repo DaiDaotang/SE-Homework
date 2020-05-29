@@ -20,5 +20,5 @@ public interface TopicService {
     // 模糊查询一个话题 by name
     Topic queryOneTopicByName(String topicName);
     // 查询一个话题下的问题
-    Map<String, Object> queryQuestion(int topicId, int extra, int start, int count);
+    Map<String, Object> queryQuestion(int topicId, int extra, int start, int count, int n, String root);
 }

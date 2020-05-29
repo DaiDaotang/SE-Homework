@@ -64,10 +64,12 @@ public class TopicServiceImpl implements TopicService{
         return topicMapper.queryOneTopicByName(topicName);
     }
 
-    public Map<String, Object> queryQuestion(int topicId, int extra, int start, int count) {
+    public Map<String, Object> queryQuestion(int topicId, int extra, int start, int count, int n, String root) {
         Map<String, Integer> tmp = new HashMap<String, Integer>();
         tmp.put("topicId", topicId);
         tmp.put("extra", extra);
-        return QueryUtil.queryResult(topicMapper.queryQuestions(tmp), start, count);
+        return QueryUtil.queryResult(
+                QueryUtil.changeQContent(topicMapper.queryQuestions(tmp), n, root),
+                start, count);
     }
 }
