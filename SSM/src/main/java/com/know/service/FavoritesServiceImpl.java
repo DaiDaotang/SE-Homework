@@ -110,29 +110,23 @@ public class FavoritesServiceImpl implements FavoritesService{
      * @return              修改数
      */
     public int emptyFavorites(int favoritesId) {
-        int res = 0;
-        int tmp;
+        int tmp, res = 0;
         // 1. 获取该收藏夹中的回答的ID列表
         List<Integer> answerIds = favoritesMapper.queryCollectedAnswerId(favoritesId);
         int size = answerIds.size();
         if(size == 0){
             return 1;
         }
-        // 2. 删除 favoritescontent 中的项
-        // 3. 更新 answer 中的对应的回答的收藏数
-        // 4. 更新 user 中答主的收藏数
         Map<String, Object> map = new HashMap<String, Object>();
         map.put("favoritesId", favoritesId);
         map.put("answerCollected", -1);
         for (int answerId : answerIds) {
-            map.put("answerId", answerId);
-            // 这一步很重要，不赋值给 tmp 而是直接 put 会报错
-            // 虽然我不知道为什么，可能是因为被视为Object而不是Integer
-            // Correct:::::::
             tmp = answerMapper.queryAnswererIdByAnswerId(answerId);
+            map.put("answerId", answerId);
             map.put("userId", tmp);
-            // Wrong:::::::
-            // map.put("userId", answerMapper.queryAnswererIdByAnswerId(answerId));
+            // 2. 删除 favoritescontent 中的项
+            // 3. 更新 answer 中的对应的回答的收藏数
+            // 4. 更新 user 中答主的收藏数
             res += favoritesMapper.unfavour(map);
             res += answerMapper.modifyAnswerCollected(map);
             res += userMapper.modifyCollected(map);
@@ -141,7 +135,7 @@ public class FavoritesServiceImpl implements FavoritesService{
         map.put("updateTime", new Date());
         map.put("contentNumber", -size);
         res += favoritesMapper.updateFavoritesLike(map);
-
+        // 6. 检验修改数
         return res % (3 * size + 1) + 1;
     }
 
