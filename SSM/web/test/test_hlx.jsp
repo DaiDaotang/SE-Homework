@@ -9,6 +9,15 @@
 <html>
 <head>
     <title>CC Test</title>
+    <style>
+        body{
+            margin-left: 30%;
+            margin-top: 25px;
+        }
+        input{
+            margin-top: 20px;
+        }
+    </style>
 </head>
 <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 <script src="js/utils.js"></script>
@@ -436,6 +445,7 @@
                 }
             })
         })
+
         // 修改回答
         $("#btn_a_1").click(function () {
             $.post({
@@ -448,20 +458,6 @@
                     console.log(data);
                 }
             })
-        })
-
-        // 删除回答
-        $("#btn_a_2").click(function () {
-            <%--$.post({--%>
-            <%--    url : "${pageContext.request.contextPath}/answer/delete",--%>
-            <%--    data:{--%>
-            <%--        "answerId": $("#txt_a_4").val()--%>
-            <%--    },--%>
-            <%--    success:function (data) {--%>
-            <%--        console.log(data);--%>
-            <%--        console.log(timestampToTime(data.answerTime))--%>
-            <%--    }--%>
-            <%--})--%>
         })
 
         // 获取回答 by answerId
@@ -485,8 +481,8 @@
                 data:{
                     "userId": $("#txt_a_5").val(),
                     "extra":$("#txt_a_5_0").val(),
-                    "start":0,
-                    "count":100,
+                    "start":$("#txt_a_5_01").val(),
+                    "count":$("#txt_a_5_02").val(),
                     "n":100
                 },
                 success:function (data) {
@@ -521,79 +517,80 @@
 
 <h1>回答</h1>
 <div>
-    <input type="text" id="txt_a_0" placeholder="回答" value="Just an answer!">
-    <input type="button" id="btn_a_0" value="创建回答"><br>
-    <input type="text" id="txt_a_1" placeholder="回答ID" value="6">
-    <input type="text" id="txt_a_2" placeholder="新内容" value="Just an answer!">
-    <input type="button" id="btn_a_1" value="修改回答"><br>
-    <input type="text" id="txt_a_3" placeholder="回答ID" value="1">
-    <input type="button" id="btn_a_2" value="删除回答"><br>
-    <input type="text" id="txt_a_4" placeholder="回答ID" value="1">
-    <input type="button" id="btn_a_3" value="获取回答"><br>
-    <input type="text" id="txt_a_5" placeholder="用户ID" value="5">
-    <input type="text" id="txt_a_5_0" placeholder="排序方法" value="5">
-    <input type="button" id="btn_a_4" value="获取回答"><br>
-    <input type="text" id="txt_a_6" placeholder="问题ID" value="1">
-    <input type="text" id="txt_a_6_0" placeholder="排序方法" value="1">
-    <input type="button" id="btn_a_5" value="获取回答"><br>
+    <label>问题ID</label><input type="text" id="txt_a_00" placeholder="问题ID" value="3"><br>
+    <label>回答</label><input type="text" id="txt_a_0" placeholder="回答" value="Just an answer!"><br>
+    <input type="button" id="btn_a_0" value="创建回答"><br><br>
+    <label>回答ID</label><input type="text" id="txt_a_1" placeholder="回答ID" value="6"><br>
+    <label>新内容</label><input type="text" id="txt_a_2" placeholder="新内容" value="Just an answer!"><br>
+    <input type="button" id="btn_a_1" value="修改回答"><br><br>
+    <label>回答ID</label><input type="text" id="txt_a_4" placeholder="回答ID" value="1"><br>
+    <input type="button" id="btn_a_3" value="获取回答"><br><br>
+    <label>用户ID</label><input type="text" id="txt_a_5" placeholder="用户ID" value="5"><br>
+    <label>排序方法</label><input type="text" id="txt_a_5_0" placeholder="排序方法" value="5"><br>
+    <label>start</label><input type="text" id="txt_a_5_01" placeholder="start" value="0"><br>
+    <label>count</label><input type="text" id="txt_a_5_02" placeholder="count" value="100"><br>
+    <input type="button" id="btn_a_4" value="获取回答"><br><br>
+    <label>问题ID</label><input type="text" id="txt_a_6" placeholder="问题ID" value="1"><br>
+    <label>排序方法</label><input type="text" id="txt_a_6_0" placeholder="排序方法" value="1"><br>
+    <input type="button" id="btn_a_5" value="获取回答"><br><br>
 </div>
 
 
 <h1>搜索</h1>
 <div>
-    <input type="text" id="txt_s_0" placeholder="关键字">
-    <input type="text" id="txt_s_1" placeholder="排序方法" value="0">
-    <input type="text" id="txt_s_2" placeholder="搜索类型" value="0">
-    <input type="text" id="txt_s_3" placeholder="开始" value="0">
-    <input type="text" id="txt_s_4" placeholder="数量" value="4">
-    <input type="button" id="btn_s_0" value="搜索问题">
-    <input type="button" id="btn_s_1" value="搜索话题">
-    <input type="button" id="btn_s_2" value="搜索用户">
-    <input type="button" id="btn_s_3" value="搜索">
+    <label>关键字</label><input type="text" id="txt_s_0" placeholder="关键字"><br>
+    <label>排序方法</label><input type="text" id="txt_s_1" placeholder="排序方法" value="0"><br>
+    <label>开始</label><input type="text" id="txt_s_3" placeholder="开始" value="0"><br>
+    <label>数量</label><input type="text" id="txt_s_4" placeholder="数量" value="4"><br>
+    <input type="button" id="btn_s_0" value="搜索问题"><br>
+    <input type="button" id="btn_s_1" value="搜索话题"><br>
+    <input type="button" id="btn_s_2" value="搜索用户"><br><br>
+    <label>搜索类型</label><input type="text" id="txt_s_2" placeholder="0问题，1话题，2用户"><br>
+    <input type="button" id="btn_s_3" value="搜索"><br>
 </div>
 
 
 <h1>点赞</h1>
 <div>
-    <input type="text" id="txt_like_0" placeholder="回答ID">
-    <input type="button" id="btn_like_0" value="点赞"><br>
-    <input type="button" id="btn_like_1" value="查询点赞"><br>
-    <input type="text" id="txt_like_1" placeholder="评论ID">
-    <input type="button" id="btn_like_2" value="点赞"><br>
-    <input type="button" id="btn_like_3" value="查询点赞"><br>
+    <label>回答ID</label><input type="text" id="txt_like_0" placeholder="回答ID"><br>
+    <input type="button" id="btn_like_0" value="点赞/取消点赞"><br>
+    <input type="button" id="btn_like_1" value="查询点赞"><br><br>
+    <label>评论ID</label><input type="text" id="txt_like_1" placeholder="评论ID"><br>
+    <input type="button" id="btn_like_2" value="点赞/取消点赞"><br>
+    <input type="button" id="btn_like_3" value="查询点赞"><br><br>
 </div>
 
 
 <h1>关注</h1>
 <div>
-    <input type="text" id="txt_follow_0" placeholder="用户ID">
-    <input type="button" id="btn_follow_0" value="关注/取消关注"><br>
-    <input type="text" id="txt_follow_1" placeholder="0关注1粉丝">
-    <input type="button" id="btn_follow_2" value="关注/粉丝列表"><br>
-    <input type="text" id="txt_follow_2" placeholder="目标用户ID">
-    <input type="button" id="btn_follow_3" value="检查是否关注"><br>
+    <label>用户ID</label><input type="text" id="txt_follow_0" placeholder="目标用户ID"><br>
+    <input type="button" id="btn_follow_0" value="关注/取消关注"><br><br>
+    <label>0关注，1粉丝</label><input type="text" id="txt_follow_1" placeholder="0关注1粉丝"><br>
+    <input type="button" id="btn_follow_2" value="关注/粉丝列表"><br><br>
+    <label>目标用户ID</label><input type="text" id="txt_follow_2" placeholder="目标用户ID"><br>
+    <input type="button" id="btn_follow_3" value="检查是否关注"><br><br>
 </div>
 
 <h1>收藏夹</h1>
 <div>
-    <input type="text" id="txt_f_0" placeholder="收藏夹名称">
+    <label>收藏夹名称</label><input type="text" id="txt_f_0" placeholder="收藏夹名称"><br>
     <input type="button" id="btn_f_0" value="新建收藏夹"><br>
-    <input type="button" id="btn_f_1" value="删除收藏夹"><br>
-    <input type="text" id="txt_f_1" placeholder="收藏夹原ID">
-    <input type="text" id="txt_f_2" placeholder="收藏夹新名称">
-    <input type="button" id="btn_f_2" value="修改收藏夹名称"><br>
-    <input type="text" id="txt_f_7" placeholder="start" value="0">
-    <input type="text" id="txt_f_8" placeholder="count" value="10">
-    <input type="button" id="btn_f_4" value="通过用户ID获取收藏夹"><br>
-    <input type="text" id="txt_f_3" placeholder="回答的ID">
-    <input type="text" id="txt_f_4" placeholder="收藏夹的ID">
-    <input type="button" id="btn_f_5" value="收藏/取消收藏回答"><br>
-    <input type="text" id="txt_f_5" placeholder="收藏夹的ID">
-    <input type="button" id="btn_f_6" value="清空收藏夹"><br>
-    <input type="text" id="txt_f_6" placeholder="问题的ID">
-    <input type="button" id="btn_f_7" value="获取被哪些收藏夹收藏"><br>
-    <input type="text" id="txt_f_9" placeholder="favoritesId" value="9">
-    <input type="button" id="btn_f_8" value="获取收藏夹收藏的回答"><br>
+    <input type="button" id="btn_f_1" value="删除收藏夹"><br><br>
+    <label>收藏夹原ID</label><input type="text" id="txt_f_1" placeholder="收藏夹原ID"><br>
+    <label>收藏夹新名称</label><input type="text" id="txt_f_2" placeholder="收藏夹新名称"><br>
+    <input type="button" id="btn_f_2" value="修改收藏夹名称"><br><br>
+    <label>start</label><input type="text" id="txt_f_7" placeholder="start" value="0"><br>
+    <label>count</label><input type="text" id="txt_f_8" placeholder="count" value="10"><br>
+    <input type="button" id="btn_f_4" value="通过用户ID获取收藏夹"><br><br>
+    <label>回答ID</label><input type="text" id="txt_f_3" placeholder="回答的ID"><br>
+    <label>收藏夹ID</label><input type="text" id="txt_f_4" placeholder="收藏夹的ID"><br>
+    <input type="button" id="btn_f_5" value="收藏/取消收藏回答"><br><br>
+    <label>收藏夹ID</label><input type="text" id="txt_f_5" placeholder="收藏夹的ID"><br>
+    <input type="button" id="btn_f_6" value="清空收藏夹"><br><br>
+    <label>问题ID</label><input type="text" id="txt_f_6" placeholder="问题的ID"><br>
+    <input type="button" id="btn_f_7" value="获取被哪些收藏夹收藏"><br><br>
+    <label>收藏夹ID</label><input type="text" id="txt_f_9" placeholder="favoritesId" value="9"><br>
+    <input type="button" id="btn_f_8" value="获取收藏夹收藏的回答"><br><br>
 </div>
 
 
@@ -613,21 +610,21 @@
 
 <H1>Topic模块</H1>
 <div>
-    <input type="text" id="txt_t_0" placeholder="新话题名称">
-    <input type="button" id="btn_0" value="新建话题"><br>
-    <input type="text" id="txt_t_1" placeholder="话题名称">
-    <input type="button" id="btn_1" value="话题存在"><br>
-    <input type="text" id="txt_t_2" placeholder="话题名称">
-    <input type="button" id="btn_2" value="ID查询"><br>
-    <input type="text" id="btn_3_name" value="球">
-    <input type="text" id="btn_3_start" value="0">
-    <input type="text" id="btn_3_count" value="10">
-    <input type="button" id="btn_3" value="名称查询"><br>
-    <input type="text" id="txt_t_3" value="14">
-    <input type="text" id="txt_t_4" value="1">
-    <input type="text" id="txt_t_5" value="0">
-    <input type="text" id="txt_t_6" value="10">
-    <input type="button" id="btn_4" value="查询问题">
+    <label>新话题名称</label><input type="text" id="txt_t_0" placeholder="新话题名称"><br>
+    <input type="button" id="btn_0" value="新建话题"><br><br>
+    <label>话题名称</label><input type="text" id="txt_t_1" placeholder="话题名称"><br>
+    <input type="button" id="btn_1" value="话题存在"><br><br>
+    <label>话题名称</label><input type="text" id="txt_t_2" placeholder="话题名称"><br>
+    <input type="button" id="btn_2" value="ID查询"><br><br>
+    <label>关键字</label><input type="text" id="btn_3_name" value="球"><br>
+    <label>start</label><input type="text" id="btn_3_start" value="0"><br>
+    <label>count</label><input type="text" id="btn_3_count" value="10"><br>
+    <input type="button" id="btn_3" value="名称查询"><br><br>
+    <label>话题ID</label><input type="text" id="txt_t_3" value="14"><br>
+    <label>排序条件</label><input type="text" id="txt_t_4" value="1"><br>
+    <label>start</label><input type="text" id="txt_t_5" value="0"><br>
+    <label>count</label><input type="text" id="txt_t_6" value="10"><br>
+    <input type="button" id="btn_4" value="查询问题"><br>
 </div>
 
 </body>
